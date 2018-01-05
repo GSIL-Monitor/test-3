@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--根据条件筛选试卷-->
+	<api name='filtrate_paper'>
+		<protocol>post</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/filtrate-paper?debug=1</url>
+	</api>
+	<!--获取所有试卷列表-->
+	<api name='get_paper_list'>
+		<protocol>post</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-paper-list?debug=1</url>
+	</api>
+	<!--获取试卷详情-->
+	<api name='get_paper_detail'>
+		<protocol>post</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-paper-detail?debug=1</url>
+	</api>
+	<!--获取文章列表-->
+	<api name='get_article_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-article-list?debug=1</url>
+		<output name="articleid">data.[0].articleID</output>
+	</api>
+	<!--获取文章详情-->
+	<api name='get_article_detail'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-article-detail?debug=1</url>
+	</api>
+	<!--根据articleID获取获取题目-->
+	<api name='get_article_ques'>
+		<protocol>post</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-article-ques?debug=1</url>
+	</api>
+	<!--根据articleID获取获取题目-->
+	<api name='filtrate_ques'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/filtrate-ques?debug=1</url>
+	</api>
+	<!--获取题型类型列表（非业务）-->
+	<api name='get_ques_type_list'>
+		<protocol>get</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-ques-type-list?debug=1</url>
+	</api>
+	<!--根据标签等条件获取题目-->
+	<api name='get_ques'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-ques?debug=1</url>
+	</api>
+	<!--托福错题榜,获取做错做多的8道题-->
+	<api name='error_ques_top'>
+		<protocol>get</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/error-ques-top?debug=1</url>
+	</api>
+	<!--根据topic_id获取问题详情-->
+	<api name='get_ques_by_topicid'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-ques-by-topicid?debug=1</url>
+	</api>
+	<!--获取业务题型练习分类信息-->
+	<api name='biz_ques_classify'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/biz-ques-classify?debug=1</url>
+	</api>
+	<!--按业务题型练，筛选题目接口-->
+	<api name='get_biz_ques'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/get-biz-ques?debug=1</url>
+	</api>
+	<!--获取题目练习统计信息-->
+	<api name='get_topic_avg_count'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/get-topic-avg-count?debug=1</url>
+	</api>
+	<!--根据btype获取各级分类标签-->
+	<api name='get_label_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-label-list?debug=1</url>
+	</api>
+	<!--选择标签-->
+	<api name='select_label'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/select-label?debug=1</url>
+	</api>
+	<!--获取文章标签概要信息-->
+	<api name='article_label_summary'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-article/article-label-summary?debug=1</url>
+	</api>
+	<!--生成workflow工作流-->
+	<api name='gen_toefl_workflow_id'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/workflow/gen-toefl-workflow-id?debug=1</url>
+	</api>
+	<!--更新workflow工作流-->
+	<api name='update_toefl_workflow'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/workflow/update-toefl-workflow?debug=1</url>
+	</api>
+	<!--查询workflow工作流详情-->
+	<api name='get_toefl_workflow_detail'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/workflow/get-toefl-workflow-detail?debug=1</url>
+	</api>
+	<!--删除工作流-->
+	<api name='del_workflow'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/workflow/del-workflow?debug=1</url>
+	</api>
+	<!--保存|更新答题文章答题记录-->
+	<api name='save_article_practice'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-article/save-article-practice?debug=1</url>
+	</api>
+	<!--保存|更新答题试卷答题记录-->
+	<api name='save_paper_practice'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-paper/save-paper-practice?debug=1</url>
+	</api>
+	<!--获取试卷练习记录-->
+	<api name='get_paper_practice'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-paper/get-paper-practice?debug=1</url>
+	</api>
+	<!--批量获取试卷练习状态-->
+	<api name='get_practice_status'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-paper/get-practice-status?debug=1</url>
+	</api>
+	<!--试卷断点续做-->
+	<api name='breakpoint_practice'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-paper/breakpoint-practice?debug=1</url>
+	</api>
+	<!--文章断点续做-->
+	<api name='article_breakpoint_practice'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-article/article-breakpoint-practice?debug=1</url>
+	</api>
+	<!--托福保存答案（单题答题记录）-->
+	<api name='save'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/save?debug=1</url>
+	</api>
+	<!--获取学生文章练习最最新一次概要信息-->
+	<api name='last_article_practice_summary'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-article/last-article-practice-summary?debug=1</url>
+	</api>
+	<!--文章答题回顾-->
+	<api name='get_practice_result'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-article/get-practice-result?debug=1</url>
+	</api>
+	<!--根据工作流获取答题记录-->
+	<api name='get_answer_by_workflow'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-answer-by-workflow?debug=1</url>
+	</api>
+
+	<!--获取单题答题记录-->
+	<api name='topic_practice_history'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/topic-practice-history?debug=1</url>
+	</api>
+	<!--根据topic_id批量获取答题记录-->
+	<api name='get_answer_by_topic_id'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/get-answer-by-topic-id?debug=1</url>
+	</api>
+	<!--文章练习次数统计-->
+	<api name='article_practice_count'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-article/article-practice-count?debug=1</url>
+	</api>
+	<!--获取我的答题记录-->
+	<api name='get_practice_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl/get-practice-list?debug=1</url>
+	</api>
+	<!--获取学生练习统计信息【按题型练】-->
+	<api name='get_biz_practice_count'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/get-biz-practice-count?debug=1</url>
+	</api>
+	<!--业务题型答题统计【按题型练】-->
+	<api name='save_biz_practice_count'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/toefl-ques/save-biz-practice-count?debug=1</url>
+	</api>
+
+
+	<!--practice练习相关API-->
+	<!--获取错题本列表-->
+	<api name='wrong_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/wrong-list?debug=1</url>
+	</api>
+
+	<!--vocabulary练习相关API-->
+	<!--获取用户生词本-->
+	<api name='user_vocabulary_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/word/user-vocabulary-list?debug=1</url>
+	</api>
+</Config>

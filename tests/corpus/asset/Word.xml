@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestMethod name='user_vocabulary_list'>
+		<TestCase name='output'>
+			<Assert method="getjsonvalue" param="code">0</Assert>
+		</TestCase>
+	</TestMethod>
+</TestSuite>

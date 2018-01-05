@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestMethod name='wrong_list'>
+		<TestCase name='output'>
+			<Assert>{"code":0,"message":"OK","data":{"count":"0","list":[]}}</Assert>
+		</TestCase>
+	</TestMethod>
+</TestSuite>

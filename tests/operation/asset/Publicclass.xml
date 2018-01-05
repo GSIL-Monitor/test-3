@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestMethod name='getlatestactivity'>
+		<TestCase name='category2'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonarraysize" param="Data" operator="equal">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityCategory">2</Assert>
+		</TestCase>
+		<TestCase name='category3'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonarraysize" param="Data" operator="equal">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityCategory">3</Assert>
+		</TestCase>
+		<TestCase name='categoryInvalid'>
+			<Assert method="getjsonvalue" param="Message">The request is invalid.</Assert>
+		</TestCase>
+		<TestCase name='categoryNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>	
+	<TestMethod name='getactivitydetails'>
+		<TestCase name='output'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityId">9250</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data.ActivityTitle">None</Assert>
+		</TestCase>
+		<TestCase name='activityidInvalid'>
+			<Assert method="getjsonvalue" param="Message">The request is invalid.</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitylist'>
+		<TestCase name='output'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getsignupuserwechatinfo'>
+		<TestCase name='moldNotExist'>
+			<Assert method="getjsonvalue" param="Message">业务类型不存在</Assert>
+		</TestCase>
+		<TestCase name='idNotExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+		<TestCase name='mold2'>
+			<Assert method="getjsonarraysize" param="Data" operator="greater">1</Assert>
+		</TestCase>
+		<TestCase name='mold1'>
+			<Assert method="getjsonarraysize" param="Data" operator="greater">1</Assert>
+			<Assert method="haskeys" param="Data.[0]">SignUpUserId,PassportId,UnionId,OpenId,NickName,HeadImgUrl</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='GetUserPublicClassList'>
+		<TestCase name='output'>
+			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+		</TestCase>
+		<TestCase name='starttime'>
+			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
+		</TestCase>
+		<TestCase name='endtime'>
+			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
+		</TestCase>
+		<TestCase name='starttimeendtime'>
+			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
+		</TestCase>
+	</TestMethod>
+	<TestProcess name="test1">
+		<TestMethod name='GetUserPublicClassList'>
+			<TestCase name='output'>
+				<Assert method="getjsonarraysize" param="Data" operator="greater">1</Assert>
+				<Assert method="getjsonvalue" param="Code">0</Assert>
+			</TestCase>
+		</TestMethod>
+	</TestProcess>
+</TestSuite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestMethod name='wrong_list'>
+		<TestCase name='output'>
+			<p_uid>1494415</p_uid>
+			<test_type>1</test_type>
+			<limit>1</limit>
+		</TestCase>
+	</TestMethod>
+</TestSuite>

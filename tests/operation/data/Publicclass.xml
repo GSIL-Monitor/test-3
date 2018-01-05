@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestMethod name='getlatestactivity'>
+		<TestCase name='category2'>
+			<activitycategory>2</activitycategory>
+		</TestCase>
+		<TestCase name='category3'>
+			<activitycategory>3</activitycategory>
+		</TestCase>		
+		<TestCase name='categoryInvalid'>
+			<activitycategory>test</activitycategory>
+		</TestCase>
+		<TestCase name='categoryNotExist'>
+			<activitycategory>999</activitycategory>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitydetails'>
+		<TestCase name='output'>
+			<activityid>9250</activityid>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<activityid>999</activityid>
+		</TestCase>
+		<TestCase name='activityidInvalid'>
+			<activityid>test</activityid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitylist'>
+		<TestCase name='output'>
+			<ActivityType>1,2,3,4,5</ActivityType>
+			<StartTime>2017-06-01</StartTime>
+			<EndTime>2017-07-01</EndTime>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getsignupuserwechatinfo'>
+		<TestCase name='mold2'>
+			<businessmold>2</businessmold>
+			<businessid>3933</businessid>
+		</TestCase>
+		<TestCase name='mold1'>
+			<businessmold>1</businessmold>
+			<businessid>1</businessid>
+		</TestCase>
+		<TestCase name='moldNotExist'>
+			<businessmold>9</businessmold>
+			<businessid>1</businessid>
+		</TestCase>
+		<TestCase name='idNotExist'>
+			<businessmold>1</businessmold>
+			<businessid>99</businessid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='GetUserPublicClassList'>
+		<TestCase name='output'>
+			<passportId>1326028</passportId>
+		</TestCase>
+		<TestCase name='starttime'>
+			<passportId>1326028</passportId>
+			<starttime>2016-12-14</starttime>
+		</TestCase>
+		<TestCase name='endtime'>
+			<passportId>1326028</passportId>
+			<endtime>2016-12-15</endtime>
+		</TestCase>
+		<TestCase name='starttimeendtime'>
+			<passportId>1326028</passportId>
+			<starttime>2016-12-13</starttime>
+			<endtime>2016-12-15</endtime>
+		</TestCase>
+	</TestMethod>
+	<TestProcess name="test1">
+		<TestMethod type="func" method='getpassportid' output="passportid">1326028</TestMethod>
+		<TestMethod type="method" method='GetUserPublicClassList'>
+			<TestCase name='output'>
+				<passportId type="func" method="getoutput">passportid</passportId>
+			</TestCase>
+		</TestMethod>
+	</TestProcess>
+</TestSuite>

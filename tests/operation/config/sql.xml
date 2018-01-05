@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqllist>
+	<!--获取最近的活动-->
+	<sql name='getactivitycountbypassportidstarttimeendtime'>select count(*) from Tpo_PublicClass a,Tpo_PublicClass_SignUp b,Tpo_PublicClass_SignUp_Users c
+where a.PublicID = b.PublicID and b.SignUpUserID = c.signupuserid and c.passportid = '1326028' and a.StartTime &gt;= CAST('2016-12-13' as date)  and a.endtime &lt;= CAST('2016-12-16' as date)
+	</sql>
+</sqllist>

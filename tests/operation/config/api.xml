@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--获取最近的活动-->
+	<api name='getlatestactivity'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getlatestactivity</url>
+	</api>
+	<!--获取活动详情 -->
+	<api name='getactivitydetails'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getactivitydetails</url>
+	</api>
+	<!--获取活动列表-->
+	<api name='getactivitylist'>
+		<protocol>post</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getactivitylist</url>
+	</api>
+	<!--获取用户的微信信息-->
+	<api name='getsignupuserwechatinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getsignupuserwechatinfo</url>
+	</api>
+	<!--获取用户报名过的公开课列表-->
+	<api name='GetUserPublicClassList'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.107:8083/publicclass/GetUserPublicClassList</url>
+	</api>
+</Config>
