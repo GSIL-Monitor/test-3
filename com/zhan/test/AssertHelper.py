@@ -12,86 +12,113 @@ class AssertHelper:
     @staticmethod
     def executeAndAssert(methodname, casename, casedata,filename):
         if casedata.tag == 'TestProcess':
-            for testMethod in casedata:
-                AssertHelper.__assertByMethod(casedata.get('name'),testMethod, methodname, filename)
+            for testMethod in casedata.getchildren():
+                for testCase in testMethod.getchildren():
+                    AssertHelper.__assertByMethod(testMethod.get('name'),testCase, methodname, filename)
         else:
-            testMethod = casedata
-            AssertHelper.__assertByMethod(None,testMethod,methodname,filename)
+            testCase = casedata
+            AssertHelper.__assertByMethod(methodname,testCase,None,filename)
 
     @staticmethod
-    def __assertByMethod(processname,testMethod,methodname,filename):
+    def __assertByMethod(methodname, testCase, processname, filename):
         pd = publicData()
-        testtype = testMethod.get('type')
+        testtype = testCase.get('type')
+        #执行函数
         if testtype == 'func':
-            method = testMethod.get('method')
-            param = testMethod.text
-            output = testMethod.get('output')
+            method = testCase.get('method')    #执行的函数的方法
+            param = testCase.text
+            output = testCase.get('output')
             result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
             if output <> None:
                 pd.setOutput(output, result)
-        else:
+        else:    #执行正常的接口调用
             # methodname = testMethod.get('method')
-            subcasename = testMethod.get('name')
-            subcasedata = testMethod
+            subcasename = testCase.get('name')
+            subcasedata = testCase
             response = httpExecuter.executeHttpRequest(methodname, subcasename, subcasedata)
             AssertHelper.__assertResponse(processname, methodname, subcasename, response, filename)
 
     @staticmethod
     def __assertResponse(processname,methodname,casename,response,filename):
         pd = publicData()
-        path = '%s/asset/%s.xml' % (pd.getMainDir(), filename)
+        path = r'%s\asset\%s.xml' % (pd.getMainDir(), filename)
         assertList = xmlUtil.getAssert(path,processname,methodname,casename)
         for assertEle in assertList:
-            method = assertEle.get('method') if assertEle.get('method') <> None else "equal"         #默认的方法是equal
+            operator = assertEle.get('operator') if assertEle.get('operator') != None else "equal"   #默认的operator是equal
+            # method = assertEle.get('method') if assertEle.get('method') != None else "equal"         #默认的方法是equal
+            # param = assertEle.get('param')
+            # method1 = assertEle.get('method1')
+            # param1 = assertEle.get('param1')
+            # if param == None:
+            #     getattr(AssertMethed, method)(response,assertEle.text)
+            # elif method1 == None:
+            #     getattr(AssertMethed, method)(response, assertEle.text, param, operator)
+            # else:
+            #     getattr(AssertMethed, method)(response, assertEle.text, param, operator,method1,param1)
+
+            type = assertEle.get('type')
+            method = assertEle.get('method')
             param = assertEle.get('param')
-            operator = assertEle.get('operator') if assertEle.get('operator') <> None else "equal"   #默认的operator是equal
+            func1 = {'type':type,'method':method,'param':param}
             method1 = assertEle.get('method1')
-            param1 = assertEle.get('param1')
-            if param == None:
-                getattr(AssertMethed, method)(response,assertEle.text)
-            elif method1 == None:
-                getattr(AssertMethed, method)(response, assertEle.text, param, operator)
+            if method1 != None:
+                type1 = assertEle.get('type1')
+                param1 = assertEle.get('param1')
+                func2 = {'type': type1, 'method': method1, 'param': param1}
+                getattr(AssertMethed, 'comparetwomethod')(response, assertEle.text,operator,func1=func1,func2=func2)
             else:
-                getattr(AssertMethed, method)(response, assertEle.text, param, operator,method1,param1)
+                getattr(AssertMethed, method)(response, assertEle.text,operator,func1=func1)
 
 
 class AssertMethed():
     #是否包含内容
     @staticmethod
-    def contains(response,expected):
+    def contains(response,expected,operator,**kwargs):
         assert_that(response,contains_string(expected))
 
     #是否相等
     @staticmethod
-    def equal(response,expected):
+    def equal(response,expected,operator,**kwargs):
         assert_that(response, is_(expected))
 
     #是否包含某些KEY值
     @staticmethod
-    def haskeys(response,expected,param,operator):
+    def haskeys(response,expected,param,operator,**kwargs):
         resObj = JsonUtil.getJsonObjByPar(response,param)
         assert_that(resObj, has_keys(expected))
 
     #根据路径得到JSON中的某个KEY的值
     @staticmethod
-    def getjsonvalue(response,expected,param,operator):
+    def getjsonvalue(response,expected,operator,**kwargs):
+        param = kwargs['func1']['param']
         actual = JsonUtil.getJsonStrByPar(response, param)
-        AssertMethed.assetByOperator(actual,expected,operator)
+        AssertMethed.__assetByOperator(actual,expected,operator)
 
     #根据路径得到JSON中某个ARRAY的数量
     @staticmethod
-    def getjsonarraysize(response,expected,param,operator):
+    def getjsonarraysize(response,expected,operator,**kwargs):
+        param = kwargs['func1']['param']
         actual = JsonUtil.getJsonArraySize(response, param)
-        AssertMethed.assetByOperator(actual,expected,operator)
+        AssertMethed.__assetByOperator(actual,expected,operator)
 
 
+    #两个方法进行比较
     @staticmethod
-    def getjsonarraysizeandcompare(response,expected,param,operator,method1,param1):
-        result = getattr(AssertMethed,method1)(param1)
-        print result
-        actual = JsonUtil.getJsonArraySize(response, param)
-        exp = int(result)
-        AssertMethed.__assetByOperator(actual,exp,operator)
+    def comparetwomethod(response,expected,operator,**kwargs):
+        func1 = kwargs['func1']
+        func2 = kwargs['func2']
+        if func1['type'] == 'func':
+            res1 = getattr(FuncUtil,func1['method'])(func1['param'])
+        else:
+            res1 = getattr(AssertMethed,func1['method'])(response,expected,operator,func1=func1)
+
+        if func2['type'] == 'func':
+            res2 = getattr(FuncUtil,func2['method'])(func2['param'])
+        else:
+            res2 = getattr(AssertMethed,func2['method'])(response,expected,operator,func1=func2)
+
+        AssertMethed.__assetByOperator(res1, res2, operator)
+
 
     #有操作符的验证
     @staticmethod
@@ -119,7 +146,7 @@ class AssertMethed():
     @staticmethod
     def getvaluebysql(sqlstr):
         pd = publicData()
-        path = '%s/config/sql.xml' % (pd.getMainDir())
+        path = r'%s\config\sql.xml' % (pd.getMainDir())
         html = etree.parse(path)
         sql = html.xpath('//sqllist/sql[@name=\'%s\']' % (sqlstr))[0].text
         # print sql

@@ -20,9 +20,33 @@
 		<protocol>get</protocol>
 		<url>http://192.168.41.106:8093/publicclass/getsignupuserwechatinfo</url>
 	</api>
+
+	<!--用户登录-->
+	<api name='UsersLogin'>
+		<protocol>post</protocol>
+		<url>http://passport.zhan.com/UsersLogin/login.html</url>
+	</api>
 	<!--获取用户报名过的公开课列表-->
 	<api name='GetUserPublicClassList'>
-		<protocol>get</protocol>
-		<url>http://192.168.41.107:8083/publicclass/GetUserPublicClassList</url>
+		<protocol>json</protocol>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclasslist</url>
+		<output name="publicid">Data.Body.[0].PublicID</output>
 	</api>
+	<!--公开课报名-->
+	<api name='signuppublicclass'>
+		<protocol>post</protocol>
+		<url>https://ermapi.zhan.com/publicclass/signuppublicclass</url>
+	</api>
+	<!--获取公开课详情-->
+	<api name='getpublicclassbyid'>
+		<protocol>get</protocol>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclassbyid</url>
+	</api>
+	<!--学员公开课信息-->
+	<api name='getstudentpublicclassinfo'>
+		<protocol>get</protocol>
+		<url>https://ermapi.zhan.com/publicclass/getstudentpublicclassinfo</url>
+	</api>
+
+
 </Config>

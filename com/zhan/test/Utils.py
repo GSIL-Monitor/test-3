@@ -52,7 +52,6 @@ class xmlUtil:
             assertList = html.xpath('//TestSuite/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']/Assert' % (methodname,casename))
         else:
             assertList = html.xpath('//TestSuite/TestProcess[@name=\'%s\']/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']/Assert' % (processname,methodname, casename))
-
         if len(assertList) == 0:
             raise NameError, ("Assert config error.Process:%s,Method:%s,Casename:%s" % (processname,methodname, casename))
 
@@ -106,7 +105,8 @@ class ParamUtil:
         if pd.getRunMode().lower() == "debug":
             casename = xmlUtil.getDebugCaseName('%s/config/debug.xml' % (pd.getMainDir()), method,file[5:-3])
 
-        if casename <> None:
+        #指定的TESTCASE
+        if casename != None:
             result = xmlUtil.getDataByMethodCase(path, method, casename)
         else:
             result = xmlUtil.getDataByMethod(path, method)
@@ -114,6 +114,7 @@ class ParamUtil:
         #非单接口形式，而是接口流程
         if len(result) == 0:
             result = xmlUtil.getProcessDataByMethod(path,method)
+
         for i in xrange(len(result)):
             pa.append([method, result[i].get('name'), result[i],file[5:-3]])
         return pa

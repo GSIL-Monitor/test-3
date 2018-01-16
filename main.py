@@ -26,7 +26,7 @@ for curProject in projects:
     #项目目录
     basedir = 'tests\\%s\\'%(curProject)
     #运行文件
-    runfile = basedir + "config\\run.xml" if runmode=="run" else basedir + "config\\debug.xml"
+    runfile = basedir + r"config\run.xml" if runmode=="run" else basedir + r"config\debug.xml"
 
     #项目下的TEST文件或DEBUG文件，当前默认一个项目一个SUITE生成一个LOG文件
     try:
@@ -48,7 +48,7 @@ for curProject in projects:
         #用例文件名
         filename = "%s.py"%(curFile.get('name'))
         #文件路径
-        filepath = "%stestcase\\%s"%(basedir,filename)
+        filepath = r"%stestcase\%s"%(basedir,filename)
         #有子元素
         if len(curFile) > 0:
             for child in curFile:
@@ -60,9 +60,9 @@ for curProject in projects:
     # logfile = "--junitxml=%slog/%s.xml"%(basedir,curProject)
     # logfile = "--html=%slog/%s.html  --self-contained-html"%(basedir,curProject)
     #WEB服务器路径，用于展示ALLURE报表
-    serverdir = "%s\\zhan\\%s" % (webserverdir, curProject)
+    serverdir = r"%s\zhan\%s" % (webserverdir, curProject)
     #日志文件保存路径
-    logfile = "--alluredir %s\\log"%(serverdir)
+    logfile = r"--alluredir %s\log"%(serverdir)
     #PYTEST执行参数
     runparam = "-s %s%s"%(param,logfile)
 
@@ -70,17 +70,17 @@ for curProject in projects:
         pytest.main(runparam)
 
     #处理REPORT，如果已经有REPORT，先删除，再重新生成
-    reportdir = "%s\\reporter"%(serverdir)
+    reportdir = r"%s\reporter"%(serverdir)
     if os.path.exists(reportdir):
         shutil.rmtree(reportdir)
-    allcmd = "%s\\allure generate -c %s\\log -o %s" % (allurepath,serverdir,reportdir)
+    allcmd = r"%s\allure generate -c %s\log -o %s" % (allurepath,serverdir,reportdir)
     os.system(allcmd)
 
     #在ALLURE中拿到主要的统计数据passed,failed
     result={'passed':0,'failed':0}
-    for f in os.listdir("%s\\log"%(serverdir)):
+    for f in os.listdir(r"%s\log"%(serverdir)):
         if os.path.splitext(f)[1] == ".xml":
-            html = etree.parse("%s\\log\\%s"%(serverdir,f))
+            html = etree.parse(r"%s\log\%s"%(serverdir,f))
             suite = html.getroot()
             suite = suite.find("test-cases",{'ns0':'urn:model.allure.qatools.yandex.ru'})
             for testcase in suite.findall('test-case'):
@@ -91,7 +91,7 @@ for curProject in projects:
     #报表URL
     reporturl = "http://localhost:80/zhan/%s/reporter/index.html"%(curProject)
 
-    mh.sendMail( "%s\\config\\config.xml"%(basedir),curProject,result,reporturl,"%s\\report.html"%serverdir)
+    mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
 
     #项目执行结束后的清理
     pd.tearDown()

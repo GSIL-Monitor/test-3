@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestProcess name="publicclasscheck">
+		<TestMethod name='UsersLogin'>
+			<TestCase name='login'>
+				<Assert method="contains">beikao_5532859464</Assert>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='GetUserPublicClassList'>
+			<TestCase name='login'>
+				<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='signuppublicclass'>
+			<TestCase name='login'>
+				<Assert method="getjsonvalue" param="Data.UserID">5000209541</Assert>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='getpublicclassbyid'>
+			<TestCase name='login'>
+				<Assert method="getjsonvalue" param="Data.PublicID" type1="func" method1="getoutput" param1="publicid"></Assert>
+			</TestCase>
+		</TestMethod>
+	</TestProcess>
+	<TestMethod name='getlatestactivity'>
+		<TestCase name='category2'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonarraysize" param="Data" operator="equal">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityCategory">2</Assert>
+		</TestCase>
+		<TestCase name='category3'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonarraysize" param="Data" operator="equal">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityCategory">3</Assert>
+		</TestCase>
+		<TestCase name='categoryInvalid'>
+			<Assert method="getjsonvalue" param="Message">The request is invalid.</Assert>
+		</TestCase>
+		<TestCase name='categoryNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+</TestSuite>

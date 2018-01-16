@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Publicclass" verbose="1">
   	<files>
-  		<file name="test_Publicclass">
-			<method>test_GetUserPublicClassList</method>
+  		<file name="test_PublicclassCheck">
+			<method>test_publicclasscheck</method>
 		</file>
   	</files>
 </suite>

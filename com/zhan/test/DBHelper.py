@@ -15,7 +15,7 @@ class DatabaseConn:
         DatabaseConn.conn = None
         DatabaseConn.cursor = None
         pd = publicData()
-        html = etree.parse("%s/config/config.xml" % (pd.getMainDir()))
+        html = etree.parse(r"%s\config\config.xml" % (pd.getMainDir()))
         result = html.xpath('//config/database')
         if len(result) == 0:
             raise NameError("database not config")
@@ -44,10 +44,5 @@ class DatabaseConn:
     @staticmethod
     def closeConn():
         DatabaseConn.conn.close()
-
-
-# DatabaseConn.init()
-# print DatabaseConn.getValueBySql("select * from Tpo_PublicClass_Activities where StartTime >= CAST('2017-06-01' as date)  and endtime <= CAST('2017-07-01' as date) ")
-# # print getValueBySql("select * from tbl_toefl_practice_article a where a.id = 3")
 
 

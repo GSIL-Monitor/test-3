@@ -9,7 +9,7 @@ class httpExecuter:
     @staticmethod
     def executeHttpRequest(methodname,casename,casedata):
         pd = publicData()
-        configEle = xmlUtil.getConfigEleByMethod(pd.getMainDir() + '/config/api.xml', methodname)
+        configEle = xmlUtil.getConfigEleByMethod(pd.getMainDir() + r'\config\api.xml', methodname)
         url = configEle.find('url').text
         protocol = configEle.find('protocol').text
         output = configEle.find('output')
@@ -48,12 +48,17 @@ class httpExecuter:
         r = requests.post(url, headers=headers, data=json.dumps(httpExecuter.__getBodyByCasedata(casedata)), verify=False)
         return r.text
 
+    #通过TestCase的节点生成Json数据
     @staticmethod
     def __getBodyByCasedata(casedata):
         body = {}
         for i in xrange(len(casedata)):
             if casedata[i].get('type') == None:
-                body[casedata[i].tag] = casedata[i].text
+                if len(casedata[i].getchildren()) > 0:
+                    res = httpExecuter.__getBodyByCasedata(casedata[i])
+                    body[casedata[i].tag] = res
+                else:
+                    body[casedata[i].tag] = casedata[i].text
             elif casedata[i].get('type') == "func":
                 method = casedata[i].get('method')
                 param = casedata[i].text

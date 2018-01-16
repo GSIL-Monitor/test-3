@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSuite>
+	<TestProcess name="publicclasscheck">
+		<TestMethod name='UsersLogin'>
+			<TestCase name='login'>
+				<uid></uid>
+				<username>13564217217</username>
+				<pwd>qweqwe123</pwd>
+				<remember>on</remember>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='GetUserPublicClassList'>
+			<TestCase name='login'>
+				<Where>
+					<PublicType></PublicType>
+					<StartTime>2018-01-16 00:00:00</StartTime>
+					<EndTime>2018-01-20 00:00:00</EndTime>
+				</Where>
+				<PageIndex>1</PageIndex>
+				<PageSize>5</PageSize>
+				<OrderBy>PublicID</OrderBy>
+				<SortCol>0</SortCol>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='signuppublicclass'>
+			<TestCase name='login'>
+				<PublicClassId type="func" method="getoutput">publicid</PublicClassId>
+				<ChannelCode>PC</ChannelCode>
+				<passportid>6644627</passportid>
+				<nickname>xyuan007</nickname>
+				<unionid>o9myrwojqyg4hLqwhbvDuvclVPBk</unionid>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='getpublicclassbyid'>
+			<TestCase name='login'>
+				<id type="func" method="getoutput">publicid</id>
+			</TestCase>
+		</TestMethod>
+	</TestProcess>
+	<TestMethod name='getlatestactivity'>
+		<TestCase name='category2'>
+			<activitycategory>2</activitycategory>
+		</TestCase>
+		<TestCase name='category3'>
+			<activitycategory>3</activitycategory>
+		</TestCase>
+		<TestCase name='categoryInvalid'>
+			<activitycategory>test</activitycategory>
+		</TestCase>
+		<TestCase name='categoryNotExist'>
+			<activitycategory>999</activitycategory>
+		</TestCase>
+	</TestMethod>
+</TestSuite>
