@@ -99,11 +99,12 @@ class ParamUtil:
         pa = []
         casename = None
         pd = publicData()
-        path = '%s/data/%s.xml' % (pd.getMainDir(), file[5:-3])
+        filename = file[5:-3]
+        path = '%s/data/%s.xml' % (pd.getMainDir(), filename)
 
         #DEBUG模式，有可能会指定TESTCASE
         if pd.getRunMode().lower() == "debug":
-            casename = xmlUtil.getDebugCaseName('%s/config/debug.xml' % (pd.getMainDir()), method,file[5:-3])
+            casename = xmlUtil.getDebugCaseName('%s/config/debug.xml' % (pd.getMainDir()), method,filename)
 
         #指定的TESTCASE
         if casename != None:
@@ -114,9 +115,12 @@ class ParamUtil:
         #非单接口形式，而是接口流程
         if len(result) == 0:
             result = xmlUtil.getProcessDataByMethod(path,method)
-
-        for i in xrange(len(result)):
-            pa.append([method, result[i].get('name'), result[i],file[5:-3]])
+            for testmethod in result[0].getchildren():
+                for testcase in testmethod.getchildren():
+                    pa.append([method,testmethod.get('name'), testcase,filename])
+        else:
+            for i in xrange(len(result)):
+                pa.append([method,method, result[i],filename])
         return pa
 
 
@@ -126,6 +130,29 @@ class FuncUtil:
     def getoutput(key):
         pd = publicData()
         return pd.getOutput(key)
+
+
+class AssertUtil:
+    #是否包含某些KEY值
+    @staticmethod
+    def haskeys(response,expected,param,operator,**kwargs):
+        resObj = JsonUtil.getJsonObjByPar(response,param)
+        return resObj
+
+    #根据路径得到JSON中的某个KEY的值
+    @staticmethod
+    def getjsonvalue(response,expected,operator,**kwargs):
+        param = kwargs['func1']['param']
+        actual = JsonUtil.getJsonStrByPar(response, param)
+        return actual
+
+    #根据路径得到JSON中某个ARRAY的数量
+    @staticmethod
+    def getjsonarraysize(response,expected,operator,**kwargs):
+        param = kwargs['func1']['param']
+        actual = JsonUtil.getJsonArraySize(response, param)
+        return actual
+
 
     @staticmethod
     def getpassportid(ss):

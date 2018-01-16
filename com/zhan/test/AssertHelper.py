@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-from com.zhan.test.Utils import xmlUtil,JsonUtil,FuncUtil
+from com.zhan.test.Utils import xmlUtil,JsonUtil,FuncUtil,AssertUtil
 from com.zhan.test.publicData import publicData
 from com.zhan.test.httpHelper import httpExecuter
 from hamcrest import *
@@ -10,14 +10,8 @@ from lxml import etree
 
 class AssertHelper:
     @staticmethod
-    def executeAndAssert(methodname, casename, casedata,filename):
-        if casedata.tag == 'TestProcess':
-            for testMethod in casedata.getchildren():
-                for testCase in testMethod.getchildren():
-                    AssertHelper.__assertByMethod(testMethod.get('name'),testCase, methodname, filename)
-        else:
-            testCase = casedata
-            AssertHelper.__assertByMethod(methodname,testCase,None,filename)
+    def executeAndAssert(processname,methodname, casedata,filename):
+        AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
 
     @staticmethod
     def __assertByMethod(methodname, testCase, processname, filename):
@@ -45,16 +39,6 @@ class AssertHelper:
         assertList = xmlUtil.getAssert(path,processname,methodname,casename)
         for assertEle in assertList:
             operator = assertEle.get('operator') if assertEle.get('operator') != None else "equal"   #默认的operator是equal
-            # method = assertEle.get('method') if assertEle.get('method') != None else "equal"         #默认的方法是equal
-            # param = assertEle.get('param')
-            # method1 = assertEle.get('method1')
-            # param1 = assertEle.get('param1')
-            # if param == None:
-            #     getattr(AssertMethed, method)(response,assertEle.text)
-            # elif method1 == None:
-            #     getattr(AssertMethed, method)(response, assertEle.text, param, operator)
-            # else:
-            #     getattr(AssertMethed, method)(response, assertEle.text, param, operator,method1,param1)
 
             type = assertEle.get('type')
             method = assertEle.get('method')
@@ -84,38 +68,37 @@ class AssertMethed():
     #是否包含某些KEY值
     @staticmethod
     def haskeys(response,expected,param,operator,**kwargs):
-        resObj = JsonUtil.getJsonObjByPar(response,param)
+        resObj = AssertUtil.haskeys(response,expected,param,operator,**kwargs)
         assert_that(resObj, has_keys(expected))
 
     #根据路径得到JSON中的某个KEY的值
     @staticmethod
     def getjsonvalue(response,expected,operator,**kwargs):
         param = kwargs['func1']['param']
-        actual = JsonUtil.getJsonStrByPar(response, param)
+        actual = AssertUtil.getjsonvalue(response,expected,operator,**kwargs)
         AssertMethed.__assetByOperator(actual,expected,operator)
 
     #根据路径得到JSON中某个ARRAY的数量
     @staticmethod
     def getjsonarraysize(response,expected,operator,**kwargs):
         param = kwargs['func1']['param']
-        actual = JsonUtil.getJsonArraySize(response, param)
+        actual = AssertUtil.getjsonarraysize(response,expected,operator,**kwargs)
         AssertMethed.__assetByOperator(actual,expected,operator)
-
 
     #两个方法进行比较
     @staticmethod
     def comparetwomethod(response,expected,operator,**kwargs):
         func1 = kwargs['func1']
         func2 = kwargs['func2']
+
         if func1['type'] == 'func':
             res1 = getattr(FuncUtil,func1['method'])(func1['param'])
         else:
-            res1 = getattr(AssertMethed,func1['method'])(response,expected,operator,func1=func1)
-
+            res1 = getattr(AssertUtil, func1['method'])(response, expected, operator, func1=func1)
         if func2['type'] == 'func':
             res2 = getattr(FuncUtil,func2['method'])(func2['param'])
         else:
-            res2 = getattr(AssertMethed,func2['method'])(response,expected,operator,func1=func2)
+            res2 = getattr(AssertUtil, func2['method'])(response, expected, operator, func1=func2)
 
         AssertMethed.__assetByOperator(res1, res2, operator)
 

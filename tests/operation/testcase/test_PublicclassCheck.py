@@ -8,11 +8,11 @@ def value(method):
     return ParamUtil.getValue(os.path.basename(__file__),method)
 
 #测试getlatestactivity接口
-@pytest.mark.parametrize("methodname,casename,casedata,filename", value("publicclasscheck"))
-def test_publicclasscheck(methodname, casename, casedata,filename):
-    AssertHelper.executeAndAssert(methodname, casename, casedata,filename)
+@pytest.mark.parametrize("processname,methodname,casedata,filename", value("publicclasscheck"))
+def test_publicclasscheck(processname,methodname,  casedata,filename):
+    AssertHelper.executeAndAssert(processname,methodname,  casedata,filename)
 
 #测试getlatestactivity接口
-@pytest.mark.parametrize("methodname,casename,casedata,filename", value("getlatestactivity"))
-def test_getlatestactivity(methodname, casename, casedata,filename):
-    AssertHelper.executeAndAssert(methodname, casename, casedata,filename)
+@pytest.mark.parametrize("processname,methodname,casedata,filename", value("getlatestactivity"))
+def test_getlatestactivity(processname,methodname, casedata,filename):
+    AssertHelper.executeAndAssert(processname,methodname,  casedata,filename)
