@@ -2,7 +2,6 @@
 <suite name="Publicclass" verbose="1">
   	<files>
   		<file name="test_PublicclassCheck">
-			<method>test_publicclasscheck</method>
 		</file>
   	</files>
 </suite>

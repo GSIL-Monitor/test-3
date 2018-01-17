@@ -30,8 +30,8 @@ for curProject in projects:
 
     #项目下的TEST文件或DEBUG文件，当前默认一个项目一个SUITE生成一个LOG文件
     try:
-        html = etree.parse(runfile)
-        suite = html.xpath('//suite')[0]
+        htmltest = etree.parse(runfile)
+        suite = htmltest.xpath('//suite')[0]
         files = suite.xpath('//suite/files/file')
     except:
         raise NameError, ("main.xml文件配置错误，无法找到运行文件%" % runfile)

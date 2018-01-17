@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 from lxml import etree
-import json
+import json,sys
 from com.zhan.test.publicData import publicData
 
 class xmlUtil:
@@ -48,7 +48,7 @@ class xmlUtil:
         html = etree.parse(path)
         assertList = None
         # assertList = html.xpath('//TestSuite/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']' % (methodname,casename))
-        if processname == None:
+        if processname == methodname:
             assertList = html.xpath('//TestSuite/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']/Assert' % (methodname,casename))
         else:
             assertList = html.xpath('//TestSuite/TestProcess[@name=\'%s\']/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']/Assert' % (processname,methodname, casename))
@@ -135,7 +135,8 @@ class FuncUtil:
 class AssertUtil:
     #是否包含某些KEY值
     @staticmethod
-    def haskeys(response,expected,param,operator,**kwargs):
+    def haskeys(response,expected,operator,**kwargs):
+        param = kwargs['func1']['param']
         resObj = JsonUtil.getJsonObjByPar(response,param)
         return resObj
 

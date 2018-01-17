@@ -41,7 +41,7 @@ class AssertHelper:
             operator = assertEle.get('operator') if assertEle.get('operator') != None else "equal"   #默认的operator是equal
 
             type = assertEle.get('type')
-            method = assertEle.get('method')
+            method = assertEle.get('method') if assertEle.get('method') != None else "equal"   #默认的method是equal
             param = assertEle.get('param')
             func1 = {'type':type,'method':method,'param':param}
             method1 = assertEle.get('method1')
@@ -67,8 +67,8 @@ class AssertMethed():
 
     #是否包含某些KEY值
     @staticmethod
-    def haskeys(response,expected,param,operator,**kwargs):
-        resObj = AssertUtil.haskeys(response,expected,param,operator,**kwargs)
+    def haskeys(response,expected,operator,**kwargs):
+        resObj = AssertUtil.haskeys(response,expected,operator,**kwargs)
         assert_that(resObj, has_keys(expected))
 
     #根据路径得到JSON中的某个KEY的值
