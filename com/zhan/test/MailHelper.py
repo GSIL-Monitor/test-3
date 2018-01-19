@@ -41,4 +41,20 @@ def __createHtml(result,url,path,projectname):
 
 
 
+def MailTo(txt):
+    sender = 'automationtest@zhan.com'
+    receiver = 'forest.liang@zhan.com,Robin.Wang@zhan.com'
+    username = 'automationtest@zhan.com'
+    password = 'Xiaotest@2017'
+    smtpserver = 'smtp.exmail.qq.com'
+
+    msg = MIMEMultipart('related')
+    msg['Subject'] = Header("PublicClass Live Login Fail", 'utf-8')
+    msg.attach(MIMEText(txt, 'html', 'utf-8'))
+
+    smtp = smtplib.SMTP()
+    smtp.connect(smtpserver)
+    smtp.login(username, password)
+    smtp.sendmail(sender, receiver, msg.as_string())
+    smtp.quit()
 

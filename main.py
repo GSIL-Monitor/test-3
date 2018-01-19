@@ -2,10 +2,8 @@
 
 import warnings,sys,os
 import com.zhan.test.MailHelper as mh
-import pytest
+import pytest,threading
 from lxml import etree
-from com.zhan.test.publicData import publicData
-from com.zhan.test.DBHelper import DatabaseConn
 import shutil
 
 reload(sys)
@@ -14,12 +12,14 @@ sys.path.append('C:\\Users\\Administrator\\PycharmProjects\\test\\')
 #忽略 HTTPS中不验证证书的WARNING
 warnings.filterwarnings('ignore')
 
+
 #从配置文件中得到待运行项目(以逗号分隔)和运行模式
 html = etree.parse('main.xml')
 runmode = html.xpath('//run/mode')[0].text                       #运行模式，RUN或者DEBUG
 projects = html.xpath('//run/project')[0].text.split(',')       #运行的项目名，逗号分隔
 allurepath = html.xpath('//run/allure')[0].text                  #ALLURE_COMMANDER_LINE安装路径
 webserverdir  = html.xpath('//run/serverdir')[0].text            #展示ALLURE报表的WEB服务器地址
+reporttype = html.xpath('//run/report')[0].text                      #报表方式
 
 #迭代项目执行
 for curProject in projects:
@@ -36,11 +36,12 @@ for curProject in projects:
     except:
         raise NameError, ("main.xml文件配置错误，无法找到运行文件%" % runfile)
 
-    #项目参数
-    pd = publicData()
-    pd.setProjectConfig(curProject,suite.get('name'))
-    pd.setRunMode(runmode)
-    DatabaseConn.init()
+    # #项目参数
+    # pd = publicData()
+    # pd.setProjectConfig(curProject,suite.get('name'))
+    # pd.setRunMode(runmode)
+    # DatabaseConn.init()
+
 
     param = ""
     #遍历用例执行文件
@@ -64,7 +65,7 @@ for curProject in projects:
     #日志文件保存路径
     logfile = r"--alluredir %s\log"%(serverdir)
     #PYTEST执行参数
-    runparam = "-s %s%s"%(param,logfile)
+    runparam = "-s %s -n2 -v --dist=loadscope %s"%(param,logfile)
 
     if __name__ == '__main__':
         pytest.main(runparam)
@@ -91,8 +92,13 @@ for curProject in projects:
     #报表URL
     reporturl = "http://localhost:80/zhan/%s/reporter/index.html"%(curProject)
 
-    mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
+    if reporttype == 'mail':
+        if result['failed'] > 0:
+            mh.MailTo(u'访问公开课接口时发生异常')
+    else:
+        mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
+
 
     #项目执行结束后的清理
-    pd.tearDown()
-    DatabaseConn.closeConn()
+    # pd.tearDown()
+    # DatabaseConn.closeConn()

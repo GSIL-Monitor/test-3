@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <run>
   <mode>debug</mode>
-  <project>corpus</project>
+  <project>operation</project>
   <allure>E:\allure-2.5.0\bin\</allure>
   <serverdir>C:\Apache24\htdocs</serverdir>
+  <report>mail</report>
 </run>

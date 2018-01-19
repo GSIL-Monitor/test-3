@@ -54,19 +54,6 @@
 		<TestCase name='output'>
 			<passportId>1326028</passportId>
 		</TestCase>
-		<TestCase name='starttime'>
-			<passportId>1326028</passportId>
-			<starttime>2016-12-14</starttime>
-		</TestCase>
-		<TestCase name='endtime'>
-			<passportId>1326028</passportId>
-			<endtime>2016-12-15</endtime>
-		</TestCase>
-		<TestCase name='starttimeendtime'>
-			<passportId>1326028</passportId>
-			<starttime>2016-12-13</starttime>
-			<endtime>2016-12-15</endtime>
-		</TestCase>
 	</TestMethod>
 	<TestProcess name="test1">
 		<TestMethod type="func" method='getpassportid' output="passportid">1326028</TestMethod>

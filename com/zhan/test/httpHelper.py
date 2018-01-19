@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 import requests
-import json
+import json,threading
 from com.zhan.test.Utils import xmlUtil,JsonUtil,FuncUtil
 from com.zhan.test.publicData import publicData
 
@@ -28,7 +28,14 @@ class httpExecuter:
                 outresult = JsonUtil.getJsonStrByPar(resText,output.text)
             except NameError:
                 pass
-            pd.setOutput(output.get("name"),outresult)
+
+            lock = threading.Lock
+            lock.acquire()
+            try:
+                pd.setOutput('%s_%s' % (output.get("name"), threading.currentThread().ident), outresult)
+            finally:
+                lock.release()
+
         return resText
 
 

@@ -52,24 +52,14 @@
 	</TestMethod>
 	<TestMethod name='GetUserPublicClassList'>
 		<TestCase name='output'>
-			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
-			<Assert method="getjsonvalue" param="Code">0</Assert>
-		</TestCase>
-		<TestCase name='starttime'>
-			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
-		</TestCase>
-		<TestCase name='endtime'>
-			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
-		</TestCase>
-		<TestCase name='starttimeendtime'>
-			<Assert method="getjsonarraysizeandcompare" param="Data" method1="getvaluebysql" param1="getactivitycountbypassportidstarttimeendtime"></Assert>
+			<Assert method="getjsonvalue" param="Code">1</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestProcess name="test1">
 		<TestMethod name='GetUserPublicClassList'>
 			<TestCase name='output'>
 				<Assert method="getjsonarraysize" param="Data" operator="greater">1</Assert>
-				<Assert method="getjsonvalue" param="Code">0</Assert>
+				<Assert method="getjsonvalue" param="Code">1</Assert>
 			</TestCase>
 		</TestMethod>
 	</TestProcess>

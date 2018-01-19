@@ -8,7 +8,6 @@ class Singleton(object):
             cls._instance = orig.__new__(cls, *args, **kw)
         return cls._instance
 
-
 class publicData(Singleton):
     __projectName = ""    #当前执行项目名称
     __mainDir = ""        #项目主目录
@@ -18,7 +17,7 @@ class publicData(Singleton):
 
     def setProjectConfig(self,projectName, suiteName):
         self.__projectName = projectName
-        self.__mainDir = "tests/%s/" % (projectName)
+        self.__mainDir = r"tests\%s" % (projectName)
         self.__suiteName = suiteName
         self.__output = {}
         self.__runMode = ""
@@ -41,6 +40,9 @@ class publicData(Singleton):
 
     def setOutput(self,key,value):
         self.__output[key] = value
+
+    def getOutputKeys(self):
+        return self.__output.keys()
 
     def getOutput(self,key):
         return self.__output[key]

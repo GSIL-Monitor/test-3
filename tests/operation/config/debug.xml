@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Publicclass" verbose="1">
   	<files>
-  		<file name="test_PublicclassCheck">
-		</file>
+  		<file name="test_PublicclassCheck"></file>
+  		<file name="test_Publicclass"></file>
   	</files>
 </suite>

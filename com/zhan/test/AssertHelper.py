@@ -5,12 +5,12 @@ from com.zhan.test.publicData import publicData
 from com.zhan.test.httpHelper import httpExecuter
 from hamcrest import *
 from com.zhan.test.isdict_containingkeys import has_keys
-import DBHelper
+import DBHelper,threading
 from lxml import etree
 
 class AssertHelper:
     @staticmethod
-    def executeAndAssert(processname,methodname, casedata,filename):
+    def executeAndAssert(processname,methodname, casedata,casename,filename):
         AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
 
     @staticmethod
@@ -21,10 +21,15 @@ class AssertHelper:
         if testtype == 'func':
             method = testCase.get('method')    #执行的函数的方法
             param = testCase.text
-            output = testCase.get('output')
+            output = '%s_%s'%(testCase.get('output'),threading.currentThread().ident)
             result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
             if output <> None:
-                pd.setOutput(output, result)
+                lock = threading.Lock
+                lock.acquire()
+                try:
+                    pd.setOutput(output, result)
+                finally:
+                    lock.release()
         else:    #执行正常的接口调用
             # methodname = testMethod.get('method')
             subcasename = testCase.get('name')
