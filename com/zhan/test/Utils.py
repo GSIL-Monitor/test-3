@@ -1,45 +1,45 @@
 # encoding: utf-8
 
 from lxml import etree
-import json, threading
+import json, threading,datetime
 from com.zhan.test.publicData import publicData
-
+import com.zhan.test.AppDBHelper as dh
 
 class xmlUtil:
     # 单接口
     @staticmethod
     def getDataByMethod(path, method):
         html = etree.parse(path)
-        result = html.xpath('//TestSuite/TestMethod[@name=\'%s\']/TestCase' % (method))
+        result = html.xpath(r"//TestSuite/TestMethod[@name='%s']/TestCase" % (method))
         return result
 
     @staticmethod
     def getDataByMethodCase(path, method, casename):
         html = etree.parse(path)
-        result = html.xpath('//TestSuite/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']' % (method, casename))
+        result = html.xpath(r"//TestSuite/TestMethod[@name='%s']/TestCase[@name='%s']" % (method, casename))
         return result
 
     @staticmethod
     def getDebugCaseName(path, methodname, filename):
         pd = publicData()
         html = etree.parse(path)
-        methodList = html.xpath('//suite[@name=\'%s\']/files/file[@name=\'%s\']/Method' % (pd.getSuiteName(), filename))
+        methodList = html.xpath(r"//suite[@name='%s']/files/file[@name='test_%s']/Method" % (pd.getSuiteName(), filename))
         for method in methodList:
             if method.text.endswith(methodname):
-                return method.get('name')
+                return method.text
         return None
 
     # 查询流程接口
     @staticmethod
     def getProcessDataByMethod(path, method):
         html = etree.parse(path)
-        result = html.xpath('//TestSuite/TestProcess[@name=\'%s\']' % (method))
+        result = html.xpath(r"//TestSuite/TestProcess[@name='%s']" % (method))
         return result
 
     @staticmethod
     def getConfigEleByMethod(path, method):
         html = etree.parse(path)
-        configEle = html.xpath('//Config/api[@name=\'%s\']' % (method))[0]
+        configEle = html.xpath(r"//Config/api[@name='%s']" % (method))[0]
         return configEle
 
     # 获取验证执行列表
@@ -50,10 +50,10 @@ class xmlUtil:
         # assertList = html.xpath('//TestSuite/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']' % (methodname,casename))
         if processname == methodname:
             assertList = html.xpath(
-                '//TestSuite/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']/Assert' % (methodname, casename))
+                r"//TestSuite/TestMethod[@name='%s']/TestCase[@name='%s']/Assert" % (methodname, casename))
         else:
             assertList = html.xpath(
-                '//TestSuite/TestProcess[@name=\'%s\']/TestMethod[@name=\'%s\']/TestCase[@name=\'%s\']/Assert' % (
+                r"//TestSuite/TestProcess[@name='%s']/TestMethod[@name='%s']/TestCase[@name='%s']/Assert" % (
                 processname, methodname, casename))
         if len(assertList) == 0:
             raise NameError, ("Assert config error.Process:%s,Method:%s,Casename:%s" % (processname, methodname, casename))
@@ -103,11 +103,11 @@ class ParamUtil:
         pd = publicData()
         if pd.getMainDir() == "" : pd = FuncUtil.initPublicData(project) #只初始化一次
         filename = file[5:-3]
-        path = '%s/data/%s.xml' % (pd.getMainDir(), filename)
+        path = '%s\data\%s.xml' % (pd.getMainDir(), filename)
 
         # DEBUG模式，有可能会指定TESTCASE
         if pd.getRunMode().lower() == "debug":
-            casename = xmlUtil.getDebugCaseName('%s/config/debug.xml' % (pd.getMainDir()), method, filename)
+            casename = xmlUtil.getDebugCaseName('%s\config\debug.xml' % (pd.getMainDir()), method, filename)
 
         # 指定的TESTCASE
         if casename != None:
@@ -118,25 +118,48 @@ class ParamUtil:
         # 非单接口形式，而是接口流程
         if len(result) == 0:
             result = xmlUtil.getProcessDataByMethod(path, method)
-            for testmethod in result[0].getchildren():
-                for testcase in testmethod.getchildren():
-                    pa.append([method, testmethod.get('name'), testcase, filename])
+            if len(result) > 0:
+                for testmethod in result[0].getchildren():
+                    for testcase in testmethod.getchildren():
+                        pa.append([method, testmethod.get('name'), testcase,testcase.get('name') ,filename])
         else:
             for i in xrange(len(result)):
                 pa.append([method, method, result[i], result[i].get('name'),filename])
-        return pa
+
+        if pa == []:
+            raise Exception("文件%s中的方法%s未配置数据"%(file,method))
+        else:
+            return pa
 
 
 class FuncUtil:
     @staticmethod
+    def getpublicbyname(publicname):
+        db = dh.DBConn()
+        if publicname == 'publicid':
+            res = db.getValueBySql(r"select [PublicID] from [dbo].[Tpo_PublicClass] where [PublicTitle] = 'ToeflTest'")
+            return res[0]
+        elif publicname == 'activityid':
+            res = db.getValueBySql(r"select [ActivityID] from [dbo].[Tpo_PublicClass_Activities] where [ActivityTitle] = 'ToeflTest'")
+            return res[0]
+
+    @staticmethod
     def getoutput(key):
         pd = publicData()
-        lock = threading.Lock
+        lock = threading.Lock()
         lock.acquire()
         try:
             return pd.getOutput('%s_%s'%(key,threading.currentThread().ident))
         finally:
             lock.release()
+
+    @staticmethod
+    def getdatetime(inteval=0):
+        if inteval == None:inteval = 0
+        now = datetime.datetime.now()
+        delta = datetime.timedelta(days=int(inteval))
+        n_days = now + delta
+        return n_days.strftime('%Y-%m-%d %H:%M:%S')
 
     @staticmethod
     def initPublicData(projectname):
@@ -172,6 +195,3 @@ class AssertUtil:
         actual = JsonUtil.getJsonArraySize(response, param)
         return actual
 
-    @staticmethod
-    def getpassportid(ss):
-        return ss

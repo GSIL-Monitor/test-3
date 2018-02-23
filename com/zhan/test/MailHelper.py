@@ -43,7 +43,8 @@ def __createHtml(result,url,path,projectname):
 
 def MailTo(txt):
     sender = 'automationtest@zhan.com'
-    receiver = 'forest.liang@zhan.com,Robin.Wang@zhan.com'
+    # receiver = 'forest.liang@zhan.com,Robin.Wang@zhan.com'
+    receiver = '85224271@qq.com'
     username = 'automationtest@zhan.com'
     password = 'Xiaotest@2017'
     smtpserver = 'smtp.exmail.qq.com'

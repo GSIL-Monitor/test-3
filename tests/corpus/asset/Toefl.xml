@@ -4,7 +4,7 @@
 		<TestCase name='testLimit'>
 			<Assert method="getjsonvalue" param="code">0</Assert>
 			<Assert method="getjsonarraysize" param="data">1</Assert>
-			<Assert>{"code":0,"message":[],"data":[{"paperID":"1","paperName":"tpo1","paperGroup":"1","isDeleted":"0","paperType":"all","source":"1","owner":null,"modifier":null,"usage":null,"defaultDuration":"14400","difficulty":"1","description":null,"createtime":"2016-07-06 14:21:29","lastmodifytime":"2016-07-06 16:04:51","status":"1","examine":null,"is_zhan":"2"}]}</Assert>
+			<Assert method="haskeys" param="data.[0]">paperID,paperName,paperGroup,isDeleted,paperType,source,owner,modifier,usage,defaultDuration,difficulty,description,createtime,lastmodifytime,status,examine,is_zhan</Assert>
 		</TestCase>
 		<TestCase name='testDifficultyLow'>
 			<Assert method="getjsonvalue" param="code">0</Assert>
@@ -108,12 +108,13 @@
 			<Assert method="getjsonvalue" param="message.paperID.[0]">paperID cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='paperidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"paper":[],"ques_num":[],"article_list":[]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"paper":[],"ques_num":[],"article_list":[]}}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_article_list'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[{"articleID":"582","paperID":"36","article_label_id":"172","labelname":"师生讨论","btype":"2","phaseid":"1","title":"Advice About Graduate School Application","titleTranslation":"关于研究生申请的建议","difficulty":null,"paperName":"OG1","ques_num":"5","practiced_count":null,"right_num":null,"right_rate":null}]}</Assert>
+			<Assert method="getjsonvalue" param="data.[0].article_label_id">172</Assert>
+			<Assert method="haskeys" param="data.[0]">articleID,paperID,article_label_id,labelname,btype,phaseid,title,titleTranslation,difficulty,paperName,ques_num,practiced_count,right_num,right_rate</Assert>
 		</TestCase>
 		<TestCase name='labelid'>
 			<Assert method="getjsonvalue" param="data.[0].article_label_id">172</Assert>
@@ -176,7 +177,7 @@
 			<Assert method="getjsonvalue" param="message">未知错误</Assert>
 		</TestCase>
 		<TestCase name='articleidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"article_en":"","article_cn":"","ques_num":0,"avg_time":null}}</Assert>
+			<Assert method="getjsonvalue" param="data.ques_num">0</Assert>
 		</TestCase>
 		<TestCase name='articleidInvalid'>
 			<Assert method="getjsonvalue" param="message.articleID.[0]">articleID must be an integer.</Assert>
@@ -190,7 +191,7 @@
 			<Assert method="getjsonvalue" param="message.articleID.[0]">articleID cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='articleidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='articleidInvalid'>
 			<Assert method="getjsonvalue" param="message.articleID.[0]">articleID must be an integer.</Assert>
@@ -227,7 +228,7 @@
 	</TestMethod>
 	<TestMethod name='get_ques_type_list'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[{"id":"1","btype":"1","ques_type_name":"单选题","comment":null,"status":"0"},{"id":"2","btype":"1","ques_type_name":"插入题","comment":null,"status":"0"},{"id":"3","btype":"1","ques_type_name":"阅读综合题(6选3)","comment":null,"status":"0"},{"id":"4","btype":"1","ques_type_name":"阅读综合题(7选5)","comment":null,"status":"0"},{"id":"5","btype":"1","ques_type_name":"多选题","comment":null,"status":"0"},{"id":"6","btype":"2","ques_type_name":"单选题","comment":null,"status":"0"},{"id":"7","btype":"2","ques_type_name":"多选题","comment":null,"status":"0"},{"id":"8","btype":"2","ques_type_name":"拖拽题","comment":null,"status":"0"},{"id":"9","btype":"2","ques_type_name":"表格题","comment":null,"status":"0"},{"id":"10","btype":"3","ques_type_name":"独立口语","comment":null,"status":"0"},{"id":"11","btype":"3","ques_type_name":"综合口语","comment":null,"status":"0"},{"id":"12","btype":"4","ques_type_name":"独立写作","comment":null,"status":"0"},{"id":"13","btype":"4","ques_type_name":"综合写作","comment":null,"status":"0"},{"id":"14","btype":"1","ques_type_name":"阅读综合题（8选7）","comment":null,"status":"0"}]}</Assert>
+			<Assert method="haskeys" param="data.[0]">id,btype,ques_type_name,comment,status</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_ques'>
@@ -311,7 +312,7 @@
 	</TestMethod>
 	<TestMethod name='error_ques_top'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[{"ranking":1,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111906","ques_id":"111906","seqno":"7"},{"ranking":2,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1296","phaseid":"2","topic_id":"111917","ques_id":"111917","seqno":"14"},{"ranking":3,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111896","ques_id":"111896","seqno":"3"},{"ranking":4,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111911","ques_id":"111911","seqno":"10"},{"ranking":5,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111918","ques_id":"111918","seqno":"14"},{"ranking":6,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111903","ques_id":"111903","seqno":"6"},{"ranking":7,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1297","phaseid":"3","topic_id":"111930","ques_id":"111930","seqno":"12"},{"ranking":8,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111909","ques_id":"111909","seqno":"8"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"ranking":1,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111906","ques_id":"111906","seqno":"7"},{"ranking":2,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1296","phaseid":"2","topic_id":"111917","ques_id":"111917","seqno":"14"},{"ranking":3,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111896","ques_id":"111896","seqno":"3"},{"ranking":4,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111911","ques_id":"111911","seqno":"10"},{"ranking":5,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111918","ques_id":"111918","seqno":"14"},{"ranking":6,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111903","ques_id":"111903","seqno":"6"},{"ranking":7,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1297","phaseid":"3","topic_id":"111930","ques_id":"111930","seqno":"12"},{"ranking":8,"paper_id":"81","paper_name":"tpo51","btype":"1","article_id":"1295","phaseid":"1","topic_id":"111909","ques_id":"111909","seqno":"8"}]}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_ques_by_topicid'>
@@ -332,48 +333,48 @@
 	</TestMethod>
 	<TestMethod name='biz_ques_classify'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"scope":{"1":1,"2":0,"0":1},"diff":{"1":1,"2":1,"3":1},"num":{"5":1,"10":1,"20":1},"tpo":{"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"extra":1}}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"scope":{"1":1,"2":0,"0":1},"diff":{"1":1,"2":1,"3":1},"num":{"5":1,"10":1,"20":1},"tpo":{"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"extra":1}}}</Assert>
 		</TestCase>
 		<TestCase name='input'>
-			<Assert>{"code":0,"message":[],"data":{"scope":{"1":1,"2":0,"0":1},"diff":{"1":1,"2":1,"3":1},"num":{"5":1,"10":1,"20":1},"tpo":{"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"extra":1}}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"scope":{"1":1,"2":0,"0":1},"diff":{"1":1,"2":1,"3":1},"num":{"5":1,"10":1,"20":1},"tpo":{"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"extra":1}}}</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"scope":{"1":1,"2":0,"0":1},"diff":{"1":1,"2":1,"3":1},"num":{"5":1,"10":1,"20":1},"tpo":{"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"extra":1}}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"scope":{"1":1,"2":0,"0":1},"diff":{"1":1,"2":1,"3":1},"num":{"5":1,"10":1,"20":1},"tpo":{"1":1,"2":1,"3":1,"4":1,"5":1,"6":1,"extra":1}}}</Assert>
 		</TestCase>
 		<TestCase name='labelidNull'>
 			<Assert method="getjsonvalue" param="message.ques_biz_label_id.[0]">ques_biz_label_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='labelidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"scope":{"1":0,"2":0,"0":1},"diff":{"1":0,"2":0,"3":0},"num":{"5":0,"10":0,"20":0},"tpo":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"extra":0}}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"scope":{"1":0,"2":0,"0":1},"diff":{"1":0,"2":0,"3":0},"num":{"5":0,"10":0,"20":0},"tpo":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"extra":0}}}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_topic_avg_count'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"},{"topic_id":"2","amount_num":"11870","right_num":"7778","right_rate":"0.6553","time_avg":"80"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"},{"topic_id":"2","amount_num":"11870","right_num":"7778","right_rate":"0.6553","time_avg":"80"}]}</Assert>
 		</TestCase>
 		<TestCase name='appidNull'>
 			<Assert method="getjsonvalue" param="message.app_id.[0]">app_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='appidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"},{"topic_id":"2","amount_num":"11870","right_num":"7778","right_rate":"0.6553","time_avg":"80"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"},{"topic_id":"2","amount_num":"11870","right_num":"7778","right_rate":"0.6553","time_avg":"80"}]}</Assert>
 		</TestCase>
 		<TestCase name='btypeNull'>
 			<Assert method="getjsonvalue" param="message.btype.[0]">btype cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='btypeNotExist'>
-			<Assert>{"code":0,"message":[],"data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"},{"topic_id":"2","amount_num":"11870","right_num":"7778","right_rate":"0.6553","time_avg":"80"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"},{"topic_id":"2","amount_num":"11870","right_num":"7778","right_rate":"0.6553","time_avg":"80"}]}</Assert>
 		</TestCase>
 		<TestCase name='topicidNull'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='topicidNotExist'>
 			<Assert method="getjsonvalue" param="data.[0].topic_id">-999</Assert>
 		</TestCase>
 		<TestCase name='topicidSingle'>
-			<Assert>{"code":0,"message":[],"data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"topic_id":"1","amount_num":"14509","right_num":"6571","right_rate":"0.4529","time_avg":"250"}]}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_label_list'>
@@ -419,10 +420,10 @@
 			<Assert method="haskeys" param="data">integrated_writing,independent_writing</Assert>
 		</TestCase>
 		<TestCase name='btype0'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='btypeNull'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='btypeInvalid'>
 			<Assert method="getjsonvalue" param="message.btype.[0]">btype must be an integer.</Assert>
@@ -434,7 +435,7 @@
 			<Assert method="haskeys" param="data">subject_classify,ques_type</Assert>
 		</TestCase>
 		<TestCase name='difficultyNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='source4'>
 			<Assert method="haskeys" param="data">subject_classify,ques_type</Assert>
@@ -443,18 +444,18 @@
 			<Assert method="haskeys" param="data">subject_classify,ques_type</Assert>
 		</TestCase>
 		<TestCase name='sourceNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='article_label_summary'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"importance":"0","practiced_count":"39894","right_num":"26769","avg_right_rate":0.671}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"importance":"0","practiced_count":"39894","right_num":"26769","avg_right_rate":0.671}}</Assert>
 		</TestCase>
 		<TestCase name='labelidNull'>
 			<Assert method="getjsonvalue" param="message.label_id.[0]">label_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='labelidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"importance":null,"practiced_count":null,"right_num":null,"avg_right_rate":0}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"importance":null,"practiced_count":null,"right_num":null,"avg_right_rate":0}}</Assert>
 		</TestCase>
 		<TestCase name='labelidInvalid'>
 			<Assert method="getjsonvalue" param="message.label_id.[0]">label_id must be an integer.</Assert>
@@ -520,27 +521,27 @@
 			<Assert method="getjsonvalue" param="message.workflow_id.[0]">workflow_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='workflowidNotExist'>
-			<Assert>{"code":0,"message":[],"data":null}</Assert>
+			<Assert>{"code":0,"message":"OK","data":null}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='del_workflow'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='appidNull'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='workflowidNull'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='workflowidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='workflowidMulti'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='save_article_practice'>
@@ -593,10 +594,10 @@
 			<Assert method="getjsonvalue" param="message.paper_id.[0]">paper_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":null}</Assert>
+			<Assert>{"code":0,"message":"OK","data":null}</Assert>
 		</TestCase>
 		<TestCase name='workflowidNotExist'>
-			<Assert>{"code":0,"message":[],"data":null}</Assert>
+			<Assert>{"code":0,"message":"OK","data":null}</Assert>
 		</TestCase>
 		<TestCase name='paperidNotExist'>
 			<Assert method="getjsonvalue" param="data.workflow_id">6760459</Assert>
@@ -606,19 +607,19 @@
 	</TestMethod>
 	<TestMethod name='get_practice_status'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[{"paper_id":"80","workflow_id":"6755752","status":"0","read_score":null,"listen_score":null,"updatetime":"2017-11-11 17:37:59"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"paper_id":"80","workflow_id":"6755752","status":"0","read_score":null,"listen_score":null,"updatetime":"2017-11-11 17:37:59"}]}</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='paperidNull'>
 			<Assert method="getjsonvalue" param="message.paper_id.[0]">paper_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='paperidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='paperidMulti'>
 			<Assert method="getjsonarraysize" param="data">2</Assert>
@@ -627,25 +628,25 @@
 			<Assert method="getjsonvalue" param="message.app_id.[0]">app_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='appidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[{"paper_id":"80","workflow_id":"6755752","status":"0","read_score":null,"listen_score":null,"updatetime":"2017-11-11 17:37:59"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"paper_id":"80","workflow_id":"6755752","status":"0","read_score":null,"listen_score":null,"updatetime":"2017-11-11 17:37:59"}]}</Assert>
 
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='breakpoint_practice'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"workflow_id":"6754756","paper_id":"45","p_uid":"1344149","scenario":"11","status":"0","phase_id":null,"btype":null,"latest_ques_id":null,"latest_topic_id":null,"latest_ques_seqno":null,"article_id":null,"article_status":"0"}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"workflow_id":"6754756","paper_id":"45","p_uid":"1344149","scenario":"11","status":"0","phase_id":null,"btype":null,"latest_ques_id":null,"latest_topic_id":null,"latest_ques_seqno":null,"article_id":null,"article_status":"0"}}</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"workflow_id":null}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"workflow_id":null}}</Assert>
 		</TestCase>
 		<TestCase name='paperidNull'>
 			<Assert method="getjsonvalue" param="message.paper_id.[0]">paper_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='paperidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"workflow_id":null}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"workflow_id":null}}</Assert>
 		</TestCase>
 		<TestCase name='btypeNull'>
 			<Assert method="getjsonvalue" param="message.btype.[0]">btype cannot be blank.</Assert>
@@ -663,13 +664,13 @@
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"workflow_id":null,"workflow_is_exist":0}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"workflow_id":null,"workflow_is_exist":0}}</Assert>
 		</TestCase>
 		<TestCase name='articleidNull'>
 			<Assert method="getjsonvalue" param="message.article_id.[0]">article_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='articleidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"workflow_id":null,"workflow_is_exist":0}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"workflow_id":null,"workflow_is_exist":0}}</Assert>
 		</TestCase>
 		<TestCase name='scenarioNull'>
 			<Assert method="getjsonvalue" param="message.scenario.[0]">scenario cannot be blank.</Assert>
@@ -677,28 +678,28 @@
 	</TestMethod>
 	<TestMethod name='last_article_practice_summary'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":[{"article_id":"1295","total":14,"finished_nums":14,"wrong_nums":8,"right_ques_num":6,"workflow_id":"6755797","status":"2"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"article_id":"1295","total":14,"finished_nums":14,"wrong_nums":8,"right_ques_num":6,"workflow_id":"6755797","status":"2"}]}</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='articleidNull'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='articleidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='scenarioNull'>
 			<Assert method="getjsonvalue" param="message.scenario.[0]">scenario cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='scenarioNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='paramMulti'>
-			<Assert>{"code":0,"message":[],"data":[{"article_id":"1295","total":14,"finished_nums":14,"wrong_nums":8,"right_ques_num":6,"workflow_id":"6755797","status":"2"},{"article_id":"1294","total":1,"finished_nums":1,"wrong_nums":1,"right_ques_num":0,"workflow_id":"6755720","status":"2"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"article_id":"1295","total":14,"finished_nums":14,"wrong_nums":8,"right_ques_num":6,"workflow_id":"6755797","status":"2"},{"article_id":"1294","total":1,"finished_nums":1,"wrong_nums":1,"right_ques_num":0,"workflow_id":"6755720","status":"2"}]}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_practice_result'>
@@ -739,7 +740,7 @@
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"answer":[],"paper":null}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"answer":[],"paper":null}}</Assert>
 		</TestCase>
 		<TestCase name='workflowidNull'>
 			<Assert method="getjsonvalue" param="message.workflow_id.[0]">workflow_id cannot be blank.</Assert>
@@ -750,62 +751,62 @@
 	</TestMethod>
 	<TestMethod name='topic_practice_history'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"list":[{"id":"46111","practice_id":"6757514","scenario":"13","paper_id":"80","tpo_no":null,"phase_id":"2","ques_no":"14","ques_id":"111834","p_uid":"1325047","tmp_id":"3696853","guid":null,"subspecialization":"1","test_type":"1","is_official":"1","is_jj":null,"answer":null,"answer_ext":null,"result":"1","practice_datetime":"2017-12-25 23:28:42","used_time":"23","practice_ip_addr":"10.165.14.79","practice_mac_addr":null,"retry_times":null,"server_ip":null,"app_id":"beikao","is_new_resource":"1","create_datetime":"2017-12-25 23:28:38","update_datetime":null,"status":"0","topic_id":"111834"}]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[{"id":"46111","practice_id":"6757514","scenario":"13","paper_id":"80","tpo_no":null,"phase_id":"2","ques_no":"14","ques_id":"111834","p_uid":"1325047","tmp_id":"3696853","guid":null,"subspecialization":"1","test_type":"1","is_official":"1","is_jj":null,"answer":null,"answer_ext":null,"result":"1","practice_datetime":"2017-12-25 23:28:42","used_time":"23","practice_ip_addr":"10.165.14.79","practice_mac_addr":null,"retry_times":null,"server_ip":null,"app_id":"beikao","is_new_resource":"1","create_datetime":"2017-12-25 23:28:38","update_datetime":null,"status":"0","topic_id":"111834"}]}}</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[null]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[null]}}</Assert>
 		</TestCase>
 		<TestCase name='appidNull'>
 			<Assert method="getjsonvalue" param="message.app_id.[0]">app_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='appidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[{"id":"46111","practice_id":"6757514","scenario":"13","paper_id":"80","tpo_no":null,"phase_id":"2","ques_no":"14","ques_id":"111834","p_uid":"1325047","tmp_id":"3696853","guid":null,"subspecialization":"1","test_type":"1","is_official":"1","is_jj":null,"answer":null,"answer_ext":null,"result":"1","practice_datetime":"2017-12-25 23:28:42","used_time":"23","practice_ip_addr":"10.165.14.79","practice_mac_addr":null,"retry_times":null,"server_ip":null,"app_id":"beikao","is_new_resource":"1","create_datetime":"2017-12-25 23:28:38","update_datetime":null,"status":"0","topic_id":"111834"}]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[{"id":"46111","practice_id":"6757514","scenario":"13","paper_id":"80","tpo_no":null,"phase_id":"2","ques_no":"14","ques_id":"111834","p_uid":"1325047","tmp_id":"3696853","guid":null,"subspecialization":"1","test_type":"1","is_official":"1","is_jj":null,"answer":null,"answer_ext":null,"result":"1","practice_datetime":"2017-12-25 23:28:42","used_time":"23","practice_ip_addr":"10.165.14.79","practice_mac_addr":null,"retry_times":null,"server_ip":null,"app_id":"beikao","is_new_resource":"1","create_datetime":"2017-12-25 23:28:38","update_datetime":null,"status":"0","topic_id":"111834"}]}}</Assert>
 		</TestCase>
 		<TestCase name='articleidNull'>
 			<Assert method="getjsonvalue" param="message.article_id.[0]">article_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='articleidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[null]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[null]}}</Assert>
 		</TestCase>
 		<TestCase name='scenarioNull'>
-			<Assert>{"code":0,"message":[],"data":{"list":[null]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[null]}}</Assert>
 		</TestCase>
 		<TestCase name='scenarioNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[null]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[null]}}</Assert>
 		</TestCase>
 		<TestCase name='topicidNull'>
 			<Assert method="getjsonvalue" param="message.topic_id.[0]">topic_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='topicidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[{"practice_datetime":"2017-12-25 23:28:42","practice_id":"6757514","answer":null,"app_id":"beikao"}]}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[{"practice_datetime":"2017-12-25 23:28:42","practice_id":"6757514","answer":null,"app_id":"beikao"}]}}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_answer_by_topic_id'>
 		<TestCase name='output'>
-			<Assert method="getjsonarraysize" param="data">2</Assert>
+			<Assert method="getjsonvalue" param="data.[0].p_uid">1344613</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='topicidNull'>
 			<Assert method="getjsonvalue" param="message.topic_ids.[0]">topic_ids cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='topicidNotExist'>
-			<Assert>{"code":0,"message":[],"data":[]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[]}</Assert>
 		</TestCase>
 		<TestCase name='topicidSingle'>
-			<Assert>{"code":0,"message":[],"data":[{"id":"43720","practice_id":"6757054","scenario":"14","paper_id":"1","tpo_no":null,"phase_id":"1","ques_no":"2","ques_id":"104453","p_uid":"1344613","tmp_id":"3701794","guid":null,"subspecialization":"1","test_type":"1","is_official":"1","is_jj":null,"answer":"C","answer_ext":null,"result":"0","practice_datetime":"2017-11-29 14:01:51","used_time":"4","practice_ip_addr":"10.165.14.79","practice_mac_addr":null,"retry_times":null,"server_ip":null,"app_id":"beikao","is_new_resource":"1","create_datetime":"2017-11-29 14:01:48","update_datetime":null,"status":"0","topic_id":"2"}]}</Assert>
+			<Assert>{"code":0,"message":"OK","data":[{"id":"43720","practice_id":"6757054","scenario":"14","paper_id":"1","tpo_no":null,"phase_id":"1","ques_no":"2","ques_id":"104453","p_uid":"1344613","tmp_id":"3701794","guid":null,"subspecialization":"1","test_type":"1","is_official":"1","is_jj":null,"answer":"C","answer_ext":null,"result":"0","practice_datetime":"2017-11-29 14:01:51","used_time":"4","practice_ip_addr":"10.165.14.79","practice_mac_addr":null,"retry_times":null,"server_ip":null,"app_id":"beikao","is_new_resource":"1","create_datetime":"2017-11-29 14:01:48","update_datetime":null,"status":"0","topic_id":"2"}]}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='article_practice_count'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"id":1}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"id":1}}</Assert>
 		</TestCase>
 		<TestCase name='appidNull'>
 			<Assert method="getjsonvalue" param="message.app_id.[0]">app_id cannot be blank.</Assert>
@@ -817,39 +818,39 @@
 			<Assert method="getjsonvalue" param="message.article_id.[0]">article_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='articleidNotExist'>
-			<Assert>{"code":0,"message":[],"data":0}</Assert>
+			<Assert>{"code":0,"message":"OK","data":0}</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='get_practice_list'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"list":[{"workflow_id":"6755629","p_uid":"1325047","student_id":"0","app_id":"beikao","scenario":"12","practice_type":"2","ques_practice_type":null,"paper_id":"81","article_id":null,"createtime":"2017-11-10 18:59:25","updatetime":"2017-11-10 18:59:25","status":"0","paperName":"tpo51"},{"labelname":"师生讨论","labelenname":"Discussion between Student and Professor","workflow_id":"6755622","p_uid":"1325047","student_id":"0","app_id":"beikao","scenario":"12","practice_type":"2","ques_practice_type":null,"paper_id":"81","article_id":"1298","createtime":"2017-11-10 18:45:17","updatetime":"2017-11-10 18:53:50","status":"1","paperName":"tpo51","phaseid":"1"}],"count":"2"}}</Assert>
+			<Assert method="getjsonvalue" param="data.list.[0].p_uid">1325047</Assert>
 		</TestCase>
 		<TestCase name='appidNull'>
 			<Assert method="getjsonvalue" param="message.app_id.[0]">app_id cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='appidNotExist'>
-			<Assert method="getjsonvalue" param="data.count">2</Assert>
+			<Assert method="getjsonvalue" param="data.list.[0].p_uid">1325047</Assert>
 		</TestCase>
 		<TestCase name='puidNull'>
 			<Assert method="getjsonvalue" param="message.p_uid.[0]">p_uid cannot be blank.</Assert>
 		</TestCase>
 		<TestCase name='puidNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[],"count":"0"}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[],"count":"0"}}</Assert>
 		</TestCase>
 		<TestCase name='practicetypeNull'>
-			<Assert method="getjsonvalue" param="data.count">3</Assert>
+			<Assert method="getjsonvalue" param="data.list.[0].p_uid">1325047</Assert>
 		</TestCase>
 		<TestCase name='practicetypeNotExist'>
-			<Assert method="getjsonvalue" param="data.count">3</Assert>
+			<Assert method="getjsonvalue" param="data.list.[0].p_uid">1325047</Assert>
 		</TestCase>
 		<TestCase name='scenarioNull'>
 			<Assert method="getjsonarraysize" param="data.list">10</Assert>
 		</TestCase>
 		<TestCase name='scenarioNotExist'>
-			<Assert>{"code":0,"message":[],"data":{"list":[],"count":"0"}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[],"count":"0"}}</Assert>
 		</TestCase>
 		<TestCase name='daylimit'>
-			<Assert>{"code":0,"message":[],"data":{"list":[],"count":"0"}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"list":[],"count":"0"}}</Assert>
 		</TestCase>
 		<TestCase name='limit'>
 			<Assert method="getjsonarraysize" param="data.list">1</Assert>
@@ -887,7 +888,7 @@
 	</TestMethod>
 	<TestMethod name='save_biz_practice_count'>
 		<TestCase name='output'>
-			<Assert>{"code":0,"message":[],"data":{"effected_id":11}}</Assert>
+			<Assert>{"code":0,"message":"OK","data":{"effected_id":11}}</Assert>
 		</TestCase>
 		<TestCase name='appidNull'>
 			<Assert method="getjsonvalue" param="message.app_id.[0]">app_id cannot be blank.</Assert>

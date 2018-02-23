@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Config>
+	<!--Toefl相关API-->
 	<!--根据条件筛选试卷-->
 	<api name='filtrate_paper'>
 		<protocol>post</protocol>
@@ -195,6 +196,67 @@
 		<protocol>json</protocol>
 		<url>https://api-server-corpus1.zhan.com/practice/wrong-list?debug=1</url>
 	</api>
+	<!--删除错题本的错题记录-->
+	<api name='del_wrong_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/del-wrong-list?debug=1</url>
+	</api>
+	<!--批量获取答题记录-->
+	<api name='multi_ques_practice_list_vip'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/multi-ques-practice-list-vip?debug=1</url>
+	</api>
+	<!--获取单题记录-->
+	<api name='practice_history'>
+		<protocol>post</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/topic-practice-history?debug=1</url>
+	</api>
+	<!--获取答题记录-->
+	<api name='list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/list?debug=1</url>
+	</api>
+	<!--托福文章练习列表-->
+	<api name='toefl_article_practice_list'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/toefl-article-practice-list?debug=1</url>
+	</api>
+	<!--添加/移除收藏夹-->
+	<api name='add'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/fav/add?debug=1</url>
+	</api>
+	<!--获取收藏夹列表-->
+	<api name='favlist'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/fav/list?debug=1</url>
+	</api>
+	<!--查询收藏状态-->
+	<api name='status'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/fav/status?debug=1</url>
+	</api>
+	<!--取消收藏-->
+	<api name='del'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/fav/del?debug=1</url>
+	</api>
+	<!--结束工作流-->
+	<api name='update_practice_status_vip'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/update-practice-status-vip?debug=1</url>
+	</api>
+	<!--结束工作流-->
+	<api name='update_practice_status'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/update-practice-status?debug=1</url>
+	</api>
+	<!--获取雅思章节文章-->
+	<api name='login'>
+		<protocol>json</protocol>
+		<url>https://api-server-corpus1.zhan.com/practice/login?debug=1</url>
+	</api>
+
 
 	<!--vocabulary练习相关API-->
 	<!--获取用户生词本-->

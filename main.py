@@ -2,16 +2,18 @@
 
 import warnings,sys,os
 import com.zhan.test.MailHelper as mh
-import pytest,threading
+import com.zhan.test.AppDBHelper as dh
+from com.zhan.test.publicData import publicData
+from com.zhan.test.Utils import FuncUtil
+import pytest
 from lxml import etree
 import shutil
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
-sys.path.append('C:\\Users\\Administrator\\PycharmProjects\\test\\')
+sys.path.append(r'C:\Users\Administrator\PycharmProjects\test')
 #忽略 HTTPS中不验证证书的WARNING
 warnings.filterwarnings('ignore')
-
 
 #从配置文件中得到待运行项目(以逗号分隔)和运行模式
 html = etree.parse('main.xml')
@@ -24,9 +26,17 @@ reporttype = html.xpath('//run/report')[0].text                      #报表方�
 #迭代项目执行
 for curProject in projects:
     #项目目录
-    basedir = 'tests\\%s\\'%(curProject)
+    basedir = r'tests\%s'%(curProject)
     #运行文件
-    runfile = basedir + r"config\run.xml" if runmode=="run" else basedir + r"config\debug.xml"
+    runfile = r'%s\config\run.xml'%(basedir)  if runmode=="run" else r'%s\config\debug.xml'%(basedir)
+
+    pd = publicData()
+    pd = FuncUtil.initPublicData(curProject)
+    #sql初始化
+    initSqlFile = r'%s\sql\init.sql'%(basedir)
+    if os.path.exists(initSqlFile) :
+        dbConn = dh.DBConn()
+        dbConn.exeSqlFile(initSqlFile)
 
     #项目下的TEST文件或DEBUG文件，当前默认一个项目一个SUITE生成一个LOG文件
     try:
@@ -36,20 +46,12 @@ for curProject in projects:
     except:
         raise NameError, ("main.xml文件配置错误，无法找到运行文件%" % runfile)
 
-    # #项目参数
-    # pd = publicData()
-    # pd.setProjectConfig(curProject,suite.get('name'))
-    # pd.setRunMode(runmode)
-    # DatabaseConn.init()
-
-
     param = ""
+    filenum = len(files)
     #遍历用例执行文件
     for  curFile in files:
-        #用例文件名
-        filename = "%s.py"%(curFile.get('name'))
         #文件路径
-        filepath = r"%stestcase\%s"%(basedir,filename)
+        filepath = r"%s\testcase\%s.py"%(basedir,curFile.get('name'))
         #有子元素
         if len(curFile) > 0:
             for child in curFile:
@@ -65,7 +67,10 @@ for curProject in projects:
     #日志文件保存路径
     logfile = r"--alluredir %s\log"%(serverdir)
     #PYTEST执行参数
-    runparam = "-s %s -n2 -v --dist=loadscope %s"%(param,logfile)
+    if filenum == 1:
+        runparam = "-s %s %s"%(param,logfile)
+    else:
+        runparam = "-s %s -n%s -v --dist=loadscope %s"%(param,filenum,logfile)
 
     if __name__ == '__main__':
         pytest.main(runparam)
@@ -92,13 +97,10 @@ for curProject in projects:
     #报表URL
     reporturl = "http://localhost:80/zhan/%s/reporter/index.html"%(curProject)
 
-    if reporttype == 'mail':
-        if result['failed'] > 0:
-            mh.MailTo(u'访问公开课接口时发生异常')
-    else:
-        mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
+    mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
 
-
-    #项目执行结束后的清理
-    # pd.tearDown()
-    # DatabaseConn.closeConn()
+    #清理数据数据
+    # endSqlFile = r'%s\sql\end.sql'%(basedir)
+    # if os.path.exists(endSqlFile) :
+    #     dbConn.exeSqlFile(endSqlFile)
+    pd.tearDown()

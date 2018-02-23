@@ -1,5 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuite>
+	<TestMethod name='getpublic'>
+		<TestCase name='publicid'  type="func" method="getpublicbyname" param="publicid" output="publicid">
+		</TestCase>
+		<TestCase name='activityid' type="func" method="getpublicbyname" param="activityid" output="activityid">
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='signuppublicclass'>
+		<TestCase name='output'>
+			<PassportId>1863271</PassportId>
+			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<ChannelCode>LY2016111509</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
+		</TestCase>
+		<TestCase name='channelcodeNotExist'>
+			<PassportId>1863271</PassportId>
+			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<ChannelCode>LY9999999999</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
+		</TestCase>
+		<TestCase name='channelcodeNull'>
+			<PassportId>1863271</PassportId>
+			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
+		</TestCase>
+		<TestCase name='channelcodeMore12'>
+			<PassportId>1863271</PassportId>
+			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<ChannelCode>LY2016111509_1_23</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<PassportId>1863271</PassportId>
+			<PublicClassId>-1</PublicClassId>
+			<ChannelCode>LY2016111509</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
+		</TestCase>
+		<TestCase name='publicclassClosed'>
+			<PassportId>1863271</PassportId>
+			<PublicClassId>1</PublicClassId>
+			<ChannelCode>LY2016111509</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='signupactivity'>
+		<TestCase name='output'>
+			<PassportId>1863271</PassportId>
+			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ChannelCode>LY2016111509</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
+			<ExamDate>2018-01-20</ExamDate><Grade>A</Grade><GradeScreenShotUrl></GradeScreenShotUrl>	<AssistentId>1</AssistentId>
+		</TestCase>
+		<TestCase name='channelcodeNotExist'>
+			<PassportId>1863271</PassportId>
+			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ChannelCode>LY9999999999</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
+			<ExamDate>2018-01-20</ExamDate><Grade>A</Grade><GradeScreenShotUrl></GradeScreenShotUrl>	<AssistentId>1</AssistentId>
+		</TestCase>
+		<TestCase name='channelcodeNull'>
+			<PassportId>1863271</PassportId>
+			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
+			<ExamDate>2018-01-20</ExamDate><Grade>A</Grade><GradeScreenShotUrl></GradeScreenShotUrl>	<AssistentId>1</AssistentId>
+		</TestCase>
+		<TestCase name='channelcodeMore12'>
+			<PassportId>1863271</PassportId>
+			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ChannelCode>LY2016111509_1234</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
+			<ExamDate>2018-01-20</ExamDate><Grade>A</Grade><GradeScreenShotUrl></GradeScreenShotUrl>	<AssistentId>1</AssistentId>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<PassportId>1863271</PassportId>
+			<ActivityID>-1</ActivityID>
+			<ChannelCode>LY2016111509</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
+			<ExamDate>2018-01-20</ExamDate><Grade>A</Grade><GradeScreenShotUrl></GradeScreenShotUrl>	<AssistentId>1</AssistentId>
+		</TestCase>
+		<TestCase name='activityClosed'>
+			<PassportId>1863271</PassportId>
+			<ActivityID>1</ActivityID>
+			<ChannelCode>LY2016111509</ChannelCode>
+			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
+			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
+			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
+			<ExamDate>2018-01-20</ExamDate><Grade>A</Grade><GradeScreenShotUrl></GradeScreenShotUrl>	<AssistentId>1</AssistentId>
+		</TestCase>
+	</TestMethod>
 	<TestMethod name='getlatestactivity'>
 		<TestCase name='category2'>
 			<activitycategory>2</activitycategory>
@@ -16,7 +126,7 @@
 	</TestMethod>
 	<TestMethod name='getactivitydetails'>
 		<TestCase name='output'>
-			<activityid>9250</activityid>
+			<activityid>1</activityid>
 		</TestCase>
 		<TestCase name='activityidNotExist'>
 			<activityid>999</activityid>
@@ -28,8 +138,18 @@
 	<TestMethod name='getactivitylist'>
 		<TestCase name='output'>
 			<ActivityType>1,2,3,4,5</ActivityType>
-			<StartTime>2017-06-01</StartTime>
-			<EndTime>2017-07-01</EndTime>
+			<StartTime>2017-12-14</StartTime>
+			<EndTime>2017-12-20</EndTime>
+		</TestCase>
+		<TestCase name='activitytypeNull'>
+			<ActivityType></ActivityType>
+			<StartTime>2017-12-14</StartTime>
+			<EndTime>2017-12-20</EndTime>
+		</TestCase>
+		<TestCase name='timeInvalid'>
+			<ActivityType>1,2,3,4,5</ActivityType>
+			<StartTime>2017-12-14</StartTime>
+			<EndTime>2016-12-20</EndTime>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getsignupuserwechatinfo'>
@@ -50,17 +170,249 @@
 			<businessid>99</businessid>
 		</TestCase>
 	</TestMethod>
-	<TestMethod name='GetUserPublicClassList'>
+	<TestMethod name='getuserpublicclasslist'>
 		<TestCase name='output'>
-			<passportId>1326028</passportId>
+			<Where>
+				<passportId>1863271</passportId>
+				<StartTime>2018-02-01</StartTime>
+				<EndTime>2018-02-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Where>
+				<passportId>9999999</passportId>
+				<StartTime>2018-02-01</StartTime>
+				<EndTime>2018-02-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='dateError'>
+			<Where>
+				<passportId>1863271</passportId>
+				<StartTime>2018-02-21</StartTime>
+				<EndTime>2018-02-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
 		</TestCase>
 	</TestMethod>
-	<TestProcess name="test1">
-		<TestMethod type="func" method='getpassportid' output="passportid">1326028</TestMethod>
-		<TestMethod type="method" method='GetUserPublicClassList'>
-			<TestCase name='output'>
-				<passportId type="func" method="getoutput">passportid</passportId>
-			</TestCase>
-		</TestMethod>
-	</TestProcess>
+	<TestMethod name='getuseractivitylist'>
+		<TestCase name='output'>
+			<Where>
+				<passportId>1863271</passportId>
+				<StartTime>2018-01-01</StartTime>
+				<EndTime>2018-01-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>ActivityID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Where>
+				<passportId>9999999</passportId>
+				<StartTime>2018-01-01</StartTime>
+				<EndTime>2018-01-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex><PageSize>10</PageSize><OrderBy>ActivityID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='dateError'>
+			<Where>
+				<passportId>1863271</passportId>
+				<StartTime>2018-01-21</StartTime>
+				<EndTime>2018-01-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize>	<OrderBy>ActivityID</OrderBy>	<SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getteacherdetail'>
+		<TestCase name='output'>
+			<teacherid>488</teacherid>
+		</TestCase>
+		<TestCase name='teacheridNotExist'>
+			<teacherid>222</teacherid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='saveuserriseform'>
+		<TestCase name='output'>
+			<PassportId>999999</PassportId>
+			<Status>1</Status>	<Grade>502202</Grade>	<SubGrade>502204</SubGrade><BusinessType>111</BusinessType>
+			<IntentExamDate>2017-11-11</IntentExamDate>	<PrepareTimeForExam>9833</PrepareTimeForExam>
+			<HasExam>true</HasExam><ExamTimes>10</ExamTimes><LastExamLearnSelf>true</LastExamLearnSelf>
+			<LastExamScore>9804</LastExamScore><LastExamForNowTime>9813</LastExamForNowTime>
+			<CurrentEnglishLevel>9816</CurrentEnglishLevel>	<HasTraining>true</HasTraining><TargetScore>9823</TargetScore>
+			<IntentService>9828,9829</IntentService>	<PhoneNumber>13311110000</PhoneNumber><WechatId>234555</WechatId>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getuserriseform'>
+		<TestCase name='output'>
+			<PassportId>999999</PassportId>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivityrecommendlistbyteacher'>
+		<TestCase name='output'>
+			<teacherid>488</teacherid>
+		</TestCase>
+		<TestCase name='teacheridNotExist'>
+			<teacherid>222</teacherid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitylistbyactivitycategory'>
+		<TestCase name='output'>
+			<Where>2,3</Where>
+			<PageIndex>1</PageIndex><PageSize>10</PageSize>	<OrderBy>ActivityID</OrderBy>	<SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='toefl'>
+			<Where>2</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>ActivityID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='ielts'>
+			<Where>3</Where>
+			<PageIndex>1</PageIndex><PageSize>10</PageSize><OrderBy>ActivityID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getfamousteachercolumninfo'>
+		<TestCase name='output'>
+			<teacherid>488</teacherid>
+		</TestCase>
+		<TestCase name='teacheridNotExist'>
+			<teacherid>222</teacherid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclassliveroominfo'>
+		<TestCase name='output'>
+			<publicid type="func" method="getoutput" param="publicid"></publicid>
+			<passportid>1863271</passportid>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<publicid type="func" method="getoutput" param="publicid"></publicid>
+			<passportid>9999</passportid>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<publicid>9999</publicid>
+			<passportid>1863271</passportid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='teachervaluation'>
+		<TestCase name='output'>
+			<QuestionId>1</QuestionId>
+			<passportid>1863271</passportid>
+			<Value>3</Value>
+			<PublicId>1</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<QuestionId>1</QuestionId>
+			<passportid>-1</passportid>
+			<Value>3</Value>
+			<PublicId>1</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<QuestionId>1</QuestionId>
+			<passportid>1863271</passportid>
+			<Value>3</Value>
+			<PublicId>-1</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+		<TestCase name='teacheridNotExist'>
+			<QuestionId>1</QuestionId>
+			<passportid>1863271</passportid>
+			<Value>3</Value>
+			<PublicId>1</PublicId>
+			<TeacherId>-1</TeacherId>
+		</TestCase>
+		<TestCase name='questionidNotExist'>
+			<QuestionId>-1</QuestionId>
+			<passportid>1863271</passportid>
+			<Value>3</Value>
+			<PublicId>1</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getteachervaluation'>
+		<TestCase name='output'>
+			<passportid>1863271</passportid>
+			<PublicId>1</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<passportid>999999</passportid>
+			<PublicId>1</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<passportid>1863271</passportid>
+			<PublicId>999999</PublicId>
+			<TeacherId>488</TeacherId>
+		</TestCase>
+		<TestCase name='teacheridNotExist'>
+			<passportid>1863271</passportid>
+			<PublicId>488</PublicId>
+			<TeacherId>1</TeacherId>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getteacherlistbytype'>
+		<TestCase name='toefl'>
+			<coursetype>2</coursetype>
+		</TestCase>
+		<TestCase name='ietls'>
+			<coursetype>3</coursetype>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getfamousteacherbaselist'>
+		<TestCase name='output'>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><OrderBy>TeacherId</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getfamousteacherdetaillist'>
+		<TestCase name='output'>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><OrderBy>TeacherId</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclasslist'>
+		<TestCase name='output'>
+			<Where>
+				<PublicType>2</PublicType>
+				<StartTime>2018-02-01</StartTime>
+				<EndTime>2018-02-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='typeNotExist'>
+			<Where>
+				<PublicType>9999999</PublicType>
+				<StartTime>2018-02-01</StartTime>
+				<EndTime>2018-02-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+		<TestCase name='dateError'>
+			<Where>
+				<PublicType>2</PublicType>
+				<StartTime>2018-02-21</StartTime>
+				<EndTime>2018-02-20</EndTime>
+			</Where>
+			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='studentreceivediscount'>
+		<TestCase name='DiscountNotExist'>
+			<passportid>1863271</passportid><discountno>yh824166</discountno>
+			<businessmold>2</businessmold><businessid>11</businessid>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<passportid>9999</passportid><discountno>YH615318</discountno>
+			<businessmold>2</businessmold><businessid>11</businessid>
+		</TestCase>
+		<TestCase name='noQualify'>
+			<passportid>1325987</passportid><discountno>YH615318</discountno>
+			<businessmold>2</businessmold><businessid>11</businessid>
+		</TestCase>
+		<TestCase name='hasQualify300'>
+			<passportid>1863271</passportid><discountno>YH615318</discountno>
+			<businessmold>1</businessmold><businessid>11</businessid>
+		</TestCase>
+		<TestCase name='hasQualify300_1'>
+			<passportid>1863271</passportid><discountno>YH175853</discountno>
+			<businessmold>2</businessmold><businessid>11</businessid>
+		</TestCase>
+	</TestMethod>
 </TestSuite>

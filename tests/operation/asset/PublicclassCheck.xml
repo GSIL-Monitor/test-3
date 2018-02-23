@@ -6,7 +6,7 @@
 				<Assert method="contains">beikao_5532859464</Assert>
 			</TestCase>
 		</TestMethod>
-		<TestMethod name='GetUserPublicClassList'>
+		<TestMethod name='getpublicclasslist'>
 			<TestCase name='login'>
 				<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
 			</TestCase>

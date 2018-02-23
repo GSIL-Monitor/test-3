@@ -9,7 +9,7 @@ class httpExecuter:
     @staticmethod
     def executeHttpRequest(methodname,casename,casedata):
         pd = publicData()
-        configEle = xmlUtil.getConfigEleByMethod(pd.getMainDir() + r'\config\api.xml', methodname)
+        configEle = xmlUtil.getConfigEleByMethod(r'%s\config\api.xml'%(pd.getMainDir()), methodname)
         url = configEle.find('url').text
         protocol = configEle.find('protocol').text
         output = configEle.find('output')
@@ -29,7 +29,7 @@ class httpExecuter:
             except NameError:
                 pass
 
-            lock = threading.Lock
+            lock = threading.Lock()
             lock.acquire()
             try:
                 pd.setOutput('%s_%s' % (output.get("name"), threading.currentThread().ident), outresult)
@@ -68,7 +68,7 @@ class httpExecuter:
                     body[casedata[i].tag] = casedata[i].text
             elif casedata[i].get('type') == "func":
                 method = casedata[i].get('method')
-                param = casedata[i].text
+                param = casedata[i].get('param')
                 result = getattr(FuncUtil, method)(param)
                 body[casedata[i].tag] = result
             elif casedata[i].get('type') == "array":

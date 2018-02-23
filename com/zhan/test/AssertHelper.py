@@ -5,37 +5,50 @@ from com.zhan.test.publicData import publicData
 from com.zhan.test.httpHelper import httpExecuter
 from hamcrest import *
 from com.zhan.test.isdict_containingkeys import has_keys
-import DBHelper,threading
+import AppDBHelper,threading,sys
 from lxml import etree
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class AssertHelper:
     @staticmethod
     def executeAndAssert(processname,methodname, casedata,casename,filename):
-        AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
+        response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
+        AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response, filename)
+
+    @staticmethod
+    def executeFunc(processname,methodname, casedata,casename,filename):
+        AssertHelper.__executeFunc(methodname, casedata, processname, filename)
+
+    @staticmethod
+    def __executeFunc(methodname, testCase, processname, filename):
+        pd = publicData()
+        method = testCase.get('method')  # 执行的函数的方法
+        param = testCase.get('param')
+        output = '%s_%s' % (testCase.get('output'), threading.currentThread().ident)
+        result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
+        if output <> None:
+            lock = threading.Lock()
+            lock.acquire()
+            try:
+                pd.setOutput(output, result)
+            finally:
+                lock.release()
 
     @staticmethod
     def __assertByMethod(methodname, testCase, processname, filename):
-        pd = publicData()
-        testtype = testCase.get('type')
-        #执行函数
-        if testtype == 'func':
-            method = testCase.get('method')    #执行的函数的方法
-            param = testCase.text
-            output = '%s_%s'%(testCase.get('output'),threading.currentThread().ident)
-            result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
-            if output <> None:
-                lock = threading.Lock
-                lock.acquire()
-                try:
-                    pd.setOutput(output, result)
-                finally:
-                    lock.release()
-        else:    #执行正常的接口调用
-            # methodname = testMethod.get('method')
-            subcasename = testCase.get('name')
-            subcasedata = testCase
-            response = httpExecuter.executeHttpRequest(methodname, subcasename, subcasedata)
-            AssertHelper.__assertResponse(processname, methodname, subcasename, response, filename)
+        # testtype = testCase.get('type')
+        # #执行函数
+        # if testtype == 'func':
+        #     AssertHelper.__executeFunc(methodname, testCase, processname, filename)
+        # else:    #执行正常的接口调用
+        #     # methodname = testMethod.get('method')
+        subcasename = testCase.get('name')
+        subcasedata = testCase
+        response = httpExecuter.executeHttpRequest(methodname, subcasename, subcasedata)
+        return response
+
 
     @staticmethod
     def __assertResponse(processname,methodname,casename,response,filename):
@@ -48,12 +61,12 @@ class AssertHelper:
             type = assertEle.get('type')
             method = assertEle.get('method') if assertEle.get('method') != None else "equal"   #默认的method是equal
             param = assertEle.get('param')
-            func1 = {'type':type,'method':method,'param':param}
+            func1 = {'type':type,'method':method,'param':param}        #第一个函数
             method1 = assertEle.get('method1')
             if method1 != None:
                 type1 = assertEle.get('type1')
                 param1 = assertEle.get('param1')
-                func2 = {'type': type1, 'method': method1, 'param': param1}
+                func2 = {'type': type1, 'method': method1, 'param': param1}        #第二个函数
                 getattr(AssertMethed, 'comparetwomethod')(response, assertEle.text,operator,func1=func1,func2=func2)
             else:
                 getattr(AssertMethed, method)(response, assertEle.text,operator,func1=func1)
@@ -79,14 +92,14 @@ class AssertMethed():
     #根据路径得到JSON中的某个KEY的值
     @staticmethod
     def getjsonvalue(response,expected,operator,**kwargs):
-        param = kwargs['func1']['param']
+        # param = kwargs['func1']['param']
         actual = AssertUtil.getjsonvalue(response,expected,operator,**kwargs)
         AssertMethed.__assetByOperator(actual,expected,operator)
 
     #根据路径得到JSON中某个ARRAY的数量
     @staticmethod
     def getjsonarraysize(response,expected,operator,**kwargs):
-        param = kwargs['func1']['param']
+        # param = kwargs['func1']['param']
         actual = AssertUtil.getjsonarraysize(response,expected,operator,**kwargs)
         AssertMethed.__assetByOperator(actual,expected,operator)
 
@@ -112,6 +125,7 @@ class AssertMethed():
     @staticmethod
     def __assetByOperator(actual,expected,operator):
         if type(actual) == str:
+            actual = actual.decode('utf-8')
             if operator == "equal":
                 assert_that(actual,is_(expected))
             elif operator == "greater":
@@ -136,8 +150,8 @@ class AssertMethed():
         pd = publicData()
         path = r'%s\config\sql.xml' % (pd.getMainDir())
         html = etree.parse(path)
-        sql = html.xpath('//sqllist/sql[@name=\'%s\']' % (sqlstr))[0].text
+        sql = html.xpath(r"//sqllist/sql[@name='%s']" % (sqlstr))[0].text
         # print sql
-        return DBHelper.DatabaseConn.getValueBySql(sql)[0]
+        return AppDBHelper.DatabaseConn.getValueBySql(sql)[0]
 
 

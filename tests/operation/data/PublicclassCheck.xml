@@ -9,12 +9,12 @@
 				<remember>on</remember>
 			</TestCase>
 		</TestMethod>
-		<TestMethod name='GetUserPublicClassList'>
+		<TestMethod name='getpublicclasslist'>
 			<TestCase name='login'>
 				<Where>
 					<PublicType></PublicType>
-					<StartTime>2018-01-16 00:00:00</StartTime>
-					<EndTime>2018-01-20 00:00:00</EndTime>
+					<StartTime type="func" method="getdatetime"></StartTime>
+					<EndTime type="func" method="getdatetime" param="5"></EndTime>
 				</Where>
 				<PageIndex>1</PageIndex>
 				<PageSize>5</PageSize>
@@ -24,7 +24,7 @@
 		</TestMethod>
 		<TestMethod name='signuppublicclass'>
 			<TestCase name='login'>
-				<PublicClassId type="func" method="getoutput">publicid</PublicClassId>
+				<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
 				<ChannelCode>PC</ChannelCode>
 				<passportid>6644627</passportid>
 				<nickname>xyuan007</nickname>
@@ -33,7 +33,7 @@
 		</TestMethod>
 		<TestMethod name='getpublicclassbyid'>
 			<TestCase name='login'>
-				<id type="func" method="getoutput">publicid</id>
+				<id type="func" method="getoutput" param="publicid1"></id>
 			</TestCase>
 		</TestMethod>
 	</TestProcess>
@@ -51,4 +51,5 @@
 			<activitycategory>999</activitycategory>
 		</TestCase>
 	</TestMethod>
+
 </TestSuite>

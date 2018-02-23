@@ -26,27 +26,94 @@
 		<protocol>post</protocol>
 		<url>http://passport.zhan.com/UsersLogin/login.html</url>
 	</api>
-	<!--获取用户报名过的公开课列表-->
-	<api name='GetUserPublicClassList'>
+	<!--获取公开课列表-->
+	<api name='getpublicclasslist'>
 		<protocol>json</protocol>
 		<url>http://192.168.41.106:8093/publicclass/getpublicclasslist</url>
-		<output name="publicid">Data.Body.[0].PublicID</output>
 	</api>
 	<!--公开课报名-->
 	<api name='signuppublicclass'>
-		<protocol>post</protocol>
+		<protocol>json</protocol>
 		<url>http://192.168.41.106:8093/publicclass/signuppublicclass</url>
 	</api>
-	<!--获取公开课详情-->
-	<api name='getpublicclassbyid'>
-		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclassbyid</url>
+	<!--活动报名-->
+	<api name='signupactivity'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/signupactivity</url>
 	</api>
-	<!--学员公开课信息-->
-	<api name='getstudentpublicclassinfo'>
-		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getstudentpublicclassinfo</url>
+	<!--获取用户公开课列表-->
+	<api name='getuserpublicclasslist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getuserpublicclasslist</url>
 	</api>
-
-
+	<!--获取用户活动列表-->
+	<api name='getuseractivitylist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getuseractivitylist</url>
+	</api>
+	<!--获取老师详细信息-->
+	<api name='getteacherdetail'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getteacherdetail</url>
+	</api>
+	<!--获得晋级表彰详细信息-->
+	<api name='getuserriseform'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getuserriseform</url>
+	</api>
+	<!--提交晋级表单-->
+	<api name='saveuserriseform'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/saveuserriseform</url>
+	</api>
+	<!--通过老师获得活动推荐列表-->
+	<api name='getactivityrecommendlistbyteacher'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getactivityrecommendlistbyteacher</url>
+	</api>
+	<!--通过类别获得活动列表-->
+	<api name='getactivitylistbyactivitycategory'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getactivitylistbyactivitycategory</url>
+	</api>
+	<!--得到名师信息-->
+	<api name='getfamousteachercolumninfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getfamousteachercolumninfo</url>
+	</api>
+	<!--得到公开课直播间信息-->
+	<api name='getpublicclassliveroominfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getpublicclassliveroominfo</url>
+	</api>
+	<!--得到点赞信息-->
+	<api name='getteachervaluation'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getteachervaluation</url>
+	</api>
+	<!--老师点赞-->
+	<api name='teachervaluation'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/teachervaluation</url>
+	</api>
+	<!--得到老师列表-->
+	<api name='getteacherlistbytype'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getteacherlistbytype</url>
+	</api>
+	<!--得到名师基本信息-->
+	<api name='getfamousteacherbaselist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getfamousteacherbaselist</url>
+	</api>
+	<!--得到名师详细信息-->
+	<api name='getfamousteacherdetaillist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getfamousteacherdetaillist</url>
+	</api>
+	<!--用户领取优惠券-->
+	<api name='studentreceivediscount'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/studentreceivediscount</url>
+	</api>
 </Config>
