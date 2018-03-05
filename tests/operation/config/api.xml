@@ -116,4 +116,58 @@
 		<protocol>get</protocol>
 		<url>http://192.168.41.106:8093/publicclass/studentreceivediscount</url>
 	</api>
+
+
+	<!--获取助教信息-->
+	<api name='getassistent'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/newproforma/getassistent</url>
+	</api>
+	<!--用户绑定班级-->
+	<api name='userbindinggroup'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/userbindinggroup</url>
+	</api>
+	<!--根据班级ID得到班级信息-->
+	<api name='getgroupinfobygroupid'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getgroupinfobygroupid</url>
+	</api>
+	<!--用户打卡-->
+	<api name='usersignclock'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/publicclass/usersignclock</url>
+	</api>
+	<!--根据班级ID得到打卡记录-->
+	<api name='getsignclockrecordbygroup'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getsignclockrecordbygroup</url>
+	</api>
+
+	<!--获取用户打卡记录-->
+	<api name='getusersignclockrecord'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getusersignclockrecord</url>
+	</api>
+	<!--得到用户班级信息-->
+	<api name='getusergroupinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getusergroupinfo</url>
+	</api>
+	<!--根据班级ID得到班级信息-->
+	<api name='getgroupinfobygroupid'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getgroupinfobygroupid</url>
+	</api>
+	<!--得到活动广告-->
+	<api name='getadrecommendclassoractivity'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getadrecommendclassoractivity</url>
+	</api>
+	<!--解密U参数，得到用户信息-->
+	<api name='getuserinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getuserinfo</url>
+	</api>
+
 </Config>

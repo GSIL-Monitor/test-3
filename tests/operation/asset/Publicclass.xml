@@ -69,7 +69,7 @@
 	</TestMethod>
 	<TestMethod name='getuseractivitylist'>
 		<TestCase name='output'>
-			<Assert method="getjsonvalue" param="Data.Count" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<Assert method="getjsonvalue" param="Code">4</Assert>
@@ -96,6 +96,7 @@
 	<TestMethod name='getuserriseform'>
 		<TestCase name='output'>
 			<Assert method="getjsonvalue" param="Data.[0].PassportId">999999</Assert>
+			<Assert method="haskeys" param="Data.[0]">PassportId,ActivityId,UserName,UserHeadImage,Status,Grade,SubGrade,BusinessType,IntentExamDate,PrepareTimeForExam,HasExam,ExamTimes,LastExamLearnSelf,LastExamScore,LastExamForNowTime,CurrentEnglishLevel,HasTraining,TargetScore,IntentService,PhoneNumber,WechatId,SelfLearningTPO</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getactivityrecommendlistbyteacher'>
@@ -256,6 +257,126 @@
 		</TestCase>
 		<TestCase name='hasQualify300_1'>
 			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getuserinfo'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.userid">5000020811</Assert>
+			<Assert method="getjsonvalue" param="Data.ppid">0201801120056</Assert>
+		</TestCase>
+		<TestCase name='notSignup'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户未报名此公开课!</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户未报名此公开课!</Assert>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户未报名此公开课!</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getadrecommendclassoractivity'>
+		<TestCase name='toefl'>
+			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].ID" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].PublicTypeName">托福</Assert>
+		</TestCase>
+		<TestCase name='ielts'>
+			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].ID" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].PublicTypeName">雅思</Assert>
+		</TestCase>
+		<TestCase name='subtypeNotExist'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getgroupinfobygroupid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.ActivityID" operator="greater">1</Assert>
+		</TestCase>
+		<TestCase name='groupidNotExist'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+			<Assert method="getjsonvalue" param="Message">班级ID有误！</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='usersignclock'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户未报名此活动</Assert>
+		</TestCase>
+		<TestCase name='signdateNull'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='noBind'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">班级不存在或未绑定</Assert>
+		</TestCase>
+		<TestCase name='noSignup'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户未报名此活动</Assert>
+		</TestCase>
+		<TestCase name='noGroup'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">班级不存在或未绑定</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getsignclockrecordbygroup'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].GroupName">活动微信群</Assert>
+		</TestCase>
+		<TestCase name='groupidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusersignclockrecord'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].ActivityId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].GroupId">1000</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusergroupinfo'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.HasSignUp">True</Assert>
+			<Assert method="getjsonvalue" param="Data.GroupInfo.GroupId">1000</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='ActivityIdNotExist'>
+			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.HasSignUp">False</Assert>
+			<Assert method="getjsonvalue" param="Data.GroupInfo">None</Assert>
+		</TestCase>
+		<TestCase name='noBind'>
+			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.HasSignUp">True</Assert>
+			<Assert method="getjsonvalue" param="Data.GroupInfo">None</Assert>
+		</TestCase>
+		<TestCase name='noSignup'>
+			<Assert method="getjsonvalue" param="Data.PassportId">7553775</Assert>
+			<Assert method="getjsonvalue" param="Data.HasSignUp">False</Assert>
+			<Assert method="getjsonvalue" param="Data.GroupInfo">None</Assert>
+		</TestCase>
+		<TestCase name='noGroup'>
+			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.HasSignUp">True</Assert>
+			<Assert method="getjsonvalue" param="Data.GroupInfo">None</Assert>
 		</TestCase>
 	</TestMethod>
 </TestSuite>

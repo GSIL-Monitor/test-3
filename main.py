@@ -34,7 +34,7 @@ for curProject in projects:
     pd = FuncUtil.initPublicData(curProject)
     #sql初始化
     initSqlFile = r'%s\sql\init.sql'%(basedir)
-    if os.path.exists(initSqlFile) :
+    if runmode=="run" and os.path.exists(initSqlFile):
         dbConn = dh.DBConn()
         dbConn.exeSqlFile(initSqlFile)
 

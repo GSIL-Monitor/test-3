@@ -11,10 +11,10 @@ sys.setdefaultencoding('utf8')
 
 def value(method):
     return ParamUtil.getValue(os.path.basename(__file__),method,'operation')
-
-@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublic"))
-def test_getpublic(processname,methodname,casedata,casename,filename):
-    AssertHelper.executeFunc(processname,methodname,casedata,casename,filename)
+#
+# @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublic"))
+# def test_getpublic(processname,methodname,casedata,casename,filename):
+#     AssertHelper.executeFunc(processname,methodname,casedata,casename,filename)
 
 #测试signuppublicclass接口
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("signuppublicclass"))
@@ -126,3 +126,39 @@ def test_getpublicclasslist(processname,methodname,casedata,casename,filename):
 def test_studentreceivediscount(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
+#测试getuserinfo
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getuserinfo"))
+def test_getuserinfo(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+#测试getuserinfo
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getadrecommendclassoractivity"))
+def test_getadrecommendclassoractivity(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+
+#测试getgroupinfobygroupid
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getgroupinfobygroupid"))
+def test_getgroupinfobygroupid(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+#测试usersignclock
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("usersignclock"))
+def test_usersignclock(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+
+#测试getsignclockrecordbygroup
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getsignclockrecordbygroup"))
+def test_getsignclockrecordbygroup(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+#测试getusergroupinfo
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getusergroupinfo"))
+def test_getusergroupinfo(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+#getusersignclockrecord
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getusersignclockrecord"))
+def test_getusersignclockrecord(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)

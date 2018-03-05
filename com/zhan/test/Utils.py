@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 from lxml import etree
-import json, threading,datetime
+import json, threading,datetime,time
 from com.zhan.test.publicData import publicData
 import com.zhan.test.AppDBHelper as dh
 
@@ -159,7 +159,16 @@ class FuncUtil:
         now = datetime.datetime.now()
         delta = datetime.timedelta(days=int(inteval))
         n_days = now + delta
-        return n_days.strftime('%Y-%m-%d %H:%M:%S')
+        return r'%s 00:00:00'%(n_days.strftime('%Y-%m-%d'))
+
+    @staticmethod
+    def getdate(inteval=0):
+        if inteval == None:inteval = 0
+        now = datetime.datetime.now()
+        delta = datetime.timedelta(days=int(inteval))
+        n_days = now + delta
+        return n_days.strftime('%Y-%m-%d')
+
 
     @staticmethod
     def initPublicData(projectname):

@@ -9,7 +9,7 @@
 	<TestMethod name='signuppublicclass'>
 		<TestCase name='output'>
 			<PassportId>1863271</PassportId>
-			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<PublicClassId>1000</PublicClassId>
 			<ChannelCode>LY2016111509</ChannelCode>
 			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
@@ -17,7 +17,7 @@
 		</TestCase>
 		<TestCase name='channelcodeNotExist'>
 			<PassportId>1863271</PassportId>
-			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<PublicClassId>1000</PublicClassId>
 			<ChannelCode>LY9999999999</ChannelCode>
 			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
@@ -25,14 +25,14 @@
 		</TestCase>
 		<TestCase name='channelcodeNull'>
 			<PassportId>1863271</PassportId>
-			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<PublicClassId>1000</PublicClassId>
 			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
 			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID>
 		</TestCase>
 		<TestCase name='channelcodeMore12'>
 			<PassportId>1863271</PassportId>
-			<PublicClassId type="func" method="getoutput" param="publicid"></PublicClassId>
+			<PublicClassId>1000</PublicClassId>
 			<ChannelCode>LY2016111509_1_23</ChannelCode>
 			<nickname>myname</nickname><unionid>111</unionid>	<openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
@@ -58,7 +58,7 @@
 	<TestMethod name='signupactivity'>
 		<TestCase name='output'>
 			<PassportId>1863271</PassportId>
-			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ActivityID>1000</ActivityID>
 			<ChannelCode>LY2016111509</ChannelCode>
 			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
@@ -67,7 +67,7 @@
 		</TestCase>
 		<TestCase name='channelcodeNotExist'>
 			<PassportId>1863271</PassportId>
-			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ActivityID>1000</ActivityID>
 			<ChannelCode>LY9999999999</ChannelCode>
 			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
@@ -76,7 +76,7 @@
 		</TestCase>
 		<TestCase name='channelcodeNull'>
 			<PassportId>1863271</PassportId>
-			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ActivityID>1000</ActivityID>
 			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
 			<groupid>9823</groupid><qq>2342342</qq><mobile>13311110000</mobile>	<WechatID>234555</WechatID><RegSource>PC</RegSource>
@@ -84,7 +84,7 @@
 		</TestCase>
 		<TestCase name='channelcodeMore12'>
 			<PassportId>1863271</PassportId>
-			<ActivityID type="func" method="getoutput" param="activityid"></ActivityID>
+			<ActivityID>1000</ActivityID>
 			<ChannelCode>LY2016111509_1234</ChannelCode>
 			<nickname>myname</nickname><unionid>111</unionid><openid>bbbbbbbb</openid>	<province>sh</province><city>sh</city><sex>male</sex><country>true</country>
 			<language>9804</language>	<headimgurl>9813</headimgurl>	<subscribe_time>9816</subscribe_time><remark>true</remark>
@@ -174,8 +174,8 @@
 		<TestCase name='output'>
 			<Where>
 				<passportId>1863271</passportId>
-				<StartTime>2018-02-01</StartTime>
-				<EndTime>2018-02-20</EndTime>
+				<StartTime type="func" method="getdate" param="-10"></StartTime>
+				<EndTime type="func"  method="getdate" param="10"></EndTime>
 			</Where>
 			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
 		</TestCase>
@@ -200,8 +200,8 @@
 		<TestCase name='output'>
 			<Where>
 				<passportId>1863271</passportId>
-				<StartTime>2018-01-01</StartTime>
-				<EndTime>2018-01-20</EndTime>
+				<StartTime type="func" method="getdate" param="-10"></StartTime>
+				<EndTime type="func"  method="getdate" param="10"></EndTime>
 			</Where>
 			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>ActivityID</OrderBy><SortCol>1</SortCol>
 		</TestCase>
@@ -278,11 +278,11 @@
 	</TestMethod>
 	<TestMethod name='getpublicclassliveroominfo'>
 		<TestCase name='output'>
-			<publicid type="func" method="getoutput" param="publicid"></publicid>
+			<publicid>1000</publicid>
 			<passportid>1863271</passportid>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
-			<publicid type="func" method="getoutput" param="publicid"></publicid>
+			<publicid>1000</publicid>
 			<passportid>9999</passportid>
 		</TestCase>
 		<TestCase name='publicidNotExist'>
@@ -370,15 +370,14 @@
 	<TestMethod name='getpublicclasslist'>
 		<TestCase name='output'>
 			<Where>
-				<PublicType>2</PublicType>
-				<StartTime>2018-02-01</StartTime>
-				<EndTime>2018-02-20</EndTime>
+				<StartTime type="func" method="getdatetime" param="0"></StartTime>
+				<EndTime type="func" method="getdatetime" param="2"></EndTime>
 			</Where>
 			<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
 		</TestCase>
 		<TestCase name='typeNotExist'>
 			<Where>
-				<PublicType>9999999</PublicType>
+				<PublicType>99999</PublicType>
 				<StartTime>2018-02-01</StartTime>
 				<EndTime>2018-02-20</EndTime>
 			</Where>
@@ -403,7 +402,7 @@
 			<businessmold>2</businessmold><businessid>11</businessid>
 		</TestCase>
 		<TestCase name='noQualify'>
-			<passportid>1325987</passportid><discountno>YH615318</discountno>
+			<passportid>853026</passportid><discountno>YH615318</discountno>
 			<businessmold>2</businessmold><businessid>11</businessid>
 		</TestCase>
 		<TestCase name='hasQualify300'>
@@ -413,6 +412,101 @@
 		<TestCase name='hasQualify300_1'>
 			<passportid>1863271</passportid><discountno>YH175853</discountno>
 			<businessmold>2</businessmold><businessid>11</businessid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getuserinfo'>
+		<TestCase name='test'>
+			<content>9379d99ae57da1f5f69b2e9bc177869d</content>
+		</TestCase>
+		<TestCase name='notSignup'>
+			<content>EEE6023E87DD8DAF31A2972C10E0C16C</content>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<content>C37E980326493312462A7C9D039781B5</content>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<content>561F925473FBDA14AD83E2835917FE20</content>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getadrecommendclassoractivity'>
+		<TestCase name='toefl'>
+			<publictype>2</publictype><publicsubtype>0</publicsubtype>
+		</TestCase>
+		<TestCase name='ielts'>
+			<publictype>3</publictype><publicsubtype>1</publicsubtype>
+		</TestCase>
+		<TestCase name='subtypeNotExist'>
+			<publictype>3</publictype><publicsubtype>5</publicsubtype>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getgroupinfobygroupid'>
+		<TestCase name='test'>
+			<groupid>1</groupid>
+		</TestCase>
+		<TestCase name='groupidNotExist'>
+			<groupid>-1</groupid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='usersignclock'>
+		<TestCase name='test'>
+			<ActivityId>1000</ActivityId><PassportId>1863271</PassportId><SignDate>2018-02-07 19:41:31</SignDate>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<ActivityId>1000</ActivityId><PassportId>9999</PassportId><SignDate>2018-02-07 19:41:31</SignDate>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<ActivityId>9999</ActivityId><PassportId>1863271</PassportId><SignDate>2018-02-07 19:41:31</SignDate>
+		</TestCase>
+		<TestCase name='signdateNull'>
+			<ActivityId>1000</ActivityId><PassportId>1863271</PassportId><SignDate></SignDate>
+		</TestCase>
+		<TestCase name='noBind'>
+			<ActivityId>1001</ActivityId><PassportId>1863271</PassportId><SignDate>2018-02-07 19:41:31</SignDate>
+		</TestCase>
+		<TestCase name='noSignup'>
+			<ActivityId>1000</ActivityId><PassportId>7553775</PassportId><SignDate>2018-02-07 19:41:31</SignDate>
+		</TestCase>
+		<TestCase name='noGroup'>
+			<ActivityId>1002</ActivityId><PassportId>1863271</PassportId><SignDate>2018-02-07 19:41:31</SignDate>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getsignclockrecordbygroup'>
+		<TestCase name='test'>
+			<groupid>1000</groupid>
+		</TestCase>
+		<TestCase name='groupidNotExist'>
+			<groupid>-1</groupid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusersignclockrecord'>
+		<TestCase name='test'>
+			<ActivityId>1000</ActivityId><PassportId>1863271</PassportId>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<ActivityId>1000</ActivityId><PassportId>-1</PassportId>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<ActivityId>-1</ActivityId><PassportId>1863271</PassportId>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusergroupinfo'>
+		<TestCase name='test'>
+			<ActivityId>1000</ActivityId><PassportId>1863271</PassportId>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<ActivityId>1000</ActivityId><PassportId>-1</PassportId>
+		</TestCase>
+		<TestCase name='ActivityIdNotExist'>
+			<ActivityId>9999</ActivityId><PassportId>1863271</PassportId>
+		</TestCase>
+		<TestCase name='noBind'>
+			<ActivityId>1001</ActivityId><PassportId>1863271</PassportId>
+		</TestCase>
+		<TestCase name='noSignup'>
+			<ActivityId>1000</ActivityId><PassportId>7553775</PassportId>
+		</TestCase>
+		<TestCase name='noGroup'>
+			<ActivityId>1002</ActivityId><PassportId>1863271</PassportId>
 		</TestCase>
 	</TestMethod>
 </TestSuite>

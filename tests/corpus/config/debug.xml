@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="corpus" verbose="1">
   	<files>
-  		<file name="test_Practice"></file>
+  		<file name="test_Word"></file>
   	</files>
 </suite>
