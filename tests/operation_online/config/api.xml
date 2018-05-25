@@ -3,22 +3,22 @@
 	<!--获取最近的活动-->
 	<api name='getlatestactivity'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getlatestactivity</url>
+		<url>https://ermapi.zhan.com/publicclass/getlatestactivity</url>
 	</api>
 	<!--获取活动详情 -->
 	<api name='getactivitydetails'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitydetails</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitydetails</url>
 	</api>
 	<!--获取活动列表-->
 	<api name='getactivitylist'>
 		<protocol>post</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitylist</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitylist</url>
 	</api>
 	<!--获取用户的微信信息-->
 	<api name='getsignupuserwechatinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getsignupuserwechatinfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getsignupuserwechatinfo</url>
 	</api>
 	<!--用户登录-->
 	<api name='UsersLogin'>
@@ -28,168 +28,168 @@
 	<!--获取公开课列表-->
 	<api name='getpublicclasslist'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclasslist</url>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclasslist</url>
 	</api>
 	<!--公开课报名-->
 	<api name='signuppublicclass'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/signuppublicclass</url>
+		<url>https://ermapi.zhan.com/publicclass/signuppublicclass</url>
 	</api>
 	<!--活动报名-->
 	<api name='signupactivity'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/signupactivity</url>
+		<url>https://ermapi.zhan.com/publicclass/signupactivity</url>
 	</api>
 	<!--获取用户公开课列表-->
 	<api name='getuserpublicclasslist'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getuserpublicclasslist</url>
+		<url>https://ermapi.zhan.com/publicclass/getuserpublicclasslist</url>
 	</api>
 	<!--获取用户活动列表-->
 	<api name='getuseractivitylist'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getuseractivitylist</url>
+		<url>https://ermapi.zhan.com/publicclass/getuseractivitylist</url>
 	</api>
 	<!--获取老师详细信息-->
 	<api name='getteacherdetail'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getteacherdetail</url>
+		<url>https://ermapi.zhan.com/publicclass/getteacherdetail</url>
 	</api>
 	<!--获得晋级表彰详细信息-->
 	<api name='getuserriseform'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getuserriseform</url>
+		<url>https://ermapi.zhan.com/publicclass/getuserriseform</url>
 	</api>
 	<!--提交晋级表单-->
 	<api name='saveuserriseform'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/saveuserriseform</url>
+		<url>https://ermapi.zhan.com/publicclass/saveuserriseform</url>
 	</api>
 	<!--通过老师获得活动推荐列表-->
 	<api name='getactivityrecommendlistbyteacher'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivityrecommendlistbyteacher</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivityrecommendlistbyteacher</url>
 	</api>
 	<!--通过类别获得活动列表-->
 	<api name='getactivitylistbyactivitycategory'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitylistbyactivitycategory</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitylistbyactivitycategory</url>
 	</api>
 	<!--得到名师信息-->
 	<api name='getfamousteachercolumninfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getfamousteachercolumninfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getfamousteachercolumninfo</url>
 	</api>
 	<!--得到公开课直播间信息-->
 	<api name='getpublicclassliveroominfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclassliveroominfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclassliveroominfo</url>
 	</api>
 	<!--得到点赞信息-->
 	<api name='getteachervaluation'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getteachervaluation</url>
+		<url>https://ermapi.zhan.com/publicclass/getteachervaluation</url>
 	</api>
 	<!--老师点赞-->
 	<api name='teachervaluation'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/teachervaluation</url>
+		<url>https://ermapi.zhan.com/publicclass/teachervaluation</url>
 	</api>
 	<!--得到老师列表-->
 	<api name='getteacherlistbytype'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getteacherlistbytype</url>
+		<url>https://ermapi.zhan.com/publicclass/getteacherlistbytype</url>
 	</api>
 	<!--得到名师基本信息-->
 	<api name='getfamousteacherbaselist'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getfamousteacherbaselist</url>
+		<url>https://ermapi.zhan.com/publicclass/getfamousteacherbaselist</url>
 	</api>
 	<!--得到名师详细信息-->
 	<api name='getfamousteacherdetaillist'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getfamousteacherdetaillist</url>
+		<url>https://ermapi.zhan.com/publicclass/getfamousteacherdetaillist</url>
 	</api>
 	<!--用户领取优惠券-->
 	<api name='studentreceivediscount'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/studentreceivediscount</url>
+		<url>https://ermapi.zhan.com/publicclass/studentreceivediscount</url>
 	</api>
 
 	<!--获取助教信息（小库）-->
 	<api name='getassistentpublic'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getassistent</url>
+		<url>https://ermapi.zhan.com/publicclass/getassistent</url>
 	</api>
 	<!--获取助教信息-->
 	<api name='getassistent'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/newproforma/getassistent</url>
+		<url>https://ermapi.zhan.com/newproforma/getassistent</url>
 	</api>
 	<!--用户绑定班级-->
 	<api name='userbindinggroup'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/userbindinggroup</url>
+		<url>https://ermapi.zhan.com/publicclass/userbindinggroup</url>
 	</api>
 	<!--根据班级ID得到班级信息-->
 	<api name='getgroupinfobygroupid'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getgroupinfobygroupid</url>
+		<url>https://ermapi.zhan.com/publicclass/getgroupinfobygroupid</url>
 	</api>
 	<!--用户打卡-->
 	<api name='usersignclock'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/usersignclock</url>
+		<url>https://ermapi.zhan.com/publicclass/usersignclock</url>
 	</api>
 	<!--根据班级ID得到打卡记录-->
 	<api name='getsignclockrecordbygroup'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getsignclockrecordbygroup</url>
+		<url>https://ermapi.zhan.com/publicclass/getsignclockrecordbygroup</url>
 	</api>
 	<!--获取用户打卡记录-->
 	<api name='getusersignclockrecord'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getusersignclockrecord</url>
+		<url>https://ermapi.zhan.com/publicclass/getusersignclockrecord</url>
 	</api>
 	<!--得到用户班级信息-->
 	<api name='getusergroupinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getusergroupinfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getusergroupinfo</url>
 	</api>
 	<!--根据班级ID得到班级信息-->
 	<api name='getgroupinfobygroupid'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getgroupinfobygroupid</url>
+		<url>https://ermapi.zhan.com/publicclass/getgroupinfobygroupid</url>
 	</api>
 	<!--得到活动广告-->
 	<api name='getadrecommendclassoractivity'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getadrecommendclassoractivity</url>
+		<url>https://ermapi.zhan.com/publicclass/getadrecommendclassoractivity</url>
 	</api>
 	<!--解密U参数，得到用户信息-->
 	<api name='getuserinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getuserinfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getuserinfo</url>
 	</api>
 	<!--生成视频地址链接（带U参数）-->
 	<api name='getpublicclassvideourl'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclassvideourl</url>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclassvideourl</url>
 	</api>
 	<!--获取公开课详情-->
 	<api name='getpublicclassbyid'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclassbyid</url>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclassbyid</url>
 	</api>
 	<!--获取老师列表-->
 	<api name='getteacherlist'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getteacherlist</url>
+		<url>https://ermapi.zhan.com/publicclass/getteacherlist</url>
 	</api>
 	<!--&lt;!&ndash;添加公开课访问记录&ndash;&gt;-->
 	<!--<api name='addpublicclassvisit'>-->
 		<!--<protocol>json</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/addpublicclassvisit</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/addpublicclassvisit</url>-->
 	<!--</api>-->
 
 
@@ -197,227 +197,227 @@
 	<!--&lt;!&ndash;获取学员公开课信息&ndash;&gt;-->
 	<!--<api name='getstudentpublicclassinfo'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getstudentpublicclassinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getstudentpublicclassinfo</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;更新学员CEPT测试&ndash;&gt;-->
 	<!--<api name='updatestudentcept'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/updatestudentcept</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/updatestudentcept</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;学员报名优惠券&ndash;&gt;-->
 	<!--<api name='updatestudentdiscount'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/updatestudentdiscount</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/updatestudentdiscount</url>-->
 	<!--</api>-->
 	<!--公开课学员评价-->
 	<api name='publicclassstudentvaluation'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/publicclassstudentvaluation</url>
+		<url>https://ermapi.zhan.com/publicclass/publicclassstudentvaluation</url>
 	</api>
 	<!--获取精品公开课列表-->
 	<api name='getintensivepublicclasslist'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getintensivepublicclasslist</url>
+		<url>https://ermapi.zhan.com/publicclass/getintensivepublicclasslist</url>
 	</api>
 	<!--&lt;!&ndash;获取用户访问记录&ndash;&gt;-->
 	<!--<api name='getuservisitinfo'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getuservisitinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getuservisitinfo</url>-->
 	<!--</api>-->
 	<!--获取活动课程详情-->
 	<api name='getactivitycourselist'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitycourselist</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitycourselist</url>
 	</api>
 	<!--&lt;!&ndash;修改报名用户信息（手机号码）&ndash;&gt;-->
 	<!--<api name='modifyuserinfo'>-->
 		<!--<protocol>json</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/modifyuserinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/modifyuserinfo</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;获取学生小班课,排课列表&ndash;&gt;-->
 	<!--<api name='getstudentschedulelistinminiclass'>-->
 		<!--<protocol>json</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getstudentschedulelistinminiclass</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getstudentschedulelistinminiclass</url>-->
 	<!--</api>-->
 	<!--学生小班课,排课列表-->
 	<api name='getstudentminiclassschedulelist'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getstudentminiclassschedulelist</url>
+		<url>https://ermapi.zhan.com/publicclass/getstudentminiclassschedulelist</url>
 	</api>
 	<!--获取视频url-->
 	<api name='getvideourl'>
 		<protocol>post</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getvideourl</url>
+		<url>https://ermapi.zhan.com/publicclass/getvideourl</url>
 	</api>
 	<!--&lt;!&ndash;获取用户助教信息&#45;&#45;已过期&ndash;&gt;-->
 	<!--<api name='getuserassistentinfo'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getuserassistentinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getuserassistentinfo</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;获取活动中已审批通过的学生信息&ndash;&gt;-->
 	<!--<api name='getapprovedstudentinfo'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getapprovedstudentinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getapprovedstudentinfo</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;获取当前时间有效的活动信息&ndash;&gt;-->
 	<!--<api name='getvalidactivityinfo'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getvalidactivityinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getvalidactivityinfo</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;学生完成活动作业数据回写至ERP&ndash;&gt;-->
 	<!--<api name='addstudentactivityhomeworkdata'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/addstudentactivityhomeworkdata</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/addstudentactivityhomeworkdata</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;同步活动数据&ndash;&gt;-->
 	<!--<api name='publicclassactivitiesync'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/publicclassactivitiesync</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/publicclassactivitiesync</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;同步已报名活动用户数据&ndash;&gt;-->
 	<!--<api name='publicclassactivitysignupsync'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/publicclassactivitysignupsync</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/publicclassactivitysignupsync</url>-->
 	<!--</api>-->
 	<!--获取用户报名状态-->
 	<api name='getsignupstatus'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getsignupstatus</url>
+		<url>https://ermapi.zhan.com/publicclass/getsignupstatus</url>
 	</api>
 	<!--获取用户一段时间内是否报名过某一课程的活动-->
 	<api name='getsignupstatusget'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getsignupstatus</url>
+		<url>https://ermapi.zhan.com/publicclass/getsignupstatus</url>
 	</api>
 	<!--获取活动中已审批通过的学生信息-->
 	<api name='getactivitycourseextendlist'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitycourseextendlist</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitycourseextendlist</url>
 	</api>
 	<!--&lt;!&ndash;存储群号和群昵称&ndash;&gt;-->
 	<!--<api name='savegroupinfo'>-->
 		<!--<protocol>post</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/savegroupinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/savegroupinfo</url>-->
 	<!--</api>-->
 	<!--&lt;!&ndash;获取活动作业以及做过作业的所有学生&ndash;&gt;-->
 	<!--<api name='getactivitycourseandstudentsinfo'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getactivitycourseandstudentsinfo</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getactivitycourseandstudentsinfo</url>-->
 	<!--</api>-->
 	<!--获取活动阶段安排列表-->
 	<api name='getactivitymoments'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitymoments</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitymoments</url>
 	</api>
 	<!--获取活动奖品列表-->
 	<api name='getactivityawards'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivityawards</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivityawards</url>
 	</api>
 	<!--&lt;!&ndash;根据PPID解绑UnionId，请注意区分UpdatePPIDByUnionId&ndash;&gt;-->
 	<!--<api name='unboundppidandunionid'>-->
 		<!--<protocol>json</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/unboundppidandunionid</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/unboundppidandunionid</url>-->
 	<!--</api>-->
 	<!--用户进入公开课时添加记录-->
 	<api name='userattendrecord'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/userattendrecord</url>
+		<url>https://ermapi.zhan.com/publicclass/userattendrecord</url>
 	</api>
 	<!--&lt;!&ndash;根据UnionId更新PPID，请注意区分UnBoundPPIDAndUnionId&ndash;&gt;-->
 	<!--<api name='updateppidbyunionid'>-->
 		<!--<protocol>json</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/updateppidbyunionid</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/updateppidbyunionid</url>-->
 	<!--</api>-->
 	<!--获取用户基础信息-->
 	<api name='getuserbaseinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getuserbaseinfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getuserbaseinfo</url>
 	</api>
 	<!--活动助力-->
 	<api name='boostactivity'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/boostactivity</url>
+		<url>https://ermapi.zhan.com/publicclass/boostactivity</url>
 	</api>
 	<!--获取助力者列表-->
 	<api name='getboosterlist'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getboosterlist</url>
+		<url>https://ermapi.zhan.com/publicclass/getboosterlist</url>
 	</api>
 	<!--保存用户收获地址-->
 	<api name='savepublicclassuseraddress'>
 		<protocol>post</protocol>
-		<url>http://192.168.41.106:8093/publicclass/savepublicclassuseraddress</url>
+		<url>https://ermapi.zhan.com/publicclass/savepublicclassuseraddress</url>
 	</api>
 	<!--拉取用户收货地址列表-->
 	<api name='getpublicclassuseraddress'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclassuseraddress</url>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclassuseraddress</url>
 	</api>
 	<!--获取用户中奖纪录-->
 	<api name='getawardrecord'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getawardrecord</url>
+		<url>https://ermapi.zhan.com/publicclass/getawardrecord</url>
 	</api>
 	<!--用户抽奖-->
 	<api name='activitylottery'>
 		<protocol>post</protocol>
-		<url>http://192.168.41.106:8093/publicclass/activitylottery</url>
+		<url>https://ermapi.zhan.com/publicclass/activitylottery</url>
 	</api>
 	<!--&lt;!&ndash;获取学生是否报名过活动/公开课&ndash;&gt;-->
 	<!--<api name='getuserhasrecord'>-->
 		<!--<protocol>get</protocol>-->
-		<!--<url>http://192.168.41.106:8093/publicclass/getuserhasrecord</url>-->
+		<!--<url>https://ermapi.zhan.com/publicclass/getuserhasrecord</url>-->
 	<!--</api>-->
 	<!--清除未开始的公开课的缓存记录-->
 	<api name='refreshpublicclasscache'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/refreshpublicclasscache</url>
+		<url>https://ermapi.zhan.com/publicclass/refreshpublicclasscache</url>
 	</api>
 	<!--根据课程类型获取考试时间-->
 	<api name='getexamdate'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getexamdate</url>
+		<url>https://ermapi.zhan.com/publicclass/getexamdate</url>
 	</api>
 	<!--获取我的战绩-->
 	<api name='getmyrecord'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getmyrecord</url>
+		<url>https://ermapi.zhan.com/publicclass/getmyrecord</url>
 	</api>
 	<!--获取战团战绩-->
 	<api name='getpublicclassactivityrecord'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getpublicclassactivityrecord</url>
+		<url>https://ermapi.zhan.com/publicclass/getpublicclassactivityrecord</url>
 	</api>
 	<!--推送作业统计信息-->
 	<api name='postworkstatistics'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/postworkstatistics</url>
+		<url>https://ermapi.zhan.com/publicclass/postworkstatistics</url>
 	</api>
 	<!--获取当前活动阶段是否晋级-->
 	<api name='getactivitypromotion'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitypromotion</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitypromotion</url>
 	</api>
 	<!--获取活动的用户排名-->
 	<api name='getusersrank'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getusersrank</url>
+		<url>https://ermapi.zhan.com/publicclass/getusersrank</url>
 	</api>
 	<!--获取活动是否填写过晋级表单-->
 	<api name='getactivitypromotionwrited'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitypromotionwrited</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitypromotionwrited</url>
 	</api>
 	<!--根据活动Id获取班级相关信息-->
 	<api name='getactivitygroupinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivitygroupinfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivitygroupinfo</url>
 	</api>
 	<!--作业推送接口-->
 	<api name='gethomeworktodaylist'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/gethomeworktodaylist</url>
+		<url>https://ermapi.zhan.com/publicclass/gethomeworktodaylist</url>
 	</api>
 
 
@@ -429,37 +429,6 @@
 	<!--获取活动作业信息-->
 	<api name='getactivityhomeworkinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getactivityhomeworkinfo</url>
+		<url>https://ermapi.zhan.com/publicclass/getactivityhomeworkinfo</url>
 	</api>
-	<!--同步用户排名-->
-	<api name='syncavtivityuserrank'>
-		<protocol>post</protocol>
-		<url>https://uatermapi.tpooo.net/job/SyncAvtivityUserRank</url>
-	</api>
-	<!--提问列表-->
-	<api name='getquestionlist'>
-		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getquestionlist</url>
-	</api>
-	<!--我的提问列表-->
-	<api name='getmyquestionlist'>
-		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getmyquestionlist</url>
-	</api>
-	<!--提问-->
-	<api name='postquestion'>
-		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/postquestion</url>
-	</api>
-	<!--提问类型列表-->
-	<api name='getquestiontypelist'>
-		<protocol>get</protocol>
-		<url>http://192.168.41.106:8093/publicclass/getquestiontypelist</url>
-	</api>
-	<!--follow-->
-	<api name='postquestionfollow'>
-		<protocol>json</protocol>
-		<url>http://192.168.41.106:8093/publicclass/postquestionfollow</url>
-	</api>
-
 </Config>

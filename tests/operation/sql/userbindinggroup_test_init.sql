@@ -1,0 +1,1 @@
+UPDATE [dbo].[Tpo_PublicClass_Activitity_SignUp] SET  [GroupName] = N'', [GroupNickName] = N'' WHERE [ActivityID] = '1000' AND [SignUpUserID] = N'21905'

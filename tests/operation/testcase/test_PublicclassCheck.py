@@ -6,8 +6,6 @@ from com.zhan.test.AssertHelper import AssertHelper
 import allure
 
 warnings.filterwarnings('ignore')
-reload(sys)
-sys.setdefaultencoding('utf8')
 
 # def value(method):
 #     return ParamUtil.getValue(os.path.basename(__file__),method,'operation')
@@ -23,15 +21,18 @@ sys.setdefaultencoding('utf8')
 #     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
 
-def teardown_module(module):
-    print('teardown module')
+def value(method):
+    return ['111','222','333']
 
-def test_test1():
-    print('test1')
 
-def test_test2():
-    print('test2')
 
-def test_test3():
-    print('test3')
+@pytest.mark.parametrize("test", value("test1"))
+def test_test1(test):
+    print('test1'+ test + "\n")
 
+# def test_test2():
+#     print('test2'+"\n")
+#
+# def test_test3():
+#     print('test3'+"\n")
+#

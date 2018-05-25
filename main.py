@@ -2,9 +2,9 @@
 
 import warnings,sys,os
 import com.zhan.test.MailHelper as mh
-import com.zhan.test.AppDBHelper as dh
 from com.zhan.test.publicData import publicData
 from com.zhan.test.Utils import FuncUtil
+import com.zhan.test.AppDBHelper as dh
 import pytest
 from lxml import etree
 import shutil
@@ -66,7 +66,7 @@ for curProject in projects:
     serverdir = r"%s\zhan\%s" % (webserverdir, curProject)
     #日志文件保存路径
     logfile = r"--alluredir %s\log"%(serverdir)
-    #PYTEST执行参数
+    #PYTEST并发执行参数
     if filenum == 1:
         runparam = "-s %s %s"%(param,logfile)
     else:
@@ -96,7 +96,6 @@ for curProject in projects:
                     result['passed'] = result['passed'] + 1
     #报表URL
     reporturl = "http://localhost:80/zhan/%s/reporter/index.html"%(curProject)
-
     mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
 
     #清理数据数据

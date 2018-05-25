@@ -12,7 +12,7 @@
 			<Assert method="getjsonvalue" param="Data.ActivityCategory">3</Assert>
 		</TestCase>
 		<TestCase name='categoryInvalid'>
-			<Assert method="getjsonvalue" param="Message">The request is invalid.</Assert>
+			<Assert method="getjsonvalue" param="Message">请求无效。</Assert>
 		</TestCase>
 		<TestCase name='categoryNotExist'>
 			<Assert method="getjsonvalue" param="Data">None</Assert>
@@ -20,13 +20,14 @@
 	</TestMethod>	
 	<TestMethod name='getactivitydetails'>
 		<TestCase name='output'>
-			<Assert method="getjsonvalue" param="Data.ActivityId">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.teachers.[0].TeacherId">488</Assert>
 		</TestCase>
 		<TestCase name='activityidNotExist'>
 			<Assert method="getjsonvalue" param="Data.ActivityTitle">None</Assert>
 		</TestCase>
 		<TestCase name='activityidInvalid'>
-			<Assert method="getjsonvalue" param="Message">The request is invalid.</Assert>
+			<Assert method="getjsonvalue" param="Message">请求无效。</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getactivitylist'>
@@ -48,10 +49,10 @@
 			<Assert method="getjsonvalue" param="Data">[]</Assert>
 		</TestCase>
 		<TestCase name='mold2'>
-			<Assert method="getjsonarraysize" param="Data" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.[1].SignUpUserId">21905</Assert>
 		</TestCase>
 		<TestCase name='mold1'>
-			<Assert method="getjsonarraysize" param="Data" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].SignUpUserId">19710</Assert>
 			<Assert method="haskeys" param="Data.[0]">SignUpUserId,PassportId,UnionId,OpenId,NickName,HeadImgUrl</Assert>
 		</TestCase>
 	</TestMethod>
@@ -91,12 +92,13 @@
 	<TestMethod name='saveuserriseform'>
 		<TestCase name='output'>
 			<Assert method="getjsonvalue" param="Data">True</Assert>
+			<Assert method="getvaluebysql" param="getpromotioncount">1</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getuserriseform'>
 		<TestCase name='output'>
-			<Assert method="getjsonvalue" param="Data.[0].PassportId">999999</Assert>
-			<Assert method="haskeys" param="Data.[0]">PassportId,ActivityId,UserName,UserHeadImage,Status,Grade,SubGrade,BusinessType,IntentExamDate,PrepareTimeForExam,HasExam,ExamTimes,LastExamLearnSelf,LastExamScore,LastExamForNowTime,CurrentEnglishLevel,HasTraining,TargetScore,IntentService,PhoneNumber,WechatId,SelfLearningTPO</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
+			<Assert method="haskeys" param="Data.[0]">PassportId,ActivityId,UserName,UserHeadImage,Status,Grade,SubGrade,BusinessType,IntentExamDate,PrepareTimeForExam,HasExam,ExamTimes,LastExamLearnSelf,LastExamScore,LastExamForNowTime,CurrentEnglishLevel,HasTraining,TargetScore,IntentService,PhoneNumber,WechatId,SelfLearningTPO,PlanToStudyAbroad</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getactivityrecommendlistbyteacher'>
@@ -182,8 +184,9 @@
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='signuppublicclass'>
-		<TestCase name='output'>
+		<TestCase name='signupSuccess'>
 			<Assert method="getjsonvalue" param="Data.UserID" operator="greater">1</Assert>
+			<Assert method="getvaluebysql" param="getsignupscore" value="1001,2">1</Assert>
 		</TestCase>
 		<TestCase name='channelcodeNotExist'>
 			<Assert method="getjsonvalue" param="Message">渠道不存在</Assert>
@@ -198,12 +201,13 @@
 			<Assert method="getjsonvalue" param="Message">公开课编号有误！</Assert>
 		</TestCase>
 		<TestCase name='publicclassClosed'>
-			<Assert method="getjsonvalue" param="Message">此公开课不存在</Assert>
+			<Assert method="getjsonvalue" param="Message">此公开课报名已关闭</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='signupactivity'>
-		<TestCase name='output'>
+		<TestCase name='signupSuccess'>
 			<Assert method="getjsonvalue" param="Data.UserID" operator="greater">1</Assert>
+			<Assert method="getvaluebysql" param="getsignupscore" value="1004,1">1</Assert>
 		</TestCase>
 		<TestCase name='channelcodeNotExist'>
 			<Assert method="getjsonvalue" param="Message">渠道不存在</Assert>
@@ -263,6 +267,7 @@
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.userid">5000020811</Assert>
 			<Assert method="getjsonvalue" param="Data.ppid">0201801120056</Assert>
+			<Assert method="haskeys" param="Data">userid,headimgurl,nickname,unionid,ppid</Assert>
 		</TestCase>
 		<TestCase name='notSignup'>
 			<Assert method="getjsonvalue" param="Code">4</Assert>
@@ -272,15 +277,16 @@
 			<Assert method="getjsonvalue" param="Code">4</Assert>
 			<Assert method="getjsonvalue" param="Message">用户未报名此公开课!</Assert>
 		</TestCase>
-		<TestCase name='publicidNotExist'>
-			<Assert method="getjsonvalue" param="Code">4</Assert>
-			<Assert method="getjsonvalue" param="Message">用户未报名此公开课!</Assert>
+		<TestCase name='wrongParam'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+			<Assert method="getjsonvalue" param="Message">参数不正确</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getadrecommendclassoractivity'>
 		<TestCase name='toefl'>
 			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].ID" operator="greater">1</Assert>
 			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].PublicTypeName">托福</Assert>
+			<Assert method="haskeys" param="Data.ListClassOrActivity.[0]">Category,ID,Title,PublicTypeName,PublicSubTypeName</Assert>
 		</TestCase>
 		<TestCase name='ielts'>
 			<Assert method="getjsonvalue" param="Data.ListClassOrActivity.[0].ID" operator="greater">1</Assert>
@@ -292,16 +298,17 @@
 	</TestMethod>
 	<TestMethod name='getgroupinfobygroupid'>
 		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.ActivityID" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityID">1000</Assert>
 		</TestCase>
 		<TestCase name='groupidNotExist'>
-			<Assert method="getjsonvalue" param="Code">400</Assert>
-			<Assert method="getjsonvalue" param="Message">班级ID有误！</Assert>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">班级不存在!</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='usersignclock'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data">True</Assert>
+			<Assert method="getvaluebysql" param="getsignclockcount">1</Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<Assert method="getjsonvalue" param="Code">4</Assert>
@@ -328,31 +335,35 @@
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getsignclockrecordbygroup'>
-		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
-			<Assert method="getjsonvalue" param="Data.[0].GroupName">活动微信群</Assert>
-		</TestCase>
 		<TestCase name='groupidNotExist'>
 			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='todayQuery'>
+			<Assert method="getjsonarraysize" param="Data">2</Assert>
+			<Assert method="haskeys" param="Data.[0]">PassportId,UnionId,NickName,HeadImageUrl,GroupName,GroupNickName,SignClockDate</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getusersignclockrecord'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.[0].ActivityId">1000</Assert>
 			<Assert method="getjsonvalue" param="Data.[0].GroupId">1000</Assert>
+			<Assert method="haskeys" param="Data.[0]">ActivityId,GroupId,SignDate,MomentId,CreateTime</Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<Assert method="getjsonvalue" param="Data">None</Assert>
 		</TestCase>
 		<TestCase name='activityidNotExist'>
-			<Assert method="getjsonvalue" param="Data">None</Assert>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getusergroupinfo'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
 			<Assert method="getjsonvalue" param="Data.HasSignUp">True</Assert>
-			<Assert method="getjsonvalue" param="Data.GroupInfo.GroupId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.GroupInfo.GroupId">1001</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityDayCount">16</Assert>
+			<Assert method="getjsonvalue" param="Data.SignClockUserCount">2</Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<Assert method="getjsonvalue" param="Code">4</Assert>
@@ -377,6 +388,497 @@
 			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
 			<Assert method="getjsonvalue" param="Data.HasSignUp">True</Assert>
 			<Assert method="getjsonvalue" param="Data.GroupInfo">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclassvideourl'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonvalue" param="Data">http://ke1.zhan.com/v9999?u=C37E980326493312462A7C9D039781B5</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='userbindinggroup'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">True</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">绑定成功!</Assert>
+		</TestCase>
+		<TestCase name='nicknameExist'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">班级中已存在此用户昵称!</Assert>
+		</TestCase>
+		<TestCase name='activityNotBegin'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">此活动开始前2天才能报名!</Assert>
+		</TestCase>
+		<TestCase name='activityEnd'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">此活动开始后3天不能报名!</Assert>
+		</TestCase>
+		<TestCase name='activityNotSignup'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">用户未报名此活动!</Assert>
+		</TestCase>
+		<TestCase name='userHasBind'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">该用户已绑定过班级!</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">找不到该用户!</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">活动不存在!</Assert>
+		</TestCase>
+		<TestCase name='groupidNotExist'>
+			<Assert method="getjsonvalue" param="Data.IsSuccessful">False</Assert>
+			<Assert method="getjsonvalue" param="Data.BindMessage">当前活动不存在此班级ID!</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getassistent'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.UserName">judy</Assert>
+			<Assert method="getjsonvalue" param="Data.UserId">4</Assert>
+			<Assert method="getjsonvalue" param="Data.TrueName">王洁艳</Assert>
+			<Assert method="getjsonvalue" param="Data.ClueNo">TPO201801030000821</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getassistentpublic'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.WeChatID" operator="notnone"></Assert>
+			<Assert method="getjsonvalue" param="Data.WeChatQRCode" operator="notnone"></Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getsignupstatusget'>
+		<TestCase name='ToeflPublicclass'>
+			<Assert method="getjsonvalue" param="Data.BusinessId">1000</Assert>
+		</TestCase>
+		<TestCase name='IeltsActivity'>
+			<Assert method="getjsonvalue" param="Data.BusinessId">1000</Assert>
+		</TestCase>
+		<TestCase name='IeltsPublicclassInDays'>
+			<Assert method="getjsonvalue" param="Data.BusinessId">1001</Assert>
+		</TestCase>
+		<TestCase name='IeltsPublicclassOutDays'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='ToeflActivityInDate'>
+			<Assert method="getjsonvalue" param="Data.BusinessId">1001</Assert>
+		</TestCase>
+		<TestCase name='ToeflActivityOutDate'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='bussidNotExist'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+		</TestCase>
+		<TestCase name='busstypeNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='daysNotExist'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitycourseextendlist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].NickName">梁旭清</Assert>
+		</TestCase>
+		<TestCase name='noData'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitymoments'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].ActivitityId">1000</Assert>
+			<Assert method="haskeys" param="Data.[0]">MomentId,ActivitityId,BeginDate,EndDate,MomentDescription,ReachHomeworkTimes,HasPromotionForm</Assert>
+		</TestCase>
+		<TestCase name='noData'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+			<Assert method="getjsonvalue" param="Message">未能根据参数找到对应的数据</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+			<Assert method="getjsonvalue" param="Message">未能根据参数找到对应的数据</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivityawards'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].ActivitityId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].AwardName">谢谢惠顾</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].AwardName">一等奖</Assert>
+		</TestCase>
+		<TestCase name='noData'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+			<Assert method="getjsonvalue" param="Message">未能根据参数找到对应的数据</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+			<Assert method="getjsonvalue" param="Message">未能根据参数找到对应的数据</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='userattendrecord'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='notSignup'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getuserbaseinfo'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.AssistentInfoModel.AssistentName">托福002</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户‘999’不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='boostactivity'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='boosteridNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">Owner用户不存在</Assert>
+		</TestCase>
+		<TestCase name='owneridNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">Booster用户不存在</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='owneridNotSignUp'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getboosterlist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].passportid">7553775</Assert>
+		</TestCase>
+		<TestCase name='owneridNotSignUp'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='owneridNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+			<Assert method="getjsonvalue" param="Message">Owner用户不存在</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='savepublicclassuseraddress'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='DetailNull'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+			<Assert method="getjsonvalue" param="Message">参数异常</Assert>
+		</TestCase>
+		<TestCase name='NameNull'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+			<Assert method="getjsonvalue" param="Message">参数异常</Assert>
+		</TestCase>
+		<TestCase name='PhoneNull'>
+			<Assert method="getjsonvalue" param="Code">400</Assert>
+			<Assert method="getjsonvalue" param="Message">参数异常</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclassuseraddress'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].passportid">1863271</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getawardrecord'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].SignUpUserId">19710</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].ActivityId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].AwardId">1000</Assert>
+		</TestCase>
+		<TestCase name='ppidNoAward'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='ppidNotSignup'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='ppidNoExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='changeaward'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.AwardId">111</Assert>
+		</TestCase>
+		<TestCase name='awardIdNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getexamdate'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].CourseType">2</Assert>
+		</TestCase>
+		<TestCase name='typeNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getmyrecord'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.ViewCount">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ViewMinute">310</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Code">4</Assert>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postworkstatistics'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+			<Assert method="getvaluebysql" param="gethomeworkcount">1</Assert>
+			<Assert method="getvaluebysql" param="gethomeworkaccuracy">99</Assert>
+		</TestCase>
+		<TestCase name='accuracyTest'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+			<Assert method="getvaluebysql" param="gethomeworkcount">2</Assert>
+			<Assert method="getvaluebysql" param="gethomeworkaccuracy">50</Assert>
+		</TestCase>
+		<TestCase name='repeat'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+			<Assert method="getvaluebysql" param="gethomeworkcount">2</Assert>
+			<Assert method="getvaluebysql" param="gethomeworkaccuracy">5</Assert>
+		</TestCase>
+		<TestCase name='notSignup'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">未找到用户报名信息</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">未找到用户报名信息</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclassactivityrecord'>
+		<TestCase name='test'>
+			<Assert method="getjsonarraysize" param="Data" operator="greater">2</Assert>
+			<Assert method="haskeys" param="Data.[0]">ActivityId,ActivityTitle,ActivityMoment,CheckinCount,HomeworkCount,HomeworkAccuracy</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExsit'>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitypromotion'>
+		<TestCase name='testTrue'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='testFail'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='noMoment'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">未配置活动阶段</Assert>
+		</TestCase>
+		<TestCase name='notSignup'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Message">未配置活动阶段</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusersrank'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="haskeys" param="Data.[0]">headimgurl,GroupNickName,GroupRank,ActivityRank</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitypromotionwrited'>
+		<TestCase name='testTrue'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='testFalse'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='notSignup'>
+			<Assert method="getjsonvalue" param="Message">未找到用户报名信息</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Message">未找到用户报名信息</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivitygroupinfo'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].GroupId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].GroupName">活动微信群</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].BindCount">2</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].PromotionCount">1</Assert>
+			<Assert method="haskeys" param="Data.[0]">GroupId,GroupName,BindCount,PromotionCount</Assert>
+		</TestCase>
+		<TestCase name='groupNotExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='syncavtivitysignuppromotion'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="msg">success</Assert>
+			<Assert method="getvaluebysql" param="getusermomentid">1006</Assert>
+		</TestCase>
+		<TestCase name='homeworkcountfail'>
+			<Assert method="getvaluebysql" param="getusermomentid">1005</Assert>
+		</TestCase>
+		<TestCase name='raiseformfail'>
+			<Assert method="getvaluebysql" param="getusermomentid">1005</Assert>
+		</TestCase>
+		<TestCase name='signlockfail'>
+			<Assert method="getvaluebysql" param="getusermomentid">1005</Assert>
+		</TestCase>
+		<TestCase name='conditionsuccess'>
+			<Assert method="getvaluebysql" param="getusermomentid">1006</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='activitylottery'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.AwardId" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.LotteryCount" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.AssistentId" operator="greater">1</Assert>
+		</TestCase>
+		<TestCase name='activityNotExist'>
+			<Assert method="getjsonvalue" param="Message">未能找到任何奖品</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Message">抽奖用户无效</Assert>
+		</TestCase>
+		<TestCase name='awardNotExist'>
+			<Assert method="getjsonvalue" param="Message">未能找到任何奖品</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getquestionlist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].questionid">1000</Assert>
+		</TestCase>
+		<TestCase name='ppidNotSignup'>
+			<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].questionid">1000</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].questionid">1000</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].questionid">1000</Assert>
+		</TestCase>
+		<TestCase name='courseidNotExist'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getmyquestionlist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count">1</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].questioncontent">你是</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].activitytitle">ToeflTest</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postquestion'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotSignup'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Message">活动不存在或该活动下作业不存在</Assert>
+		</TestCase>
+		<TestCase name='courseidNotExist'>
+			<Assert method="getjsonvalue" param="Message">活动不存在或该活动下作业不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getquestiontypelist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].ActivityId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].Name">作业</Assert>
+		</TestCase>
+		<TestCase name='noLabel'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postquestionfollow'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='isupfalse'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Message">用户不存在</Assert>
+		</TestCase>
+		<TestCase name='questionidNotExist'>
+			<Assert method="getjsonvalue" param="Message">问题不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='gethomeworktodaylist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.[0].ActivityId" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].CourseList.[0].CourseId" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].UserList.[0].GroupID" operator="greater">1</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='syncavtivityuserrank'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="success">1</Assert>
 		</TestCase>
 	</TestMethod>
 </TestSuite>

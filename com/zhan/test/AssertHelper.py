@@ -6,7 +6,9 @@ from com.zhan.test.httpHelper import httpExecuter
 from hamcrest import *
 from com.zhan.test.isdict_containingkeys import has_keys
 import AppDBHelper,threading,sys
+import com.zhan.test.AppDBHelper as dh
 from lxml import etree
+import os,time
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -14,8 +16,21 @@ sys.setdefaultencoding('utf-8')
 class AssertHelper:
     @staticmethod
     def executeAndAssert(processname,methodname, casedata,casename,filename):
-        response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
-        AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response, filename)
+        pd = publicData()
+        #初始化
+        initSqlFile = r'%s\sql\%s_%s_init.sql' % (pd.getMainDir(),methodname,casename)
+        if os.path.exists(initSqlFile):
+            dbConn = dh.DBConn()
+            dbConn.exeSqlFile(initSqlFile)
+        try:
+            response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
+            AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response, filename)
+        finally:
+            # 清理
+            finSqlFile = r'%s\sql\%s_%s_fin.sql' % (pd.getMainDir(),methodname,casename)
+            if os.path.exists(finSqlFile):
+                dbConn = dh.DBConn()
+                dbConn.exeSqlFile(finSqlFile)
 
     @staticmethod
     def executeFunc(processname,methodname, casedata,casename,filename):
@@ -61,12 +76,14 @@ class AssertHelper:
             type = assertEle.get('type')
             method = assertEle.get('method') if assertEle.get('method') != None else "equal"   #默认的method是equal
             param = assertEle.get('param')
-            func1 = {'type':type,'method':method,'param':param}        #第一个函数
+            val = assertEle.get('value')
+            func1 = {'type':type,'method':method,'param':param,'value':val}        #第一个函数
             method1 = assertEle.get('method1')
             if method1 != None:
                 type1 = assertEle.get('type1')
                 param1 = assertEle.get('param1')
-                func2 = {'type': type1, 'method': method1, 'param': param1}        #第二个函数
+                val1 = assertEle.get('value1')
+                func2 = {'type': type1, 'method': method1, 'param': param1,'value':val1}        #第二个函数
                 getattr(AssertMethed, 'comparetwomethod')(response, assertEle.text,operator,func1=func1,func2=func2)
             else:
                 getattr(AssertMethed, method)(response, assertEle.text,operator,func1=func1)
@@ -103,6 +120,14 @@ class AssertMethed():
         actual = AssertUtil.getjsonarraysize(response,expected,operator,**kwargs)
         AssertMethed.__assetByOperator(actual,expected,operator)
 
+    # 得到SQL内容
+    @staticmethod
+    def getvaluebysql(response, expected, operator, **kwargs):
+        func1 = kwargs['func1']
+        actual = AssertMethed.__getvaluebysql(func1['param'],func1['value'])
+        AssertMethed.__assetByOperator(actual,expected,operator)
+
+
     #两个方法进行比较
     @staticmethod
     def comparetwomethod(response,expected,operator,**kwargs):
@@ -124,6 +149,7 @@ class AssertMethed():
     #有操作符的验证
     @staticmethod
     def __assetByOperator(actual,expected,operator):
+        #通用的处理
         if type(actual) == str:
             actual = actual.decode('utf-8')
             if operator == "equal":
@@ -144,14 +170,22 @@ class AssertMethed():
             elif operator == "notequal":
                 assert_that(actual,is_not(int(expected)))
 
+        #通用类型的处理
+        if operator == "none":
+            assert_that(actual, none())
+        elif operator == "notnone":
+            assert_that(actual, not_none())
 
     @staticmethod
-    def getvaluebysql(sqlstr):
+    def __getvaluebysql(sqlname,param):
         pd = publicData()
         path = r'%s\config\sql.xml' % (pd.getMainDir())
         html = etree.parse(path)
-        sql = html.xpath(r"//sqllist/sql[@name='%s']" % (sqlstr))[0].text
+        sql = html.xpath(r"//sqllist/sql[@name='%s']" % (sqlname))[0].text
+        if param != None:
+            res = param.split(',')
+            for index in xrange(0, len(res)):
+                sql = str.replace(sql, '%param%', res[index], 1)
         # print sql
-        return AppDBHelper.DatabaseConn.getValueBySql(sql)[0]
-
-
+        dbConn = dh.DBConn()
+        return dbConn.getValueBySql(sql)[0]

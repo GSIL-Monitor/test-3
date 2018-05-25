@@ -2,6 +2,7 @@
 <suite name="Publicclass" verbose="1">
   	<files>
   		<file name="test_Publicclass">
+			<method>test_getactivitydetails</method>
 		</file>
   	</files>
 </suite>

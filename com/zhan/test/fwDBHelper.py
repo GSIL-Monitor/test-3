@@ -19,9 +19,9 @@ class DBConn(Singleton):
         if self.__cursor == None and self.__cursor == None:
             pd = publicData()
             html = etree.parse(r"%s\config\config.xml" % (pd.getMainDir()))
-            result = html.xpath('//config/database')
+            result = html.xpath('//config/apidatabase')
             if len(result) == 0:
-                raise NameError("database not config")
+                raise NameError("framework database not config")
 
             host = result[0].find('host').text
             port = int(result[0].find('port').text) if result[0].find('port').text != None else None
@@ -29,28 +29,19 @@ class DBConn(Singleton):
             password = result[0].find('password').text
             db = result[0].find('db').text
 
-            if result[0].get('name') == 'sqlserver':
-                self.__conn = pymssql.connect(host=host, user=username, password=password, database=db, charset="utf8")
-            elif result[0].get('name') == 'mysql':
+            if result[0].get('name') == 'mysql':
                 self.__conn = pymysql.connect(host=host, port=port, user=username, password=password, database=db, charset="utf8",
                                             cursorclass=pymysql.cursors.DictCursor)
             self.__cursor = self.__conn.cursor()
 
-    def getValueBySql(self,sql):
-        self.__cursor.execute(sql)
-        # 查询数据库单条数据
-        result = self.__cursor.fetchone()
-        return result
-
-    def exeSqlFile(self,filepath):
-        sqlStr = ""
-        for line in open(filepath, mode='r'):
-            sqlStr = sqlStr + line
-        self.__cursor.execute(sqlStr)
-        self.__conn.commit()
 
     def closeConn(self):
         self.__conn.close()
         self.__conn = None
         self.__cursor = None
 
+    def insertDetailReport(self,detail):
+        pass
+
+    def insertMainReport(self,main):
+        pass

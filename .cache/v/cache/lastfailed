@@ -32,7 +32,7 @@
   "tests/operation/testcase/test_Publicclass.py::test_GetUserPublicClassList[GetUserPublicClassList-starttime-casedata1]": true, 
   "tests/operation/testcase/test_Publicclass.py::test_GetUserPublicClassList[GetUserPublicClassList-starttimeendtime-casedata3-Publicclass]": true, 
   "tests/operation/testcase/test_Publicclass.py::test_GetUserPublicClassList[GetUserPublicClassList-starttimeendtime-casedata3]": true, 
-  "tests/operation/testcase/test_Publicclass.py::test_getlatestactivity[getlatestactivity-getlatestactivity-casedata1-category3-Publicclass]": true, 
-  "tests/operation/testcase/test_Publicclass.py::test_getuserpublicclasslist[getuserpublicclasslist-getuserpublicclasslist-casedata0-output-Publicclass]": true, 
+  "tests/operation/testcase/test_Publicclass.py::test_getassistent[getassistent-getassistent-casedata0-test-Publicclass]": true, 
+  "tests/operation/testcase/test_Publicclass.py::test_getassistentpublic[getassistentpublic-getassistentpublic-casedata0-test-Publicclass]": true, 
   "tests/operation/testcase/test_PublicclassCheck.py": true
 }
