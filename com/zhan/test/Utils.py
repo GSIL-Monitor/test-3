@@ -112,7 +112,7 @@ class ParamUtil:
         # 指定的TESTCASE
         if casename != None:
             result = xmlUtil.getDataByMethodCase(path, method, casename)
-        else:
+        else:#全部的testcase
             result = xmlUtil.getDataByMethod(path, method)
 
         # 非单接口形式，而是接口流程

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuite>
+	<TestProcess name='getuserpublicteacher'>
+		<TestMethod name='getpublicclasslist'>
+			<TestCase name='output'>
+				<Assert method="getjsonvalue" param="Data.Count" operator="greater">0</Assert>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='getteacherdetail'>
+			<TestCase name='output'>
+				<Assert method="getjsonvalue" param="Data.TeacherInfo.TeacherID" operator="greater">0</Assert>
+			</TestCase>
+		</TestMethod>
+	</TestProcess>
 	<TestMethod name='getlatestactivity'>
 		<TestCase name='category2'>
 			<Assert method="getjsonvalue" param="Code">0</Assert>
@@ -260,13 +272,14 @@
 			<Assert method="getjsonvalue" param="Data">True</Assert>
 		</TestCase>
 		<TestCase name='hasQualify300_1'>
-			<Assert method="getjsonvalue" param="Data">True</Assert>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+			<Assert method="getjsonvalue" param="Message">您已领取过，请勿重复领取。</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getuserinfo'>
 		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.userid">5000020811</Assert>
-			<Assert method="getjsonvalue" param="Data.ppid">0201801120056</Assert>
+			<Assert method="getjsonvalue" param="Data.userid">5000019710</Assert>
+			<Assert method="getjsonvalue" param="Data.ppid">1863271</Assert>
 			<Assert method="haskeys" param="Data">userid,headimgurl,nickname,unionid,ppid</Assert>
 		</TestCase>
 		<TestCase name='notSignup'>
@@ -436,12 +449,18 @@
 	</TestMethod>
 	<TestMethod name='getassistent'>
 		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.UserName">judy</Assert>
-			<Assert method="getjsonvalue" param="Data.UserId">4</Assert>
-			<Assert method="getjsonvalue" param="Data.TrueName">王洁艳</Assert>
-			<Assert method="getjsonvalue" param="Data.ClueNo">TPO201801030000821</Assert>
+			<Assert method="getjsonvalue" param="Data.UserName">18255153615</Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getassistentwechat'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.UserId">1</Assert>
+			<Assert method="getjsonvalue" param="Data.WeChatID">278217871</Assert>
+		</TestCase>
+		<TestCase name='useridNotExist'>
 			<Assert method="getjsonvalue" param="Data">None</Assert>
 		</TestCase>
 	</TestMethod>
@@ -449,6 +468,7 @@
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.WeChatID" operator="notnone"></Assert>
 			<Assert method="getjsonvalue" param="Data.WeChatQRCode" operator="notnone"></Assert>
+			<Assert method="getjsonvalue" param="Data.ThirdPartyShareLink" operator="notnone"></Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<Assert method="getjsonvalue" param="Data">None</Assert>
@@ -657,7 +677,7 @@
 	<TestMethod name='getmyrecord'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.ViewCount">1</Assert>
-			<Assert method="getjsonvalue" param="Data.ViewMinute">310</Assert>
+			<Assert method="getjsonvalue" param="Data.ViewMinute">500</Assert>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<Assert method="getjsonvalue" param="Code">4</Assert>
@@ -781,9 +801,10 @@
 	</TestMethod>
 	<TestMethod name='activitylottery'>
 		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.AwardId" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.AwardId">1000</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityId">1000</Assert>
 			<Assert method="getjsonvalue" param="Data.LotteryCount" operator="greater">1</Assert>
-			<Assert method="getjsonvalue" param="Data.AssistentId" operator="greater">1</Assert>
+			<Assert method="getjsonvalue" param="Data.AssistentId">1</Assert>
 		</TestCase>
 		<TestCase name='activityNotExist'>
 			<Assert method="getjsonvalue" param="Message">未能找到任何奖品</Assert>
@@ -869,6 +890,23 @@
 			<Assert method="getjsonvalue" param="Message">问题不存在</Assert>
 		</TestCase>
 	</TestMethod>
+	<TestMethod name='getpublicclassbyid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.PublicID">1000</Assert>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<Assert method="getjsonvalue" param="Message">公开课不存在</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclasssignupcountbyid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data" operator="greater">0</Assert>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<Assert method="getjsonvalue" param="Data">0</Assert>
+		</TestCase>
+	</TestMethod>
+
 	<TestMethod name='gethomeworktodaylist'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.[0].ActivityId" operator="greater">1</Assert>
@@ -879,6 +917,12 @@
 	<TestMethod name='syncavtivityuserrank'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="success">1</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcoursemallslideshow'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.IntervalTime" operator="greater">0</Assert>
+			<Assert method="getjsonarraysize" param="Data.ImgList" operator="greater">1</Assert>
 		</TestCase>
 	</TestMethod>
 </TestSuite>

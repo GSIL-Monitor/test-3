@@ -7,12 +7,12 @@
     <password>111111</password>
     <db>Zhan_PublicClass</db>
   </database>
-  <apidatabase name="sqlserver">
-    <host>192.168.41.102</host>
-    <port></port>
-    <username>uat</username>
-    <password>111111</password>
-    <db>Zhan_PublicClass</db>
+  <apidatabase name="mysql">
+    <host>localhost</host>
+    <port>3306</port>
+    <username>root</username>
+    <password>root</password>
+    <db>api</db>
   </apidatabase>
   <mailServer>
     <smtpserver>smtp.exmail.qq.com</smtpserver>

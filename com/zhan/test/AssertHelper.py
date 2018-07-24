@@ -5,10 +5,10 @@ from com.zhan.test.publicData import publicData
 from com.zhan.test.httpHelper import httpExecuter
 from hamcrest import *
 from com.zhan.test.isdict_containingkeys import has_keys
-import AppDBHelper,threading,sys
 import com.zhan.test.AppDBHelper as dh
+import com.zhan.test.fwDBHelper as fwDB
 from lxml import etree
-import os,time
+import os,sys
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -23,33 +23,43 @@ class AssertHelper:
             dbConn = dh.DBConn()
             dbConn.exeSqlFile(initSqlFile)
         try:
+
             response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
-            AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response, filename)
+            if response.status_code == 200:
+                AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response.text, filename)
+
+            fwdbConn = fwDB.DBConn()
+
+
         finally:
-            # 清理
-            finSqlFile = r'%s\sql\%s_%s_fin.sql' % (pd.getMainDir(),methodname,casename)
-            if os.path.exists(finSqlFile):
-                dbConn = dh.DBConn()
-                dbConn.exeSqlFile(finSqlFile)
+            #结果写入数据库
+            pd.getProjectName(),pd.getSuiteName(),casename,None,methodname,
+            pass
 
-    @staticmethod
-    def executeFunc(processname,methodname, casedata,casename,filename):
-        AssertHelper.__executeFunc(methodname, casedata, processname, filename)
+            # # 清理
+            # finSqlFile = r'%s\sql\%s_%s_fin.sql' % (pd.getMainDir(),methodname,casename)
+            # if os.path.exists(finSqlFile):
+            #     dbConn = dh.DBConn()
+            #     dbConn.exeSqlFile(finSqlFile)
 
-    @staticmethod
-    def __executeFunc(methodname, testCase, processname, filename):
-        pd = publicData()
-        method = testCase.get('method')  # 执行的函数的方法
-        param = testCase.get('param')
-        output = '%s_%s' % (testCase.get('output'), threading.currentThread().ident)
-        result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
-        if output <> None:
-            lock = threading.Lock()
-            lock.acquire()
-            try:
-                pd.setOutput(output, result)
-            finally:
-                lock.release()
+    # @staticmethod
+    # def executeFunc(processname,methodname, casedata,casename,filename):
+    #     AssertHelper.__executeFunc(methodname, casedata, processname, filename)
+    #
+    # @staticmethod
+    # def __executeFunc(methodname, testCase, processname, filename):
+    #     pd = publicData()
+    #     method = testCase.get('method')  # 执行的函数的方法
+    #     param = testCase.get('param')
+    #     output = '%s_%s' % (testCase.get('output'), threading.currentThread().ident)
+    #     result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
+    #     if output <> None:
+    #         lock = threading.Lock()
+    #         lock.acquire()
+    #         try:
+    #             pd.setOutput(output, result)
+    #         finally:
+    #             lock.release()
 
     @staticmethod
     def __assertByMethod(methodname, testCase, processname, filename):

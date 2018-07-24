@@ -12,6 +12,12 @@ sys.setdefaultencoding('utf8')
 def value(method):
     return ParamUtil.getValue(os.path.basename(__file__),method,'operation')
 
+#测试getuserpublicteacher接口
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getuserpublicteacher"))
+def test_getuserpublicteacher(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+
 #测试signuppublicclass接口
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("signuppublicclass"))
 def test_signuppublicclass(processname,methodname,casedata,casename,filename):
@@ -168,10 +174,16 @@ def test_userbindinggroup(processname,methodname,casedata,casename,filename):
 def test_getassistent(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
+# #getassistentwechat
+# @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getassistentwechat"))
+# def test_getassistentwechat(processname,methodname,casedata,casename,filename):
+#     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
 #getassistentpublic
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getassistentpublic"))
 def test_getassistentpublic(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
 
 #测试getgroupinfobygroupid
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getgroupinfobygroupid"))
@@ -205,11 +217,6 @@ def test_getactivitypromotion(processname,methodname,casedata,casename,filename)
 def test_syncavtivityuserrank(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-
-#测试getusersrank
-@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getusersrank"))
-def test_getusersrank(processname,methodname,casedata,casename,filename):
-    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
 #getactivitypromotionwrited
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivitypromotionwrited"))
@@ -265,8 +272,23 @@ def test_getquestiontypelist(processname,methodname,casedata,casename,filename):
 def test_postquestionfollow(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
+#测试getpublicclassbyid
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublicclassbyid"))
+def test_getpublicclassbyid(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
+#测试getpublicclasssignupcountbyid
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublicclasssignupcountbyid"))
+def test_getpublicclasssignupcountbyid(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
+#测试getusersrank
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getusersrank"))
+def test_getusersrank(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-
+#测试getcoursemallslideshow
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getcoursemallslideshow"))
+def test_getcoursemallslideshow(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 

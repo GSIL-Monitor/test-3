@@ -1,7 +1,7 @@
 # #encoding: utf-8
 from com.zhan.test.publicData import publicData
 from lxml import etree
-import pymssql,pymysql
+import datetime,pymysql
 
 # 单例
 class Singleton(object):
@@ -40,8 +40,14 @@ class DBConn(Singleton):
         self.__conn = None
         self.__cursor = None
 
-    def insertDetailReport(self,detail):
-        pass
+    def insertDetailReport(self,ProjectName,SuiteName,TestCaseName,Index,ApiName,Exception,Response):
+        sql = "insert into `api_detaillog` (`ProjectName`, `TestSuiteName`, `TestCaseName`, `Index`, `ApiName`," \
+              " `RequestURL`, `RequestData`, `ResCode`, `ResTime`, `ResData`, `ExceptionData`, `CreateTime`) " \
+              "values('%s','%s','%s','%s','%s',%s,%s,%s,%s,%s,%s,%s);" % (ProjectName,SuiteName,TestCaseName,
+              Index,ApiName,Response.url,Response.request.body,Response.status_code,Response.elapsed,Response.text,
+              Exception,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        self.__cursor.execute(sql)
+        self.__conn.commit()
 
     def insertMainReport(self,main):
         pass

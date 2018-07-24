@@ -1,59 +1,60 @@
 #encoding: utf-8
 
 import requests
-import json,threading
+import json,threading,time
 from com.zhan.test.Utils import xmlUtil,JsonUtil,FuncUtil
 from com.zhan.test.publicData import publicData
 
 class httpExecuter:
     @staticmethod
     def executeHttpRequest(methodname,casename,casedata):
+        res = {}
         pd = publicData()
         configEle = xmlUtil.getConfigEleByMethod(r'%s\config\api.xml'%(pd.getMainDir()), methodname)
         url = configEle.find('url').text
         protocol = configEle.find('protocol').text
-        output = configEle.find('output')
+        output = casedata.get('output')
 
         if protocol == 'post':
-            resText = httpExecuter.__postExecute(url,casedata)
+            res = httpExecuter.__postExecute(url,casedata)
         elif protocol == 'get':
-            resText = httpExecuter.__getExecute(url,casedata)
+            res = httpExecuter.__getExecute(url,casedata)
         elif protocol == 'json':
-            resText = httpExecuter.__postJson(url,casedata)
+            res = httpExecuter.__postJson(url,casedata)
 
-        #输出output
-        if output <> None:
-            outresult = None
-            try:
-                outresult = JsonUtil.getJsonStrByPar(resText,output.text)
-            except NameError:
-                pass
+        if res.status_code == 200:
+            #输出output
+            if output <> None:
+                outkey = casedata.get(output)
+                outresult = None
+                try:
+                    outresult = JsonUtil.getJsonStrByPar(res.text,outkey)
+                except NameError:
+                    pass
 
-            lock = threading.Lock()
-            lock.acquire()
-            try:
-                pd.setOutput('%s_%s' % (output.get("name"), threading.currentThread().ident), outresult)
-            finally:
-                lock.release()
-
-        return resText
-
+                lock = threading.Lock()
+                lock.acquire()
+                try:
+                    pd.setOutput('%s_%s' % (output, threading.currentThread().ident), outresult)
+                finally:
+                    lock.release()
+        return res
 
     @staticmethod
     def __postExecute(url,casedata):
         r = requests.post(url, data=httpExecuter.__getBodyByCasedata(casedata), verify=False)
-        return r.text
+        return r
 
     @staticmethod
     def __getExecute(url,casedata):
         r = requests.get(url,params=httpExecuter.__getBodyByCasedata(casedata), verify=False)
-        return r.text
+        return r
 
     @staticmethod
     def __postJson(url,casedata):
         headers = {'Content-Type': 'application/json'}
         r = requests.post(url, headers=headers, data=json.dumps(httpExecuter.__getBodyByCasedata(casedata)), verify=False)
-        return r.text
+        return r
 
     #通过TestCase的节点生成Json数据
     @staticmethod

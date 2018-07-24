@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestSuite>
+	<TestProcess name='getuserpublicteacher'>
+		<TestMethod name='getpublicclasslist'>
+			<TestCase name='output' output="teacher" teacher="Data.Body.[0].TeacherID">
+				<Where>
+				<StartTime type="func" method="getdatetime" param="0"></StartTime>
+				<EndTime type="func" method="getdatetime" param="5"></EndTime>
+				</Where>
+				<PageIndex>1</PageIndex>	<PageSize>10</PageSize><OrderBy>PublicID</OrderBy><SortCol>1</SortCol>
+			</TestCase>
+		</TestMethod>
+		<TestMethod name='getteacherdetail'>
+			<TestCase name='output'>
+				<teacherid type="func" method="getoutput" param="teacher"></teacherid>
+			</TestCase>
+		</TestMethod>
+	</TestProcess>
 	<TestMethod name='getpublic'>
 		<TestCase name='publicid'  type="func" method="getpublicbyname" param="publicid" output="publicid">
 		</TestCase>
@@ -369,25 +385,25 @@
 			<businessmold>2</businessmold><businessid>11</businessid>
 		</TestCase>
 		<TestCase name='ppidNotExist'>
-			<passportid>9999</passportid><discountno>YH615318</discountno>
+			<passportid>9999</passportid><discountno>YH363434</discountno>
 			<businessmold>2</businessmold><businessid>11</businessid>
 		</TestCase>
 		<TestCase name='noQualify'>
-			<passportid>853026</passportid><discountno>YH615318</discountno>
+			<passportid>4930561</passportid><discountno>YH363434</discountno>
 			<businessmold>2</businessmold><businessid>11</businessid>
 		</TestCase>
 		<TestCase name='hasQualify300'>
-			<passportid>1863271</passportid><discountno>YH615318</discountno>
+			<passportid>1863271</passportid><discountno>YH363434</discountno>
 			<businessmold>1</businessmold><businessid>11</businessid>
 		</TestCase>
 		<TestCase name='hasQualify300_1'>
-			<passportid>1863271</passportid><discountno>YH175853</discountno>
+			<passportid>1863271</passportid><discountno>YH363434</discountno>
 			<businessmold>2</businessmold><businessid>11</businessid>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getuserinfo'>
 		<TestCase name='test'>
-			<content>9379d99ae57da1f5f69b2e9bc177869d</content>
+			<content>A2BDE0CF18A565F8FD930B7837E834B2</content>
 		</TestCase>
 		<TestCase name='notSignup'>
 			<content>EEE6023E87DD8DAF31A2972C10E0C16C</content>
@@ -528,6 +544,14 @@
 		</TestCase>
 		<TestCase name='ppidNotExist'>
 			<passportid>999999</passportid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getassistentwechat'>
+		<TestCase name='test'>
+			<userid>1</userid>
+		</TestCase>
+		<TestCase name='useridNotExist'>
+			<userid>999</userid>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getsignupstatusget'>
@@ -912,6 +936,61 @@
 		</TestCase>
 		<TestCase name='questionidNotExist'>
 			<passportId>1863271</passportId><QuestionId>999</QuestionId><IsUp>true</IsUp>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclassbyid'>
+		<TestCase name='test'>
+			<id>1000</id>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<id>999</id>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getpublicclasssignupcountbyid'>
+		<TestCase name='test'>
+			<id>1000</id>
+		</TestCase>
+		<TestCase name='publicidNotExist'>
+			<id>999</id>
+		</TestCase>
+	</TestMethod>
+
+	<TestMethod name='getcoursemallslideshow'>
+		<TestCase name='test'></TestCase>
+	</TestMethod>
+	<TestMethod name='getcourselistbycourseid'>
+		<TestCase name='test'>
+			<Where>1</Where><PageIndex>1</PageIndex><PageSize>5</PageSize>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcampaignlist'>
+		<TestCase name='test'>
+			<Where><Keywords></Keywords></Where>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><OrderBy>OnlineTime</OrderBy><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcampaigndetail'>
+		<TestCase name='test'>
+			<campaignid>1</campaignid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcourselist'>
+		<TestCase name='test'>
+			<Where>
+				<CourseCategory>0</CourseCategory><CourseType>2</CourseType>
+				<CourseSubType>250</CourseSubType><Keywords></Keywords>
+			</Where>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcoursedetail'>
+		<TestCase name='test'>
+			<courseid>1</courseid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcoursemalllist'>
+		<TestCase name='test'>
+			<Where><Keywords></Keywords></Where>	<PageIndex>1</PageIndex><PageSize>5</PageSize>
 		</TestCase>
 	</TestMethod>
 

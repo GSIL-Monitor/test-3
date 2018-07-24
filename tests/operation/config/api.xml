@@ -116,6 +116,11 @@
 		<url>http://192.168.41.106:8093/publicclass/studentreceivediscount</url>
 	</api>
 
+	<!--通过USERID获取助教信息-->
+	<api name='getassistentwechat'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getassistentwechat</url>
+	</api>
 	<!--获取助教信息（小库）-->
 	<api name='getassistentpublic'>
 		<protocol>get</protocol>
@@ -185,6 +190,11 @@
 	<api name='getteacherlist'>
 		<protocol>get</protocol>
 		<url>http://192.168.41.106:8093/publicclass/getteacherlist</url>
+	</api>
+	<!--获取公开课报名人数-->
+	<api name='getpublicclasssignupcountbyid'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/publicclass/getpublicclasssignupcountbyid</url>
 	</api>
 	<!--&lt;!&ndash;添加公开课访问记录&ndash;&gt;-->
 	<!--<api name='addpublicclassvisit'>-->
@@ -462,4 +472,39 @@
 		<url>http://192.168.41.106:8093/publicclass/postquestionfollow</url>
 	</api>
 
+	<!--课程站滚动图片-->
+	<api name='getcoursemallslideshow'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcoursemallslideshow</url>
+	</api>
+	<!--得到课程列表-->
+	<api name='getcourselistbycourseid'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcourselistbycourseid</url>
+	</api>
+	<!--得到课程明细-->
+	<api name='getcoursedetail'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcoursedetail</url>
+	</api>
+	<!--得到课程列表-->
+	<api name='getcourselist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcourselist</url>
+	</api>
+	<!--得到活动明细-->
+	<api name='getcampaigndetail'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcampaigndetail</url>
+	</api>
+	<!--得到活动列表-->
+	<api name='getcampaignlist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcampaignlist</url>
+	</api>
+	<!--得到活动列表-->
+	<api name='getcoursemalllist'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.106:8093/coursemall/getcoursemalllist</url>
+	</api>
 </Config>
