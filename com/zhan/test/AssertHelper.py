@@ -1,18 +1,16 @@
 #encoding: utf-8
 
-from com.zhan.test.Utils import xmlUtil,JsonUtil,FuncUtil,AssertUtil
+from com.zhan.test.Utils import xmlUtil,FuncUtil,AssertUtil
 from com.zhan.test.publicData import publicData
 from com.zhan.test.httpHelper import httpExecuter
 from hamcrest import *
 from com.zhan.test.isdict_containingkeys import has_keys
 import com.zhan.test.AppDBHelper as dh
-import com.zhan.test.fwDBHelper as fwDB
 from lxml import etree
-import os,sys
+import os
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
+# 验证类
 class AssertHelper:
     @staticmethod
     def executeAndAssert(processname,methodname, casedata,casename,filename):
@@ -23,17 +21,14 @@ class AssertHelper:
             dbConn = dh.DBConn()
             dbConn.exeSqlFile(initSqlFile)
         try:
-
             response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
             if response.status_code == 200:
                 AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response.text, filename)
 
-            fwdbConn = fwDB.DBConn()
-
-
+            # fwdbConn = fwDB.DBConn()
         finally:
             #结果写入数据库
-            pd.getProjectName(),pd.getSuiteName(),casename,None,methodname,
+            # pd.getProjectName(),pd.getSuiteName(),casename,None,methodname,
             pass
 
             # # 清理
@@ -42,33 +37,8 @@ class AssertHelper:
             #     dbConn = dh.DBConn()
             #     dbConn.exeSqlFile(finSqlFile)
 
-    # @staticmethod
-    # def executeFunc(processname,methodname, casedata,casename,filename):
-    #     AssertHelper.__executeFunc(methodname, casedata, processname, filename)
-    #
-    # @staticmethod
-    # def __executeFunc(methodname, testCase, processname, filename):
-    #     pd = publicData()
-    #     method = testCase.get('method')  # 执行的函数的方法
-    #     param = testCase.get('param')
-    #     output = '%s_%s' % (testCase.get('output'), threading.currentThread().ident)
-    #     result = getattr(FuncUtil, method)() if param == None else getattr(FuncUtil, method)(param)
-    #     if output <> None:
-    #         lock = threading.Lock()
-    #         lock.acquire()
-    #         try:
-    #             pd.setOutput(output, result)
-    #         finally:
-    #             lock.release()
-
     @staticmethod
     def __assertByMethod(methodname, testCase, processname, filename):
-        # testtype = testCase.get('type')
-        # #执行函数
-        # if testtype == 'func':
-        #     AssertHelper.__executeFunc(methodname, testCase, processname, filename)
-        # else:    #执行正常的接口调用
-        #     # methodname = testMethod.get('method')
         subcasename = testCase.get('name')
         subcasedata = testCase
         response = httpExecuter.executeHttpRequest(methodname, subcasename, subcasedata)
@@ -161,7 +131,7 @@ class AssertMethed():
     def __assetByOperator(actual,expected,operator):
         #通用的处理
         if type(actual) == str:
-            actual = actual.decode('utf-8')
+            # actual = actual.decode('utf-8')
             if operator == "equal":
                 assert_that(actual,is_(expected))
             elif operator == "greater":
@@ -194,7 +164,7 @@ class AssertMethed():
         sql = html.xpath(r"//sqllist/sql[@name='%s']" % (sqlname))[0].text
         if param != None:
             res = param.split(',')
-            for index in xrange(0, len(res)):
+            for index in range(0, len(res)):
                 sql = str.replace(sql, '%param%', res[index], 1)
         # print sql
         dbConn = dh.DBConn()

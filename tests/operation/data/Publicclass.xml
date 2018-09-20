@@ -222,14 +222,15 @@
 	</TestMethod>
 	<TestMethod name='saveuserriseform'>
 		<TestCase name='output'>
-			<PassportId>1863271</PassportId><ActivityID>1000</ActivityID>
-			<Status>1</Status>	<Grade>502202</Grade>	<SubGrade>502204</SubGrade><BusinessType>111</BusinessType>
+			<PassportId>1863271</PassportId><ActivityID>1000</ActivityID><UserName>liang</UserName><UserHeadImage>testing</UserHeadImage>
+			<Status>502219</Status><Grade>1</Grade>	<SubGrade>1</SubGrade><BusinessType>771</BusinessType>
 			<IntentExamDate>2017-11-11</IntentExamDate>	<PrepareTimeForExam>9833</PrepareTimeForExam>
 			<HasExam>true</HasExam><ExamTimes>10</ExamTimes><LastExamLearnSelf>true</LastExamLearnSelf>
 			<LastExamScore>9804</LastExamScore><LastExamForNowTime>9813</LastExamForNowTime>
 			<CurrentEnglishLevel>9816</CurrentEnglishLevel>	<HasTraining>true</HasTraining><TargetScore>9823</TargetScore>
 			<IntentService>9828,9829</IntentService>	<PhoneNumber>13311110000</PhoneNumber><WechatId>234555</WechatId>
-			<SelfLearningTPO>true</SelfLearningTPO><PlanToStudyAbroad>1</PlanToStudyAbroad>
+			<SelfLearningTPO>true</SelfLearningTPO><PlanToStudyAbroad>9836</PlanToStudyAbroad>
+			<AcceptedOnlineTeachingMode>true</AcceptedOnlineTeachingMode><PlanToOutScore>9845</PlanToOutScore>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getuserriseform'>
@@ -804,7 +805,7 @@
 	</TestMethod>
 	<TestMethod name='getactivitypromotionwrited'>
 		<TestCase name='testTrue'>
-			<activityid>1000</activityid><passportid>1863271</passportid>
+			<activityid>1005</activityid><passportid>1863271</passportid>
 		</TestCase>
 		<TestCase name='testFalse'>
 			<activityid>1000</activityid><passportid>7553775</passportid>
@@ -960,7 +961,7 @@
 	</TestMethod>
 	<TestMethod name='getcourselistbycourseid'>
 		<TestCase name='test'>
-			<Where>1</Where><PageIndex>1</PageIndex><PageSize>5</PageSize>
+			<Where>5</Where><PageIndex>1</PageIndex><PageSize>2</PageSize>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getcampaignlist'>
@@ -971,7 +972,7 @@
 	</TestMethod>
 	<TestMethod name='getcampaigndetail'>
 		<TestCase name='test'>
-			<campaignid>1</campaignid>
+			<campaignid>3</campaignid>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getcourselist'>
@@ -991,6 +992,141 @@
 	<TestMethod name='getcoursemalllist'>
 		<TestCase name='test'>
 			<Where><Keywords></Keywords></Where>	<PageIndex>1</PageIndex><PageSize>5</PageSize>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getonsalecourselistbyteacherid'>
+		<TestCase name='test'>
+			<Where>	<TeacherId>1359</TeacherId></Where>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getonsalecampaignlistbyteacherid'>
+		<TestCase name='test'>
+			<Where>	<TeacherId>1359</TeacherId></Where>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getarticlelistbycourseid'>
+		<TestCase name='test'>
+			<Where>	<CourseId>11662</CourseId></Where>
+			<PageIndex>1</PageIndex><PageSize>5</PageSize><SortCol>1</SortCol>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='receiveconsult'>
+		<TestCase name='test'>
+			<ActivityId>1</ActivityId>	<CourseId>1</CourseId><PassportId>5</PassportId>
+			<ConsultContent>1</ConsultContent><VideoID>1</VideoID>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='microclassvideoinfo'>
+		<TestCase name='test'>
+			<courseid>11663</courseid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='shareclockininfo'>
+		<TestCase name='test'>
+			<PassportId>1863271</PassportId><ActivityId>1000</ActivityId>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postlessonconsult'>
+		<TestCase name='test'>
+			<activityid>1330</activityid><courseid>11679</courseid><passportid>1863271</passportid>
+			<ConsultContent>sdfsdww</ConsultContent>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postlessonview'>
+		<TestCase name='test'>
+			<LessonViewRequestList type="array">
+				<LessonViewRequest>
+					<activityid>1330</activityid><courseid>11679</courseid><PassportId>1863271</PassportId>
+					<viewminutes>111</viewminutes><viewstatus>2</viewstatus><lasttime>2018-07-08 12:55:20</lasttime>
+				</LessonViewRequest>
+				<LessonViewRequest>
+					<activityid>1330</activityid><courseid>11679</courseid><PassportId>1863271</PassportId>
+					<viewminutes>222</viewminutes><viewstatus>3</viewstatus><lasttime>2018-07-08 12:55:20</lasttime>
+				</LessonViewRequest>
+			</LessonViewRequestList>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postlessonconsultbatch'>
+		<TestCase name='test'>
+			<LessonConsultRequestList type="array">
+				<LessonConsultRequest>
+					<activityid>1330</activityid><courseid>11679</courseid><PassportId>1863271</PassportId>
+					<consultcontent>11,.1</consultcontent><CreateTime>2018-07-08 12:55:20</CreateTime>
+				</LessonConsultRequest>
+				<LessonConsultRequest>
+					<activityid>1330</activityid><courseid>11679</courseid><PassportId>1863271</PassportId>
+					<consultcontent>111</consultcontent><CreateTime>2018-07-08 12:55:20</CreateTime>
+				</LessonConsultRequest>
+			</LessonConsultRequestList>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusergroupinfobyactivityid'>
+		<TestCase name='test'>
+			<activityid>1000</activityid>	<passportid>1863271</passportid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivityclassinfobyppid'>
+		<TestCase name='test'>
+			<passportid>1863271</passportid>
+		</TestCase>
+		<TestCase name='noMements'>
+			<passportid>7560005</passportid>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getmessagestatisticsbyppids'>
+		<TestCase name='singleppid'>
+			<ppids>1863271</ppids>
+		</TestCase>
+		<TestCase name='multippids'>
+			<ppids>1863271,7553767</ppids>
+		</TestCase>
+		<TestCase name='notExist'>
+			<ppids>999</ppids>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postweiclassview'>
+		<TestCase name='test'>
+			<ActivityId>1000</ActivityId><CourseId>1001</CourseId><PassportId>1863271</PassportId>
+			<ViewSeconds>10</ViewSeconds><TotalSeconds>1000</TotalSeconds><learnedstatus>0</learnedstatus>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<ActivityId>1000</ActivityId><CourseId>1001</CourseId><PassportId>999</PassportId>
+			<ViewSeconds>10</ViewSeconds><TotalSeconds>1000</TotalSeconds><learnedstatus>0</learnedstatus>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<ActivityId>999</ActivityId><CourseId>1001</CourseId><PassportId>1863271</PassportId>
+			<ViewSeconds>10</ViewSeconds><TotalSeconds>1000</TotalSeconds><learnedstatus>0</learnedstatus>
+		</TestCase>
+		<TestCase name='courseidNotExist'>
+			<ActivityId>1000</ActivityId><CourseId>999</CourseId><PassportId>1863271</PassportId>
+			<ViewSeconds>10</ViewSeconds><TotalSeconds>1000</TotalSeconds><learnedstatus>0</learnedstatus>
+		</TestCase>
+		<TestCase name='courseidnotbelongactivityid'>
+			<ActivityId>1001</ActivityId><CourseId>1001</CourseId><PassportId>1863271</PassportId>
+			<ViewSeconds>10</ViewSeconds><TotalSeconds>1000</TotalSeconds><learnedstatus>0</learnedstatus>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='saveuserexampre'>
+		<TestCase name='test'>
+			<passportId>1863271</passportId><UserName>tester</UserName><BusinessType>139</BusinessType>
+			<IntentExamDate>2018年11月11日</IntentExamDate><TargetScore>150</TargetScore><HasExam>true</HasExam><UserHeadImage>123</UserHeadImage>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<passportId>999</passportId><UserName>tester</UserName><BusinessType>139</BusinessType>
+			<IntentExamDate>2018年11月11日</IntentExamDate><TargetScore>150</TargetScore><HasExam>true</HasExam><UserHeadImage>123</UserHeadImage>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getuserexampre'>
+		<TestCase name='singleppid'>
+			<ppids>1863271</ppids>
+		</TestCase>
+		<TestCase name='multippids'>
+			<ppids>1863271,7553767</ppids>
+		</TestCase>
+		<TestCase name='notExist'>
+			<ppids>999</ppids>
 		</TestCase>
 	</TestMethod>
 

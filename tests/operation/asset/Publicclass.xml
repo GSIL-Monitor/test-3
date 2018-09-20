@@ -746,7 +746,7 @@
 	<TestMethod name='getusersrank'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Code">0</Assert>
-			<Assert method="haskeys" param="Data.[0]">headimgurl,GroupNickName,GroupRank,ActivityRank</Assert>
+			<!--<Assert method="haskeys" param="Data.[0]">headimgurl,GroupNickName,GroupRank,ActivityRank</Assert>-->
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getactivitypromotionwrited'>
@@ -925,4 +925,162 @@
 			<Assert method="getjsonarraysize" param="Data.ImgList" operator="greater">1</Assert>
 		</TestCase>
 	</TestMethod>
+
+	<TestMethod name='getcourselistbycourseid'>
+		<TestCase name='test'>
+			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcampaignlist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcampaigndetail'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.CampaignId">3</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityId">1082</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcourselist'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcoursedetail'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.CourseId">1</Assert>
+			<Assert method="getjsonvalue" param="Data.ProductId">40071</Assert>
+			<Assert method="getjsonarraysize" param="Data.CoursePicList" operator="greater">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getcoursemalllist'>
+		<TestCase name='test'>
+			<Assert method="getjsonarraysize" param="Data" operator="greater">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getonsalecourselistbyteacherid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getonsalecampaignlistbyteacherid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getarticlelistbycourseid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].ArticleId">7</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='receiveconsult'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='microclassvideoinfo'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.VideoID">238</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='shareclockininfo'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.ActivityDays">2</Assert>
+			<Assert method="getjsonvalue" param="Data.TaskCount">2</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postlessonconsult'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postlessonview'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postlessonconsultbatch'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getusergroupinfobyactivityid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data.GroupNickName">testName</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getactivityclassinfobyppid'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonarraysize" param="Data.Activities" operator="greater">1</Assert>
+		</TestCase>
+		<TestCase name='noMements'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonvalue" param="Message">该用户未曾报过战团！</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getmessagestatisticsbyppids'>
+		<TestCase name='singleppid'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].ClueNo">TPO201801030000821</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].BusinessType">139</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].IntentExamDate">2018年11月11日</Assert>
+		</TestCase>
+		<TestCase name='multippids'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.[1].PassportId">7553767</Assert>
+			<Assert method="getjsonvalue" param="Data.[1].ClueNo">TPO201602190000622</Assert>
+		</TestCase>
+		<TestCase name='notExist'>
+			<Assert method="getjsonvalue" param="Data">[]</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='postweiclassview'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='activityidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='courseidNotExist'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+		<TestCase name='courseidnotbelongactivityid'>
+			<Assert method="getjsonvalue" param="Data">False</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='saveuserexampre'>
+		<TestCase name='test'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+		<TestCase name='ppidNotExist'>
+			<Assert method="getjsonvalue" param="Data">True</Assert>
+		</TestCase>
+	</TestMethod>
+	<TestMethod name='getuserexampre'>
+		<TestCase name='singleppid'>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
+		</TestCase>
+		<TestCase name='multippids'>
+			<Assert method="getjsonvalue" param="Code">0</Assert>
+			<Assert method="getjsonvalue" param="Data.[0].PassportId">1863271</Assert>
+			<Assert method="getjsonvalue" param="Data.[1].PassportId">7553767</Assert>
+		</TestCase>
+		<TestCase name='notExist'>
+			<Assert method="getjsonvalue" param="Data">None</Assert>
+		</TestCase>
+	</TestMethod>
+
 </TestSuite>

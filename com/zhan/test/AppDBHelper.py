@@ -42,9 +42,10 @@ class DBConn(Singleton):
         result = self.__cursor.fetchone()
         return result
 
+    #执行SQL文件
     def exeSqlFile(self,filepath):
         sqlStr = ""
-        for line in open(filepath, mode='r'):
+        for line in open(filepath, mode='r', encoding='UTF-8'):
             sqlStr = sqlStr + line
         self.__cursor.execute(sqlStr)
         self.__conn.commit()

@@ -56,7 +56,7 @@ class xmlUtil:
                 r"//TestSuite/TestProcess[@name='%s']/TestMethod[@name='%s']/TestCase[@name='%s']/Assert" % (
                 processname, methodname, casename))
         if len(assertList) == 0:
-            raise NameError, ("Assert config error.Process:%s,Method:%s,Casename:%s" % (processname, methodname, casename))
+            raise NameError("Assert config error.Process:%s,Method:%s,Casename:%s" % (processname, methodname, casename))
 
         return assertList
 
@@ -74,7 +74,7 @@ class JsonUtil:
                     jsonObj = jsonObj[par]
             return jsonObj
         except:
-            raise NameError, ("验证参数配置错误,参数为：%s" % param)
+            raise NameError("验证参数配置错误,参数为：%s" % param)
 
     @staticmethod
     def getJsonObjByPar(response, param):
@@ -123,7 +123,7 @@ class ParamUtil:
                     for testcase in testmethod.getchildren():
                         pa.append([method, testmethod.get('name'), testcase,testcase.get('name') ,filename])
         else:
-            for i in xrange(len(result)):
+            for i in range(len(result)):
                 pa.append([method, method, result[i], result[i].get('name'),filename])
 
         if pa == []:

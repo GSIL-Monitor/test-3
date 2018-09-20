@@ -9,8 +9,8 @@ import pytest
 from lxml import etree
 import shutil
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+# reload(sys)
+# sys.setdefaultencoding('utf-8')
 sys.path.append(r'C:\Users\Administrator\PycharmProjects\test')
 #忽略 HTTPS中不验证证书的WARNING
 warnings.filterwarnings('ignore')
@@ -30,6 +30,7 @@ for curProject in projects:
     #运行文件
     runfile = r'%s\config\run.xml'%(basedir)  if runmode=="run" else r'%s\config\debug.xml'%(basedir)
 
+    #公共数据初始化
     pd = publicData()
     pd = FuncUtil.initPublicData(curProject)
     #sql初始化
@@ -38,13 +39,17 @@ for curProject in projects:
         dbConn = dh.DBConn()
         dbConn.exeSqlFile(initSqlFile)
 
+    #删除日志文件
+    if os.path.exists('.\log\log.log'):
+        os.remove('.\log\log.log')
+
     #项目下的TEST文件或DEBUG文件，当前默认一个项目一个SUITE生成一个LOG文件
     try:
         htmltest = etree.parse(runfile)
         suite = htmltest.xpath('//suite')[0]
         files = suite.xpath('//suite/files/file')
     except:
-        raise NameError, ("main.xml文件配置错误，无法找到运行文件%" % runfile)
+        raise NameError("main.xml文件配置错误，无法找到运行文件%s"%(runfile))
 
     param = ""
     filenum = len(files)
