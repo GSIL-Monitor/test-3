@@ -14,11 +14,11 @@ import os
 class AssertHelper:
     @staticmethod
     def executeAndAssert(processname,methodname, casedata,casename,filename):
-        pd = publicData()
+        pd = publicData.instance()
         #初始化
         initSqlFile = r'%s\sql\%s_%s_init.sql' % (pd.getMainDir(),methodname,casename)
         if os.path.exists(initSqlFile):
-            dbConn = dh.DBConn()
+            dbConn = dh.DBConn.instance()
             dbConn.exeSqlFile(initSqlFile)
         try:
             response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
@@ -34,7 +34,7 @@ class AssertHelper:
             # # 清理
             # finSqlFile = r'%s\sql\%s_%s_fin.sql' % (pd.getMainDir(),methodname,casename)
             # if os.path.exists(finSqlFile):
-            #     dbConn = dh.DBConn()
+            #     dbConn = dh.DBConn.instance()
             #     dbConn.exeSqlFile(finSqlFile)
 
     @staticmethod
@@ -47,7 +47,7 @@ class AssertHelper:
 
     @staticmethod
     def __assertResponse(processname,methodname,casename,response,filename):
-        pd = publicData()
+        pd = publicData.instance()
         path = r'%s\asset\%s.xml' % (pd.getMainDir(), filename)
         assertList = xmlUtil.getAssert(path,processname,methodname,casename)
         for assertEle in assertList:
@@ -158,7 +158,7 @@ class AssertMethed():
 
     @staticmethod
     def __getvaluebysql(sqlname,param):
-        pd = publicData()
+        pd = publicData.instance()
         path = r'%s\config\sql.xml' % (pd.getMainDir())
         html = etree.parse(path)
         sql = html.xpath(r"//sqllist/sql[@name='%s']" % (sqlname))[0].text
@@ -167,5 +167,5 @@ class AssertMethed():
             for index in range(0, len(res)):
                 sql = str.replace(sql, '%param%', res[index], 1)
         # print sql
-        dbConn = dh.DBConn()
+        dbConn = dh.DBConn.instance()
         return dbConn.getValueBySql(sql)[0]

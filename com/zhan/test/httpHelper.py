@@ -13,7 +13,7 @@ class httpExecuter:
     @staticmethod
     def executeHttpRequest(methodname,casename,casedata):
         res = {}
-        pd = publicData()
+        pd = publicData.instance()
 
         configEle = xmlUtil.getConfigEleByMethod(r'%s\config\api.xml'%(pd.getMainDir()), methodname)
         url = configEle.find('url').text

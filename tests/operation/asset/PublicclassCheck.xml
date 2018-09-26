@@ -4,7 +4,7 @@
 		<TestMethod name='UsersLogin'>
 			<TestCase name='login'>
 				<Assert method="contains">beikao_5532859464</Assert>
-			</TestCase>
+			</TestCase>vb 
 		</TestMethod>
 		<TestMethod name='getpublicclasslist'>
 			<TestCase name='login'>

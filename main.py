@@ -31,12 +31,12 @@ for curProject in projects:
     runfile = r'%s\config\run.xml'%(basedir)  if runmode=="run" else r'%s\config\debug.xml'%(basedir)
 
     #公共数据初始化
-    pd = publicData()
+    pd = publicData.instance()
     pd = FuncUtil.initPublicData(curProject)
     #sql初始化
     initSqlFile = r'%s\sql\init.sql'%(basedir)
     if runmode=="run" and os.path.exists(initSqlFile):
-        dbConn = dh.DBConn()
+        dbConn = dh.DBConn.instance()
         dbConn.exeSqlFile(initSqlFile)
 
     #删除日志文件

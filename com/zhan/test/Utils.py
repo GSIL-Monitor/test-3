@@ -21,7 +21,7 @@ class xmlUtil:
 
     @staticmethod
     def getDebugCaseName(path, methodname, filename):
-        pd = publicData()
+        pd = publicData.instance()
         html = etree.parse(path)
         methodList = html.xpath(r"//suite[@name='%s']/files/file[@name='test_%s']/Method" % (pd.getSuiteName(), filename))
         for method in methodList:
@@ -100,7 +100,7 @@ class ParamUtil:
     def getValue(file, method,project):
         pa = []
         casename = None
-        pd = publicData()
+        pd = publicData.instance()
         if pd.getMainDir() == "" : pd = FuncUtil.initPublicData(project) #只初始化一次
         filename = file[5:-3]
         path = '%s\data\%s.xml' % (pd.getMainDir(), filename)
@@ -135,7 +135,7 @@ class ParamUtil:
 class FuncUtil:
     @staticmethod
     def getpublicbyname(publicname):
-        db = dh.DBConn()
+        db = dh.DBConn.instance()
         if publicname == 'publicid':
             res = db.getValueBySql(r"select [PublicID] from [dbo].[Tpo_PublicClass] where [PublicTitle] = 'ToeflTest'")
             return res[0]
@@ -145,7 +145,7 @@ class FuncUtil:
 
     @staticmethod
     def getoutput(key):
-        pd = publicData()
+        pd = publicData.instance()
         lock = threading.Lock()
         lock.acquire()
         try:
@@ -172,7 +172,7 @@ class FuncUtil:
 
     @staticmethod
     def initPublicData(projectname):
-        pd = publicData()
+        pd = publicData.instance()
         mainhtml = etree.parse('main.xml')
         runmode = mainhtml.xpath('//run/mode')[0].text
         proconfig = etree.parse(r'tests\%s\config\%s.xml' % (projectname, runmode))

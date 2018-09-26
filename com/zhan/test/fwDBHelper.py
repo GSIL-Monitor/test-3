@@ -2,22 +2,16 @@
 from com.zhan.test.publicData import publicData
 from lxml import etree
 import datetime,pymysql
+from .Singleton import Singleton
 
-# 单例
-class Singleton(object):
-    def __new__(cls, *args, **kw):
-        if not hasattr(cls, '_instance'):
-            orig = super(Singleton, cls)
-            cls._instance = orig.__new__(cls, *args, **kw)
-        return cls._instance
-
-class DBConn(Singleton):
+@Singleton
+class DBConn(object):
     __conn = None
     __cursor = None
 
     def __init__(self):
         if self.__cursor == None and self.__cursor == None:
-            pd = publicData()
+            pd = publicData.instance()
             html = etree.parse(r"%s\config\config.xml" % (pd.getMainDir()))
             result = html.xpath('//config/apidatabase')
             if len(result) == 0:
