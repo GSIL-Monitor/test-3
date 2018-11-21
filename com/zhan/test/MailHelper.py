@@ -28,7 +28,6 @@ def sendMail(configFile,projectname,result,url,path):
     smtp.sendmail(sender, receiver, msg.as_string())
     smtp.quit()
 
-
 def __createHtml(result,url,path,projectname):
     page = PyH('Report')
     page << h1('%s APITestReport'%projectname, cl='center')
@@ -39,11 +38,8 @@ def __createHtml(result,url,path,projectname):
     page << p(u"Please use Chrome,FireFox,IE11 to view this report.Thanks!")
     page.printOut(file=path,encodetype="utf-8")
 
-
-
 def MailTo(txt):
     sender = 'automationtest@zhan.com'
-    # receiver = 'forest.liang@zhan.com,Robin.Wang@zhan.com'
     receiver = '85224271@qq.com'
     username = 'automationtest@zhan.com'
     password = 'Xiaotest@2017'

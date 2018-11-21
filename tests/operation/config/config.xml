@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-  <database name="sqlserver">
-    <host>192.168.41.102</host>
-    <port></port>
-    <username>uat</username>
-    <password>111111</password>
-    <db>Zhan_PublicClass</db>
+  <database name="mysql">
+    <host>192.168.41.36</host>
+    <port>3306</port>
+    <username>zhan_test</username>
+    <password>xiaozhan123</password>
+    <db>zhan_public_class1</db>
   </database>
   <apidatabase name="mysql">
     <host>localhost</host>

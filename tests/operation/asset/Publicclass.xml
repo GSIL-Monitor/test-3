@@ -935,30 +935,47 @@
 	<TestMethod name='getcampaignlist'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
-			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].CampaignId">34</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getcampaigndetail'>
 		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.CampaignId">3</Assert>
-			<Assert method="getjsonvalue" param="Data.ActivityId">1082</Assert>
+			<Assert method="getjsonvalue" param="Data.CampaignId">34</Assert>
+			<Assert method="getjsonvalue" param="Data.ActivityId">2401</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getcourselist'>
 		<TestCase name='test'>
 			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
-			<Assert method="getjsonarraysize" param="Data.Body" operator="greater">0</Assert>
+		</TestCase>
+		<TestCase name='single'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].CourseId">29</Assert>
+		</TestCase>
+		<TestCase name='full'>
+			<Assert method="getjsonvalue" param="Data.Count">0</Assert>
+			<Assert method="getjsonvalue" param="Data.Body.[0].CourseId">30</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getcoursedetail'>
 		<TestCase name='test'>
-			<Assert method="getjsonvalue" param="Data.CourseId">1</Assert>
-			<Assert method="getjsonvalue" param="Data.ProductId">40071</Assert>
+			<Assert method="getjsonvalue" param="Data.CourseId">29</Assert>
+			<Assert method="getjsonvalue" param="Data.ProductId">40102</Assert>
+			<Assert method="getjsonvalue" param="Data.TeacherId">1925</Assert>
+			<Assert method="getjsonarraysize" param="Data.CoursePicList" operator="greater">0</Assert>
+		</TestCase>
+		<TestCase name='full'>
+			<Assert method="getjsonvalue" param="Data.CourseId">30</Assert>
+			<Assert method="getjsonvalue" param="Data.ProductId">None</Assert>
+			<Assert method="getjsonarraysize" param="Data.CourseTeacherList" operator="greater">0</Assert>
 			<Assert method="getjsonarraysize" param="Data.CoursePicList" operator="greater">0</Assert>
 		</TestCase>
 	</TestMethod>
 	<TestMethod name='getcoursemalllist'>
 		<TestCase name='test'>
+			<Assert method="getjsonarraysize" param="Data" operator="greater">0</Assert>
+		</TestCase>
+		<TestCase name='hasword'>
 			<Assert method="getjsonarraysize" param="Data" operator="greater">0</Assert>
 		</TestCase>
 	</TestMethod>
