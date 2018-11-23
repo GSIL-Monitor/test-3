@@ -39,10 +39,10 @@ def __createHtml(result,url,path,projectname):
     page.printOut(file=path,encodetype="utf-8")
 
 def MailTo(txt):
-    sender = 'automationtest@zhan.com'
+    sender = 'sendermail'
     receiver = '85224271@qq.com'
-    username = 'automationtest@zhan.com'
-    password = 'Xiaotest@2017'
+    username = 'sendermail'
+    password = 'senderpass'
     smtpserver = 'smtp.exmail.qq.com'
 
     msg = MIMEMultipart('related')

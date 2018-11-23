@@ -348,7 +348,6 @@ def test_getonsalecampaignlistbyteacherid(processname, methodname, casedata, cas
 def test_getarticlelistbycourseid(processname, methodname, casedata, casename, filename):
     AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
 
-
 # 测试receiveconsult
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("receiveconsult"))
 def test_receiveconsult(processname, methodname, casedata, casename, filename):
