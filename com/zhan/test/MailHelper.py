@@ -42,7 +42,7 @@ def MailTo(txt):
     sender = 'sendermail'
     receiver = '85224271@qq.com'
     username = 'sendermail'
-    password = 'senderpass'
+    password = 'senderpassword'
     smtpserver = 'smtp.exmail.qq.com'
 
     msg = MIMEMultipart('related')
