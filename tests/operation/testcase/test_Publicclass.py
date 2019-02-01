@@ -6,7 +6,6 @@ from com.zhan.test.AssertHelper import AssertHelper
 
 warnings.filterwarnings('ignore')
 
-
 def value(method):
     return ParamUtil.getValue(os.path.basename(__file__),method,'operation')
 
@@ -15,7 +14,6 @@ def value(method):
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("syncavtivityuserrank"))
 def test_syncavtivityuserrank(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
-
 
 #测试getuserpublicteacher接口
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getuserpublicteacher"))
