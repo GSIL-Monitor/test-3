@@ -46,10 +46,8 @@ class DBConn(object):
 
     #执行SQL文件
     def exeSqlFile(self,filepath):
-        sqlStr = ""
         for line in open(filepath, mode='r', encoding='UTF-8'):
-            sqlStr = sqlStr + line
-        self.__cursor.execute(sqlStr)
+            self.__cursor.execute(line)
         self.__conn.commit()
 
     def closeConn(self):

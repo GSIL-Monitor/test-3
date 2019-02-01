@@ -87,21 +87,21 @@ for curProject in projects:
     allcmd = r"%s\allure generate -c %s\log -o %s" % (allurepath,serverdir,reportdir)
     os.system(allcmd)
 
-    #在ALLURE中拿到主要的统计数据passed,failed
-    result={'passed':0,'failed':0}
-    for f in os.listdir(r"%s\log"%(serverdir)):
-        if os.path.splitext(f)[1] == ".xml":
-            html = etree.parse(r"%s\log\%s"%(serverdir,f))
-            suite = html.getroot()
-            suite = suite.find("test-cases",{'ns0':'urn:model.allure.qatools.yandex.ru'})
-            for testcase in suite.findall('test-case'):
-                if testcase.get('status') == 'failed':
-                    result['failed'] = result['failed'] + 1
-                elif testcase.get('status') == 'passed':
-                    result['passed'] = result['passed'] + 1
-    #报表URL
-    reporturl = "http://localhost:80/zhan/%s/reporter/index.html"%(curProject)
-    mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
+    # #在ALLURE中拿到主要的统计数据passed,failed
+    # result={'passed':0,'failed':0}
+    # for f in os.listdir(r"%s\log"%(serverdir)):
+    #     if os.path.splitext(f)[1] == ".xml":
+    #         html = etree.parse(r"%s\log\%s"%(serverdir,f))
+    #         suite = html.getroot()
+    #         suite = suite.find("test-cases",{'ns0':'urn:model.allure.qatools.yandex.ru'})
+    #         for testcase in suite.findall('test-case'):
+    #             if testcase.get('status') == 'failed':
+    #                 result['failed'] = result['failed'] + 1
+    #             elif testcase.get('status') == 'passed':
+    #                 result['passed'] = result['passed'] + 1
+    # # 报表URL
+    # reporturl = "http://localhost:80/zhan/%s/reporter/index.html"%(curProject)
+    # mh.sendMail( r"%s\config\config.xml"%(basedir),curProject,result,reporturl,r"%s\report.html"%serverdir)
 
     #清理数据数据
     # endSqlFile = r'%s\sql\end.sql'%(basedir)

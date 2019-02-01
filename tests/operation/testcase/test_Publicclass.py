@@ -59,12 +59,10 @@ def test_getactivitydetails(processname,methodname,casedata,casename,filename):
 def test_getactivitylist(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-#测试getsignupuserwechatinfo
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getsignupuserwechatinfo"))
 def test_getsignupuserwechatinfo(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-#测试getteacherdetail接口
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getteacherdetail"))
 def test_getteacherdetail(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
@@ -108,6 +106,13 @@ def test_teachervaluation(processname,methodname,casedata,casename,filename):
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getteachervaluation"))
 def test_getteachervaluation(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
+
+#测试getteacherlist
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getteacherlist"))
+def test_getteacherlist(processname,methodname,casedata,casename,filename):
+    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
+
 
 #测试getteacherlistbytype
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getteacherlistbytype"))
@@ -159,44 +164,30 @@ def test_usersignclock(processname,methodname,casedata,casename,filename):
 def test_getusergroupinfo(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-#getusersignclockrecord
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getusersignclockrecord"))
 def test_getusersignclockrecord(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-#getpublicclassvideourl
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublicclassvideourl"))
 def test_getpublicclassvideourl(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-#userbindinggroup
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("userbindinggroup"))
 def test_userbindinggroup(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-#getassistent
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getassistent"))
 def test_getassistent(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-# #getassistentwechat
-# @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getassistentwechat"))
-# def test_getassistentwechat(processname,methodname,casedata,casename,filename):
-#     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
-
-#getassistentpublic
-@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getassistentpublic"))
-def test_getassistentpublic(processname,methodname,casedata,casename,filename):
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getassistentcm"))
+def test_getassistentcm(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-
-#测试getgroupinfobygroupid
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getgroupinfobygroupid"))
 def test_getgroupinfobygroupid(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
-
-#getmyrecord
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getmyrecord"))
 def test_getmyrecord(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
@@ -233,13 +224,6 @@ def test_gethomeworktodaylist(processname,methodname,casedata,casename,filename)
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
 
 
-#测试syncavtivitysignuppromotion的JOB
-@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("syncavtivitysignuppromotion"))
-def test_syncavtivitysignuppromotion(processname,methodname,casedata,casename,filename):
-    AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
-
-
-#测试activitylottery
 @pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("activitylottery"))
 def test_activitylottery(processname,methodname,casedata,casename,filename):
     AssertHelper.executeAndAssert(processname,methodname,casedata,casename,filename)
@@ -417,5 +401,111 @@ def test_getuserexampre(processname, methodname, casedata, casename, filename):
 def test_getmessagestatisticsbyppids(processname, methodname, casedata, casename, filename):
     AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
 
+#ADDED BY LIANGXUQING 20181219
+# 测试getactivityclassuserinfo
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivityclassuserinfo"))
+def test_getactivityclassuserinfo(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+# 测试getactivitycourselist
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivitycourselist"))
+def test_getactivitycourselist(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+# 测试getactivitycourseandstudentsinfo
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivitycourseandstudentsinfo"))
+def test_getactivitycourseandstudentsinfo(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+# 测试getpublicdetailactivityrecommendlistbyteacher
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublicdetailactivityrecommendlistbyteacher"))
+def test_getpublicdetailactivityrecommendlistbyteacher(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+# 测试addpublicclassvisit
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("addpublicclassvisit"))
+def test_addpublicclassvisit(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
 
 
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivityhomeworkinfo"))
+def test_getactivityhomeworkinfo(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getvalidactivityinfo"))
+def test_getvalidactivityinfo(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("publicclassactivitiesync"))
+def test_publicclassactivitiesync(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("publicclassactivitysignupsync"))
+def test_publicclassactivitysignupsync(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getsignupstatus"))
+def test_getsignupstatus(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivitymoments"))
+def test_getactivitymoments(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivityawards"))
+def test_getactivityawards(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("userattendrecord"))
+def test_userattendrecord(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getuserbaseinfo"))
+def test_getuserbaseinfo(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("savepublicclassuseraddress"))
+def test_savepublicclassuseraddress(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getpublicclassuseraddress"))
+def test_getpublicclassuseraddress(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getawardrecord"))
+def test_getawardrecord(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getuserhasrecord"))
+def test_getuserhasrecord(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getexamdate"))
+def test_getexamdate(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("isbeginshowpublicclass"))
+def test_isbeginshowpublicclass(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("updatemicroclasscount"))
+def test_updatemicroclasscount(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getintensivepublicclasslist"))
+def test_getintensivepublicclasslist(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getblackinfobyppid"))
+def test_getblackinfobyppid(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getstudentpublicclassinfo"))
+def test_getstudentpublicclassinfo(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)
+
+@pytest.mark.parametrize("processname,methodname,casedata,casename,filename", value("getactivitycourseextendlist"))
+def test_getactivitycourseextendlist(processname, methodname, casedata, casename, filename):
+    AssertHelper.executeAndAssert(processname, methodname, casedata, casename, filename)

@@ -2,7 +2,7 @@
 <suite name="Publicclass" verbose="1">
   	<files>
   		<file name="test_Publicclass">
-			<method>test_getactivityclassinfobyppid</method>
+			<method>test_getsignclockrecordbygroup</method>
 		</file>
   	</files>
 </suite>

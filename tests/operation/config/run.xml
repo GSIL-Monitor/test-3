@@ -2,6 +2,6 @@
 <suite name="Publicclass" verbose="1">
   	<files>
   		<file name="test_Publicclass"></file>
-			<method>test_getsignupstatusget</method>
+			<method>test_getteacherlist</method>
   	</files>
 </suite>

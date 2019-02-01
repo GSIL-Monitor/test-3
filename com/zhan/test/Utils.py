@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 from lxml import etree
-import json, threading,datetime,time
+import json, threading,datetime,random
 from com.zhan.test.publicData import publicData
 import com.zhan.test.AppDBHelper as dh
 
@@ -168,6 +168,11 @@ class FuncUtil:
         delta = datetime.timedelta(days=int(inteval))
         n_days = now + delta
         return n_days.strftime('%Y-%m-%d')
+
+    @staticmethod
+    def randomstr(length=8):
+        if length == None:length = 8
+        return random.randint(10000000, 99999999)
 
 
     @staticmethod

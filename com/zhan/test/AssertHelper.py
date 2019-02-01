@@ -7,13 +7,24 @@ from hamcrest import *
 from com.zhan.test.isdict_containingkeys import has_keys
 import com.zhan.test.AppDBHelper as dh
 from lxml import etree
-import os
+import os,time
 
 
 # 验证类
 class AssertHelper:
     @staticmethod
     def executeAndAssert(processname,methodname, casedata,casename,filename):
+        #初始化
+
+        #前置
+
+        #执行
+
+        #后置
+
+        #清理
+
+
         pd = publicData.instance()
         #初始化
         initSqlFile = r'%s\sql\%s_%s_init.sql' % (pd.getMainDir(),methodname,casename)
@@ -24,8 +35,6 @@ class AssertHelper:
             response = AssertHelper.__assertByMethod(methodname,casedata,processname,filename)
             if response.status_code == 200:
                 AssertHelper.__assertResponse(processname, methodname, casedata.get('name'), response.text, filename)
-
-            # fwdbConn = fwDB.DBConn()
         finally:
             #结果写入数据库
             # pd.getProjectName(),pd.getSuiteName(),casename,None,methodname,
@@ -168,4 +177,4 @@ class AssertMethed():
                 sql = str.replace(sql, '%param%', res[index], 1)
         # print sql
         dbConn = dh.DBConn.instance()
-        return dbConn.getValueBySql(sql)[0]
+        return dbConn.getValueBySql(sql)

@@ -18,7 +18,7 @@
 	<!--获取用户的微信信息-->
 	<api name='getsignupuserwechatinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetSignUpUserWechatInfo</url>
+		<url>http://192.168.41.33:8077/PublicClass/GetSignupUserWechatInfo</url>
 	</api>
 	<!--获取公开课列表-->
 	<api name='getpublicclasslist'>
@@ -78,7 +78,7 @@
 	<!--得到公开课直播间信息-->
 	<api name='getpublicclassliveroominfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetPublicClassLiveroomInfo</url>
+		<url>http://192.168.41.33:8077/PublicClass/GetPublicClassLiveRoomInfo</url>
 	</api>
 	<!--得到点赞信息-->
 	<api name='getteachervaluation'>
@@ -111,12 +111,12 @@
 		<url>http://192.168.41.33:8077/PublicClass/StudentReceiveDiscount</url>
 	</api>
 
-	<!--通过USERID获取助教信息-->
-	<api name='getassistentwechat'>
-		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetAssistentWechat</url>
+	<!--通过USERID获取助教信息 for 课程站-->
+	<api name='getassistentcm'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetAssistentAssessment</url>
 	</api>
-	<!--获取助教信息（小库）-->
+	<!--获取助教信息-->
 	<api name='getassistent'>
 		<protocol>get</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/GetAssistent</url>
@@ -134,7 +134,7 @@
 	<!--用户打卡-->
 	<api name='usersignclock'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/UserSigncLock</url>
+		<url>http://192.168.41.33:8077/PublicClass/UserSignClock</url>
 	</api>
 	<!--根据班级ID得到打卡记录-->
 	<api name='getsignclockrecordbygroup'>
@@ -216,11 +216,6 @@
 		<protocol>json</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/GetSignUpStatus</url>
 	</api>
-	<!--获取用户一段时间内是否报名过某一课程的活动-->
-	<api name='getsignupstatusget'>
-		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetSignUpStatus</url>
-	</api>
 	<!--获取活动中已审批通过的学生信息-->
 	<api name='getactivitycourseextendlist'>
 		<protocol>get</protocol>
@@ -256,7 +251,7 @@
 		<protocol>get</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/GetBoosterList</url>
 	</api>
-	<!--保存用户收获地址-->
+	<!--保存用户收货地址-->
 	<api name='savepublicclassuseraddress'>
 		<protocol>post</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/SavePublicClassUserAddress</url>
@@ -309,7 +304,7 @@
 	<!--获取活动的用户排名-->
 	<api name='getusersrank'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetUsersRank</url>
+		<url>http://139.196.90.188:8000/PublicClass/GetUsersRank</url>
 	</api>
 	<!--获取活动是否填写过晋级表单-->
 	<api name='getactivitypromotionwrited'>
@@ -336,17 +331,17 @@
 	<!--获取活动作业信息-->
 	<api name='getactivityhomeworkinfo'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetActivityHomeworkInfo</url>
+		<url>http://192.168.41.33:8077/PublicClass/GetActivityHomeWorkInfo</url>
 	</api>
 	<!--同步用户排名-->
 	<api name='syncavtivityuserrank'>
 		<protocol>post</protocol>
-		<url>http://192.168.41.106:8095/job/SyncAvtivityUserRank</url>
+		<url>http://139.196.136.212:8099/job/syncavtivityuserrank</url>
 	</api>
 	<!--提问列表-->
 	<api name='getquestionlist'>
-		<protocol>json</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetQuestionList</url>
+		<protocol>post</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/getQuestionList</url>
 	</api>
 	<!--我的提问列表-->
 	<api name='getmyquestionlist'>
@@ -365,66 +360,66 @@
 	</api>
 	<!--follow-->
 	<api name='postquestionfollow'>
-		<protocol>json</protocol>
+		<protocol>post</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/PostQuestionFollow</url>
 	</api>
 
 	<!--课程站滚动图片-->
 	<api name='getcoursemallslideshow'>
 		<protocol>get</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCourseMallSlideshow</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCourseMallSlideshow</url>
 	</api>
 	<!--得到课程列表-->
 	<api name='getcourselistbycourseid'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCourseListByCourseId</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCourseListByCourseId</url>
 	</api>
 	<!--得到课程明细-->
 	<api name='getcoursedetail'>
 		<protocol>get</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCourseDetail</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCourseDetail</url>
 	</api>
 	<!--得到课程列表-->
 	<api name='getcourselist'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCourseList</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCourseList</url>
 	</api>
 	<!--得到活动明细-->
 	<api name='getcampaigndetail'>
 		<protocol>get</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCampaignDetail</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCampaignDetail</url>
 	</api>
 	<!--得到活动列表-->
 	<api name='getcampaignlist'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCampaignList</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCampaignList</url>
 	</api>
 	<!--得到活动列表-->
 	<api name='getcoursemalllist'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetCourseMallList</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetCourseMallList</url>
 	</api>
 
 <!--add by liang 20180814-->
 	<!--得到老师的课程列表-->
 	<api name='getonsalecourselistbyteacherid'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetOnsaleCourseListByTeacherId</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetOnsaleCourseListByTeacherId</url>
 	</api>
 	<!--得到老师的战团列表-->
 	<api name='getonsalecampaignlistbyteacherid'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/GetOnsaleCampaignListByTeacherId</url>
+		<url>http://192.168.41.33:8077/CourseMall/GetOnsaleCampaignListByTeacherId</url>
 	</api>
 	<!--得到课程的文章列表-->
 	<api name='getarticlelistbycourseid'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/getArticleListByCourseId</url>
+		<url>http://192.168.41.33:8077/CourseMall/getArticleListByCourseId</url>
 	</api>
 	<!--保存推送的课咨信息-->
 	<api name='receiveconsult'>
 		<protocol>json</protocol>
-		<url>/Gethttp://192.168.41.33:8077/CourseMall/ReceiveConsult</url>
+		<url>http://192.168.41.33:8077/CourseMall/ReceiveConsult</url>
 	</api>
 
 	<!--得到小班课视频信息-->
@@ -435,21 +430,26 @@
 	<!--得到用户微课堂的分享统计信息-->
 	<api name='shareclockininfo'>
 		<protocol>json</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/ShareClockinInfo</url>
+		<url>http://192.168.41.33:8077/PublicClass/ShareClockInInfo</url>
+	</api>
+	<!--更新已学微课堂课程次数-->
+	<api name='updatemicroclasscount'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/UpdateMicroClassCount</url>
 	</api>
 	<!--接收单条的微讲堂课咨信息-->
 	<api name='postlessonconsult'>
-		<protocol>json</protocol>
+		<protocol>post</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/PostLessonConsult</url>
 	</api>
 	<!--接收微讲堂观看信息-->
 	<api name='postlessonview'>
-		<protocol>json</protocol>
+		<protocol>post</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/PostLessonView</url>
 	</api>
 	<!--接收批量的微讲堂课咨信息-->
 	<api name='postlessonconsultbatch'>
-		<protocol>json</protocol>
+		<protocol>post</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/PostLessonConsultBatch</url>
 	</api>
 	<!--通过活动ID得到用户的班级信息-->
@@ -468,17 +468,17 @@
 	<!--通过PPID得到战团信息-->
 	<api name='getactivityclassinfobyppid'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetActivityClassInfoByppid</url>
+		<url>http://192.168.41.33:8077/PublicClass/GetActivityClassInfoByPpid</url>
 	</api>
 	<!--通过PPID得到用户的统计信息FOR 消息助手-->
 	<api name='getmessagestatisticsbyppids'>
 		<protocol>get</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/GetMessageStatisticsByppids</url>
+		<url>http://192.168.41.33:8077/PublicClass/GetMessageStatisticsByPPIDs</url>
 	</api>
 	<!--推送微课堂观看数据-->
 	<api name='postweiclassview'>
-		<protocol>json</protocol>
-		<url>http://192.168.41.33:8077/PublicClass/PostWeiclassView</url>
+		<protocol>post</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/PostWeiClassView</url>
 	</api>
 	<!--取得备考考试信息-->
 	<api name='getuserexampre'>
@@ -489,5 +489,72 @@
 	<api name='saveuserexampre'>
 		<protocol>json</protocol>
 		<url>http://192.168.41.33:8077/PublicClass/SaveUserExamPre</url>
+	</api>
+
+	<!--added by liangxuqing 20181219-->
+	<!--获取活动课程详情-->
+	<api name='getactivitycourselist'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetActivityCourseList</url>
+	</api>
+	<!--获取活动作业-->
+	<api name='getactivitycourseandstudentsinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetActivityCourseAndStudentsInfo</url>
+	</api>
+	<!--获取公开课详情页-老师推荐活动-->
+	<api name='getpublicdetailactivityrecommendlistbyteacher'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetPublicDetailActivityRecommendListByTeacher</url>
+	</api>
+	<!--添加公开课访问记录-->
+	<api name='addpublicclassvisit'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/AddPublicClassVisit</url>
+	</api>
+	<!--获取活动中已审批通过的学生信息-->
+	<api name='getapprovedstudentinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetApprovedStudentInfo</url>
+	</api>
+	<!--获取当前时间有效的活动信息-->
+	<api name='getvalidactivityinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetValidActivityInfo</url>
+	</api>
+	<!--同步活动数据-->
+	<api name='publicclassactivitiesync'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/PublicClassActivitieSync</url>
+	</api>
+	<!--同步已报名活动用户数据-->
+	<api name='publicclassactivitysignupsync'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/PublicClassActivitySignUpSync</url>
+	</api>
+	<!--获取学生是否报名过活动/公开课-->
+	<api name='getuserhasrecord'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetUserHasRecord</url>
+	</api>
+	<!--获取学生小班课,排课列表-->
+	<api name='getstudentschedulelistinminiclass'>
+		<protocol>json</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetStudentScheduleListInMiniClass</url>
+	</api>
+	<!--获取当前是否有正在开播的公开课-->
+	<api name='isbeginshowpublicclass'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/IsBeginShowPublicClass</url>
+	</api>
+	<!--获取当前用户是否是黑名单用户-->
+	<api name='getblackinfobyppid'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/newApi/signupUserBlack/getBlackInfoByPpid</url>
+	</api>
+	<!--获取用户的公开课信息-->
+	<api name='getstudentpublicclassinfo'>
+		<protocol>get</protocol>
+		<url>http://192.168.41.33:8077/PublicClass/GetStudentPublicClassInfo</url>
 	</api>
 </Config>
